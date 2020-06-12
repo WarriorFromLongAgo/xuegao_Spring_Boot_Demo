@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/springboot2_3_kafka/springboot2_3_kafka.iml" filepath="$PROJECT_DIR$/springboot2_3_kafka/springboot2_3_kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot2_3_rabbitmq/springboot2_3_rabbitmq.iml" filepath="$PROJECT_DIR$/springboot2_3_rabbitmq/springboot2_3_rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/xuegao_Spring_Boot_Demo.iml" filepath="$PROJECT_DIR$/.idea/xuegao_Spring_Boot_Demo.iml" />
+    </modules>
+  </component>
+</project>
