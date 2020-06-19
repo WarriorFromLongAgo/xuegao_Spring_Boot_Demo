@@ -1,0 +1,54 @@
+// 文件变量
+@port = 8080
+@contentType = application/json
+@contentType2 = content-type: application/json
+@local = http://127.0.0.1:
+@localhost = http://127.0.0.1:8000
+
+@token1 = eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllTGlzdCI6IlJPTEVfdXNlciwiLCJzdWIiOiJzYW5nIiwiZXhwIjoxNTkyNDcyNzc1fQ.yEOc1A2Fm-bHx28olSP3iVEovjm5_xPJCK87OmbwyXV6Vdy6siOf1aUREO4wLkoY1vDGs5pgOA0Nz2wowK-9KQ
+
+###
+### test
+GET {{local}}11111 HTTP/1.1
+{{contentType2}}
+
+###
+### doLogin
+POST http://127.0.0.1:11111/doLogin HTTP/1.1
+content-type: application/json
+
+{
+    "username":"zhangsan",
+    "password":"123"
+}
+
+###
+### login
+POST http://127.0.0.1:11111/login HTTP/1.1
+content-type: application/json
+
+{
+    "username":"sang",
+    "password":"4561"
+}
+
+###
+### hello3
+GET http://127.0.0.1:11111/hello3 HTTP/1.1
+content-type: application/json
+# 没有token访问，会到这里
+# respBean.setMsg("请求失败，请联系管理员!");
+Authorization: {{token1}}
+
+### 
+curl -X POST "http://dummy.restapiexample.com/api/v1/create" -d "Hello World"
+
+### 
+POST http://dummy.restapiexample.com/api/v1/create HTTP/1.1
+content-type: application/json
+
+{
+    "name":"Hendry",
+    "salary":"61888",
+    "age":"26"
+}

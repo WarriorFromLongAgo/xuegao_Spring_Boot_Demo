@@ -1,0 +1,10 @@
+server:
+  port: 11111
+#  gzip
+  compression:
+    enabled: true
+spring:
+  security:
+    user:
+      name: xuegao
+      password: xuegao
