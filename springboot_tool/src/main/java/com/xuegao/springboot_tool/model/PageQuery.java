@@ -95,35 +95,11 @@ public class PageQuery<T> extends Page<T> {
         return super.ascs();
     }
 
-    // @JsonIgnore
-    // @Override
-    // public Page<T> setAscs(List<String> ascs) {
-    //     return super.setAscs(ascs);
-    // }
-    //
-    // @JsonIgnore
-    // @Override
-    // public Page<T> setAsc(String... ascs) {
-    //     return super.setAsc(ascs);
-    // }
-
     @JsonIgnore
     @Override
     public String[] descs() {
         return super.descs();
     }
-
-    // @JsonIgnore
-    // @Override
-    // public Page<T> setDescs(List<String> descs) {
-    //     return super.setDescs(descs);
-    // }
-    //
-    // @JsonIgnore
-    // @Override
-    // public Page<T> setDesc(String... descs) {
-    //     return super.setDesc(descs);
-    // }
 
     @JsonIgnore
     @Override
@@ -148,19 +124,4 @@ public class PageQuery<T> extends Page<T> {
     public boolean isSearchCount() {
         return super.isSearchCount();
     }
-
-    // @JsonIgnore
-    // public Long getCreateId() {
-    //     return dut.getCreateId();
-    // }
-    //
-    // @JsonIgnore
-    // public String getCreateName() {
-    //     return dut != null ? dut.getCreateName() : "";
-    // }
-    //
-    // @JsonIgnore
-    // public void setDut(CustomUserToken dut) {
-    //     this.dut = dut;
-    // }
 }
