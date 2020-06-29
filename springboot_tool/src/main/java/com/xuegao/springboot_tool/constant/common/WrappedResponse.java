@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.common;
+package com.xuegao.springboot_tool.constant.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.xuegao.springboot_tool.constant.enums.HttpCode;

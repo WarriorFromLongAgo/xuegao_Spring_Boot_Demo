@@ -1,6 +1,6 @@
 package com.xuegao.springboot_tool.exception;
 
-import com.xuegao.springboot_tool.common.WrappedResponse;
+import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
