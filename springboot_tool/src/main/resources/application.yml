@@ -22,11 +22,10 @@ spring:
       idle-timeout: 60000
       max-lifetime: 120000
       minimum-idle: 5
-
   redis:
     host: 127.0.0.1
     database: 0
-    port: 6379
+    port: 6380
     timeout: 10000
     lettuce:
       shutdown-timeout: 10000
@@ -35,6 +34,10 @@ spring:
         max-wait: 0
         min-idle: 0
         max-idle: 8
+  thymeleaf:
+    prefix:
+      classpath: /templates/   # 访问template下的html文件需要配置模板，映射
+    cache: false
 #
 #mybatis:
 ##  configuration:
