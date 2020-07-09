@@ -1,11 +1,13 @@
 package com.xuegao.springboot_tool.controller;
 
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.controller
@@ -15,12 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
  * <br/> @date：2020/7/9 0:33
  */
 @RequestMapping(path = "/file")
+@Controller
 public class FileController {
 
     @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET)
-    public String uploadFile() {
-
-        return "/upload";
+    public ModelAndView uploadFile() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("upload");
+        return modelAndView;
     }
 
     @ResponseBody

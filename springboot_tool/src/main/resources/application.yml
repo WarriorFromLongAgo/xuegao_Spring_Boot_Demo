@@ -1,5 +1,7 @@
 server:
   port: 11111
+  servlet:
+    context-path: /
 
 spring:
 
@@ -35,9 +37,16 @@ spring:
         min-idle: 0
         max-idle: 8
   thymeleaf:
-    prefix:
-      classpath: /templates/   # 访问template下的html文件需要配置模板，映射
+    prefix: classpath:/templates/   # 访问template下的html文件需要配置模板，映射
+    suffix: .html
     cache: false
+#  resources:
+#    static-locations: classpath:/templates/
+#  mvc:
+#    view:
+#      prefix: /templates/**
+#      suffix: .html
+#    static-path-pattern: /static/**
 #
 #mybatis:
 ##  configuration:
