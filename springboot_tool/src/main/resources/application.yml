@@ -58,3 +58,15 @@ logging:
   config: classpath:mylogback-spring.xml
   level:
     root: info
+
+felord:
+  phone: 182******32
+  def:
+    name: 码农小胖哥
+    blog: felord.cn
+    we-chat: MSW_623
+  dev:
+    name: 码农小胖哥
+    blog: felord.cn
+    we-chat: MSW_623
+  type: JUEJIN
