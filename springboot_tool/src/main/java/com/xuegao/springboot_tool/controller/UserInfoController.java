@@ -20,6 +20,7 @@ public class UserInfoController {
     @RequestMapping(path = {"/", "/index.html", "/index"}, method = RequestMethod.GET)
     public String indexController() {
         log.info("indexController = " + "hello");
+        
         return "hello";
     }
 }
