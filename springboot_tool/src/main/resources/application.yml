@@ -1,5 +1,5 @@
 server:
-  port: 11111
+  port: 11112
   servlet:
     context-path: /
 
@@ -7,7 +7,8 @@ spring:
 
   jackson:
     time-zone: GMT+8
-
+  aop:
+    auto: true #启动aop配置
   datasource:
     platform: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -24,18 +25,18 @@ spring:
       idle-timeout: 60000
       max-lifetime: 120000
       minimum-idle: 5
-  redis:
-    host: 127.0.0.1
-    database: 0
-    port: 6380
-    timeout: 10000
-    lettuce:
-      shutdown-timeout: 10000
-      pool:
-        max-active: 8
-        max-wait: 0
-        min-idle: 0
-        max-idle: 8
+#  redis:
+#    host: 127.0.0.1
+#    database: 0
+#    port: 6379
+#    timeout: 10000
+#    lettuce:
+#      shutdown-timeout: 10000
+#      pool:
+#        max-active: 8
+#        max-wait: 0
+#        min-idle: 0
+#        max-idle: 8
   thymeleaf:
     prefix: classpath:/templates/   # 访问template下的html文件需要配置模板，映射
     suffix: .html
