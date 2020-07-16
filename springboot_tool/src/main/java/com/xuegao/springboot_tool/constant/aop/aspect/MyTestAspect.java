@@ -1,13 +1,10 @@
-package com.xuegao.springboot_tool.aspect;
+package com.xuegao.springboot_tool.constant.aop.aspect;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
- * <br/> @PackageName：com.xuegao.springboot_tool.aspect
+ * <br/> @PackageName：com.xuegao.springboot_tool.constant.aop.aspect
  * <br/> @ClassName：MyTestAspect
  * <br/> @Description：
  * <br/> @author：80004960
@@ -17,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyTestAspect {
 
-    @Pointcut("@annotation(com.xuegao.springboot_tool.annotation.MyTest)")
+    @Pointcut("@annotation(com.xuegao.springboot_tool.constant.aop.annotation.MyTest)")
     public void myTest() {
 
     }

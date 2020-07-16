@@ -1,6 +1,6 @@
 package com.xuegao.springboot_tool.controller;
 
-import com.xuegao.springboot_tool.annotation.MyTest;
+import com.xuegao.springboot_tool.constant.aop.annotation.MyTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;

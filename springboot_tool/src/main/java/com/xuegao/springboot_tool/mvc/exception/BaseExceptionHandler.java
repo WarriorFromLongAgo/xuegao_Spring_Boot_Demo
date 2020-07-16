@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.exception;
+package com.xuegao.springboot_tool.mvc.exception;
 
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;

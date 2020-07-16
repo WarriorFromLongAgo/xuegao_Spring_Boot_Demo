@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.exception;
+package com.xuegao.springboot_tool.mvc.exception;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.xuegao.springboot_tool.utils.ExceptionUtil;

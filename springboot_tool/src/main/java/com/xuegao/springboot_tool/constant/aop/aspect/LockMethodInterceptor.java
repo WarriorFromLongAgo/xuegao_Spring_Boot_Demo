@@ -1,8 +1,8 @@
-package com.xuegao.springboot_tool.aspect;
+package com.xuegao.springboot_tool.constant.aop.aspect;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.xuegao.springboot_tool.annotation.LocalLock;
+import com.xuegao.springboot_tool.constant.aop.annotation.LocalLock;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -24,7 +24,7 @@ public class LockMethodInterceptor {
             .expireAfterWrite(5, TimeUnit.SECONDS)
             .build();
 
-    @Around("execution(public * *(..)) && @annotation(com.xuegao.springboot_tool.annotation.LocalLock)")
+    @Around("execution(public * *(..)) && @annotation(com.xuegao.springboot_tool.constant.aop.annotation.LocalLock)")
     public Object interceptor(ProceedingJoinPoint pjp) {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();

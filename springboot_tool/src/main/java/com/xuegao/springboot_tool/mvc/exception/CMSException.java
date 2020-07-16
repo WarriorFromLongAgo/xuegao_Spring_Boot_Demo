@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.exception;
+package com.xuegao.springboot_tool.mvc.exception;
 
 /***
  * <br/> @Title:
