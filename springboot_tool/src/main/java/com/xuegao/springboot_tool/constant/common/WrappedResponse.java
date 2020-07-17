@@ -29,8 +29,8 @@ public class WrappedResponse<T> implements Serializable {
     }
 
     private WrappedResponse(T data) {
-        this.code = HttpCode.SUCCESS.getHttpCode();
-        this.message = HttpCode.SUCCESS.getMessage();
+        this.code = HttpCode.SUCCESS_200.getHttpCode();
+        this.message = HttpCode.SUCCESS_200.getMessage();
         this.data = data;
     }
 
@@ -61,15 +61,15 @@ public class WrappedResponse<T> implements Serializable {
     }
 
     public static <T> WrappedResponse<T> fail() {
-        return fail(HttpCode.SYSTEM_ERROR.getHttpCode(), HttpCode.SYSTEM_ERROR.getMessage(), null);
+        return fail(HttpCode.SERVER_ERROR.getHttpCode(), HttpCode.SERVER_ERROR.getMessage(), null);
     }
 
     public static <T> WrappedResponse<T> fail(String message) {
-        return fail(HttpCode.SYSTEM_ERROR.getHttpCode(), message, null);
+        return fail(HttpCode.SERVER_ERROR.getHttpCode(), message, null);
     }
 
     public static <T> WrappedResponse<T> fail(T data) {
-        return fail(HttpCode.SYSTEM_ERROR.getHttpCode(), HttpCode.SYSTEM_ERROR.getMessage(), data);
+        return fail(HttpCode.SERVER_ERROR.getHttpCode(), HttpCode.SERVER_ERROR.getMessage(), data);
     }
 
     public static <T> WrappedResponse<T> fail(Integer code, String message, T data) {
@@ -77,15 +77,15 @@ public class WrappedResponse<T> implements Serializable {
     }
 
     public static <T> WrappedResponse<T> success() {
-        return success(HttpCode.SUCCESS.getHttpCode(), HttpCode.SUCCESS.getMessage(), null);
+        return success(HttpCode.SUCCESS_200.getHttpCode(), HttpCode.SUCCESS_200.getMessage(), null);
     }
 
     public static <T> WrappedResponse<T> success(String message) {
-        return success(HttpCode.SUCCESS.getHttpCode(), message, null);
+        return success(HttpCode.SUCCESS_200.getHttpCode(), message, null);
     }
 
     public static <T> WrappedResponse<T> success(T data) {
-        return success(HttpCode.SUCCESS.getHttpCode(), HttpCode.SUCCESS.getMessage(), data);
+        return success(HttpCode.SUCCESS_200.getHttpCode(), HttpCode.SUCCESS_200.getMessage(), data);
     }
 
     public static <T> WrappedResponse<T> success(Integer code, String message, T data) {
