@@ -9,6 +9,19 @@ package com.xuegao.springboot_tool.constant.consist;
  */
 public class Constant {
 
+    public interface managerr {
+        String PERMISSIONS_KEY = "permissions-key";
+        String USERID_KEY = "userid-key";
+        String USERNAME_KEY = "username-key";
+        String ROLES_KEY = "roles-key";
+        String DEPT_TYPE = "D";
+        Integer DATA_NOT_DELETED = 1;
+        String DB_TYPE_MYSQL = "mysql";
+        String DB_TYPE_ORACLE = "oracle";
+        String DB_TYPE_SQL_SERVER = "sqlServer";
+        String ACCESS_TOKEN = "authorization";
+    }
+
     public interface RedisConstant {
 
         String OK = "OK";

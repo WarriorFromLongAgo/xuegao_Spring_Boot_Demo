@@ -1,7 +1,7 @@
 package com.xuegao.springboot_tool.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.company.project.common.utils.Constant;
+import com.xuegao.springboot_tool.constant.consist.Constant;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +27,7 @@ public class MetaObjectHandlerConfig implements MetaObjectHandler {
         HashSet<String> setterNameSet = new HashSet<>(Arrays.asList(setterNames));
         if (setterNameSet.contains("deleted")) {
             //默认未删除
-            setFieldValByName("deleted", Constant.DATA_NOT_DELETED, metaObject);
+            setFieldValByName("deleted", Constant.managerr.DATA_NOT_DELETED, metaObject);
         }
         if (setterNameSet.contains("createTime")) {
             //创建时间默认当前时间

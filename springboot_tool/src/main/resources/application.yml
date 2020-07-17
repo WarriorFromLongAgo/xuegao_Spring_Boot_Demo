@@ -22,22 +22,22 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
-  datasource:
-    platform: mysql
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/learning-master?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: 123456
+#  datasource:
+#    platform: mysql
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/learning-master?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
 #    url: jdbc:mysql://120.79.58.4:13306/t_user_info
 #    username: nc
 #    password: XbnHGGo8Ku*!
-    type:
-    hikari:
-      maximum-pool-size: 5
-      connection-timeout: 30000
-      idle-timeout: 60000
-      max-lifetime: 120000
-      minimum-idle: 5
+#    type:
+#    hikari:
+#      maximum-pool-size: 5
+#      connection-timeout: 30000
+#      idle-timeout: 60000
+#      max-lifetime: 120000
+#      minimum-idle: 5
   redis:
     host: 127.0.0.1
     database: 0

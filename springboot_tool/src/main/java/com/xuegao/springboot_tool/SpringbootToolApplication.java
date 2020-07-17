@@ -1,7 +1,7 @@
 package com.xuegao.springboot_tool;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -18,7 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //     2.2.0
 // {@link ConfigurationPropertiesScan} 同 {@link EnableConfigurationProperties} 二选一
 @MapperScan(basePackages = "com.xuegao.springboot_tool.dao")
-@SpringBootApplication
+@SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
 public class SpringbootToolApplication {
 
     public static void main(String[] args) {

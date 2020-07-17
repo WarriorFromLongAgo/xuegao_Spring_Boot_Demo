@@ -1,6 +1,5 @@
 package com.xuegao.springboot_tool.config;
 
-import javax.swing.*;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.config
