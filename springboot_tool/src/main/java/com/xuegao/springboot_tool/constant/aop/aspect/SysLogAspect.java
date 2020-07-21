@@ -3,6 +3,7 @@ package com.xuegao.springboot_tool.constant.aop.aspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @version V1.0
  * @date 2020年3月18日
  */
+@Order(2)
 @Aspect
 @Component
 public class SysLogAspect {

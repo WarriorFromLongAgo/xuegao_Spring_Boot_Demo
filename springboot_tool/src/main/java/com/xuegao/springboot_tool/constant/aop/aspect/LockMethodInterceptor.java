@@ -9,13 +9,15 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 @Aspect
 @Configuration
-public class LockMethodInterceptor {
+public class LockMethodInterceptor implements Ordered {
 
     private static final Cache<String, Object> CACHES = CacheBuilder.newBuilder()
             // 最大缓存 100 个
@@ -58,5 +60,11 @@ public class LockMethodInterceptor {
             keyExpress = keyExpress.replace("arg[" + i + "]", args[i].toString());
         }
         return keyExpress;
+    }
+
+    @Override
+    public int getOrder() {
+        // 数值越低，表明优先级越高，@Order 默认为最低优先级，即最大数值：
+        return 22;
     }
 }

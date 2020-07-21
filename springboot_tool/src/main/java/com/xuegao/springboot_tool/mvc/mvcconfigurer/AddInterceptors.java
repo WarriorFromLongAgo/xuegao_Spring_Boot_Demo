@@ -4,6 +4,7 @@ import com.xuegao.springboot_tool.mvc.interceptor.LoginlerInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -26,9 +27,17 @@ public class AddInterceptors implements WebMvcConfigurer {
          * /** 为所有路径包括多级
          */
         interceptor.addPathPatterns("/**");
-
         //排除不拦截的，包括自己登录的页面不用拦截
         interceptor.excludePathPatterns("/login");
         interceptor.excludePathPatterns("/user/handle");
     }
+
+    // 配置静态资源路径
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/**");
+    }
+
+
 }

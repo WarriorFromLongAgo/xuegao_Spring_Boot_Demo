@@ -4,12 +4,16 @@ server:
     context-path: /
 
 spring:
+
   application:
     name: springboot-tool
   profiles:
     active: dev
   mvc:
     throw-exception-if-no-handler-found: true
+#    图标 不适用
+    favicon:
+      enabled: false
   resources:
     add-mappings: false
   jackson:
