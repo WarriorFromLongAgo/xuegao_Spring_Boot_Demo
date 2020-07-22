@@ -2,6 +2,15 @@ server:
   port: 11112
   servlet:
     context-path: /
+#  gzip 开启
+  compression:
+    enabled: true
+    mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 1024
+#  tomcat中使用gzip需要进行配置，在server.xml中，在Connector标签中加入如下属性
+#  compression="on"
+#  compressionMinSize="2048"
+#  compressableMimeType="text/html,text/css,text/javascript"
 
 spring:
 

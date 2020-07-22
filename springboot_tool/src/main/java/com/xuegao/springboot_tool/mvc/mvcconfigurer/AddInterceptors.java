@@ -32,6 +32,9 @@ public class AddInterceptors implements WebMvcConfigurer {
     // 配置静态资源路径
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 访问/swagger-ui.html找不到页面，原因是Swagger的页面是打在JAR中的。
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/**");
     }
