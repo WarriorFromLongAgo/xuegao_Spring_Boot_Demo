@@ -63,6 +63,9 @@ spring:
         max-wait: 0
         min-idle: 0
         max-idle: 8
+    prefix:
+      enable: true
+      key: E00P01
   thymeleaf:
     prefix: classpath:/templates/   # 访问template下的html文件需要配置模板，映射
     suffix: .html
