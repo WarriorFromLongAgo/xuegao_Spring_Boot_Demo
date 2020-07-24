@@ -1,16 +1,12 @@
 ######################################################################
 # Build Tools
-
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
-
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ######################################################################
-# IDE
-
 ### STS ###
 .apt_generated
 .classpath
@@ -18,7 +14,9 @@ target/
 .project
 .settings
 .springBeans
+.sts4-cache
 
+######################################################################
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -28,7 +26,10 @@ mvnw
 mvnw.*
 .gitignore
 .mvn
+*.class
+target/*
 
+######################################################################
 ### NetBeans ###
 nbproject/private/
 build/*
@@ -38,10 +39,51 @@ nbdist/
 .nb-gradle/
 
 ######################################################################
-# Others
+### Others ###
 *.log
 *.xml.versionsBackup
-
 !*/build/*.java
 !*/build/*.html
 !*/build/*.xml
+
+######################################################################
+### admin-web ###
+
+# dependencies
+**/node_modules
+
+# roadhog-api-doc ignore
+/src/utils/request-temp.js
+_roadhog-api-doc
+
+# production
+/dist
+/.vscode
+
+# misc
+.DS_Store
+npm-debug.log*
+yarn-error.log
+
+/coverage
+.idea
+yarn.lock
+package-lock.json
+*bak
+.vscode
+
+# visual studio code
+.history
+*.log
+
+functions/mock
+.temp/**
+
+# umi
+.umi
+.umi-production
+
+# screenshot
+screenshot
+.firebase
+sessionStore
