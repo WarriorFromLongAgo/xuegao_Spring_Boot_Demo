@@ -8,3 +8,6 @@ spring:
     user:
       name: xuegao
       password: xuegao
+  application:
+    name: security
+

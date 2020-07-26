@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot2_3_security.utils
@@ -20,7 +21,7 @@ public class VerifyCode {
     private int height = 50;// 生成验证码图片的高度
     private String[] fontNames = {"宋体", "楷体", "隶书", "微软雅黑"};
     private Color bgColor = new Color(255, 255, 255);// 定义验证码图片的背景颜色为白色
-    private Random random = new Random();
+    private Random random = ThreadLocalRandom.current();
     private String codes = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private String text;// 记录随机字符串
 
