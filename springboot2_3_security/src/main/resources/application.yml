@@ -3,8 +3,44 @@ server:
 #  gzip
   compression:
     enabled: true
+  servlet:
+    context-path: /
 spring:
   security:
     user:
       name: xuegao
       password: xuegao
+      roles: USER
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/local?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+  application:
+    name: security
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  thymeleaf:
+    prefix: classpath:/templates/   # 访问template下的html文件需要配置模板，映射
+    suffix: .html
+    cache: false
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+#  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+
+logging:
+#  config: classpath:mylogback-spring.xml
+  level:
+    root: info
+    com.xuegao.springboot2_3_security.dao: debug

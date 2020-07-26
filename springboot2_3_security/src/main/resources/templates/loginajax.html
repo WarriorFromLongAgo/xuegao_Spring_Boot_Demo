@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.js"></script>
+</head>
+<body>
+<h1>login ajax</h1>
+
+<form action="/login" method="post">
+    用户名：<input type="text" name="username"/><br/>
+    密码：<input type="text" name="password"/><br/>
+    <input type="button" onclick="login()" value="登录">
+</form>
+
+<script>
+    function login() {
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: {
+                "username": $("username").val(),
+                "password": $("password").val()
+            },
+            success: function (data) {
+                if (data.code === 200) {
+                    location.href = "/index";
+                } else {
+                    alert(data.message)
+                }
+            }
+        })
+    }
+</script>
+
+</body>
+</html>
