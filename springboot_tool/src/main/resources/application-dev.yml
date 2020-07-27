@@ -10,7 +10,7 @@ spring:
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://localhost:3306/cherrys?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2b8
+          url: jdbc:mysql://localhost:3306/cherrys?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
         oracle:
           username: root
           password: 123456
