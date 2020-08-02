@@ -7,6 +7,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <br/> @PackageName：com.fff.redistemplate_test.utils
@@ -20,25 +22,35 @@ public class AppRunner implements CommandLineRunner, Order {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AppRunner.class);
 
-    // private final IRedisService redisService;
-    //
-    // public AppRunner(IRedisService redisService){
-    //     this.redisService = redisService;
-    // }
-
     @Override
     public void run(String... args) {
-        LOGGER.info(".... Fetching books");
-        // redisService.getUserInfoById(1341128242626592L);
-        // redisService.getUserInfoById(1341128244723744L);
-        // redisService.getUserInfoById(1341128232140832L);
-        // redisService.getUserInfoById(1341128240529440L);
-        // redisService.getUserInfoById(1341128244723776L);
-        LOGGER.info("isbn-1234 -->");
-        LOGGER.info("isbn-4567 -->");
-        LOGGER.info("isbn-1234 -->");
-        LOGGER.info("isbn-4567 -->");
-        LOGGER.info("isbn-1234 -->");
+
+        LOGGER.info("=========================================");
+        LOGGER.info("=========================================");
+        LOGGER.info("=========================================");
+
+        List<String> str = new ArrayList<>();
+        System.out.println("内存 和 CPU分界");
+        new Thread(() -> {
+            int result = 0;
+            while (true) {
+                String s = new byte[1000000000].toString() + "=" + result;
+                System.out.println(s);
+                str.add(s);
+                System.out.println("str = " + str.size());
+                Runtime rt = Runtime.getRuntime();
+                System.out.println("freeMemory = " + rt.freeMemory() / (1024 * 1024));
+                System.out.println("maxMemory = " + rt.maxMemory() / (1024 * 1024));
+                System.out.println("totalMemory = " + rt.totalMemory() / (1024 * 1024));
+                result++;
+                if (result > Integer.MAX_VALUE / 2) {
+                    result = 0;
+                }
+            }
+        }).start();
+        LOGGER.info("=========================================");
+        LOGGER.info("=========================================");
+        LOGGER.info("=========================================");
     }
 
     @Override

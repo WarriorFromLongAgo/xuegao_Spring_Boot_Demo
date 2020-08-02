@@ -36,7 +36,7 @@ class SpringbootToolApplicationTests {
         //数据源
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/cherrys?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai");
+        hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/local?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai");
         hikariConfig.setUsername("root");
         hikariConfig.setPassword("123456");
         //设置可以获取tables remarks信息
