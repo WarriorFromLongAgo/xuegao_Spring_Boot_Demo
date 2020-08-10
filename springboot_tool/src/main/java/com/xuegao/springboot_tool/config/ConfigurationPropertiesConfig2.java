@@ -13,6 +13,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 // @ConfigurationProperties(PREFIX)
 public class ConfigurationPropertiesConfig2 {
     static final String PREFIX = "felord";
+
+
     private Def def;
     private Dev dev;
     private Type type;

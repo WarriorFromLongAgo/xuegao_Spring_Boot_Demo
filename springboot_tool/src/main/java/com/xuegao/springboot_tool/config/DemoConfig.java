@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @date 2020/6/10
  */
 @Component
-@ConfigurationProperties("demo")
+@ConfigurationProperties(prefix = "demo")
 public class DemoConfig {
 
     private String username;

@@ -26,5 +26,10 @@ public class CMSException extends RuntimeException {
         return "CMSException{" + "code=" + code + ", message=" + this.getMessage() + '}';
     }
 
-
+    /* avoid the expensive and useless stack trace for api exceptions */
+    /* 翻译：避免对api异常进行昂贵且无用的堆栈跟踪 */
+    @Override
+    public Throwable fillInStackTrace() {
+        return this;
+    }
 }
