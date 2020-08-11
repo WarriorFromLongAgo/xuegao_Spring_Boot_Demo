@@ -4,6 +4,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.constant.aop.aspect
  * <br/> @ClassName：MyTestAspect
@@ -46,15 +50,26 @@ public class MyTestAspect {
 
     @Around(value = "myTest()")
     public Object Around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        System.out.println("Around");
-        System.out.println("Around");
-        // 直接报错，返回，只打印两行
-        // int a = 2 / 0;
-        Object proceed = proceedingJoinPoint.proceed();
-        // 直接报错，打印上面的一堆
-        // int a = 2 / 0;
-        System.out.println("Around");
-        System.out.println("Around");
+        List<String> stringList = new ArrayList<>();
+
+        Object proceed = null;
+        try {
+            System.out.println("Around");
+            System.out.println("Around");
+            // 直接报错，返回，只打印两行
+            // int a = 2 / 0;
+            proceed = proceedingJoinPoint.proceed();
+            // 直接报错，打印上面的一堆
+            // int a = 2 / 0;
+            System.out.println("Around");
+            System.out.println("Around");
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            stringList.add("1111");
+            stringList.add("2222");
+        }
+        stringList.parallelStream().forEach(s -> System.out.print(s));
         return proceed;
     }
 
