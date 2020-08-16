@@ -127,17 +127,11 @@
             <version>29.0-jre</version>
         </dependency>
 
-        <!--redis-->
-        <!--<dependency>-->
-        <!--    <groupId>org.springframework.boot</groupId>-->
-        <!--    <artifactId>spring-boot-starter-data-redis</artifactId>-->
-        <!--</dependency>-->
-        <!--redisson-->
-        <!--<dependency>-->
-        <!--    <groupId>org.redisson</groupId>-->
-        <!--    <artifactId>redisson-spring-boot-starter</artifactId>-->
-        <!--    <version>3.10.6</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.10.6</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <dependency>
@@ -145,10 +139,12 @@
             <artifactId>hibernate-validator</artifactId>
             <version>6.1.5.Final</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
@@ -184,6 +180,11 @@
             <groupId>cn.smallbun.screw</groupId>
             <artifactId>screw-core</artifactId>
             <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.2.0</version>
         </dependency>
     </dependencies>
 
