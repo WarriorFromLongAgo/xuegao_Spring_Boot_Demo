@@ -1,0 +1,30 @@
+<generatorConfiguration>    
+    <context>        <!-- jdbc连接 -->        
+        <jdbcConnection> ... </jdbcConnection>        
+        <!-- schema为数据库名，tableName为对应的数据库表名 -->        
+        <table> ... </table>        
+        <!-- 注释 -->        
+        <commentGenerator> ... </commentGenerator>        
+        <!-- 类型转换 -->        
+        <javaTypeResolver> ... </javaTypeResolver>        
+        <!-- 生成实体类配置 -->        
+        <javaModelGenerator> ... </javaModelGenerator>        
+        <!-- 生成Mapper.xml文件配置 -->        
+        <sqlMapGenerator> ... </sqlMapGenerator>       
+         <!-- 生成Mapper.java 接口-->       
+         <javaClientGenerator> ... </javaClientGenerator>    
+    </context>
+</generatorConfiguration>
+
+<!--缺点-->
+<!---->
+<!--每次代码生成需要配置对应的 mybatis-generator-config 通过 XML 的形式配置相关生成属性和规则无法生成通用的 Controller、Service 类，无法自定义模板等-->
+<!--综上两点： mybatis-generator 使用非常不方便-->
+<!---->
+<!--作者：冷冷zz-->
+<!--链接：https://juejin.im/post/6860652082186813448-->
+<!--来源：掘金-->
+<!--著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。-->
+
+
+        <!--EasyCode-->
