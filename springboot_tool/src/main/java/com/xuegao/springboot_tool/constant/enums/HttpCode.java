@@ -18,10 +18,10 @@ public enum HttpCode {
     REDIRECT(302, "链接已经被重定向"),
 
     CLIENT_BAD_REQUEST(400, "客户端请求的语法错误，服务器无法理解"),
-    CLIENT_Unauthorized(401, "请进行身份认证"),
-    CLIENT_Forbidden(403, "服务器理解请求客户端的请求，但是拒绝执行此请求"),
-    CLIENT_Not_Found(404, "服务器无法根据客户端的请求找到资源"),
-    CLIENT_Method_Not_Allowed(405, "客户端请求中的方法被禁止"),
+    CLIENT_UNAUTHORIZED(401, "请进行身份认证"),
+    CLIENT_FORBIDDEN(403, "服务器理解请求客户端的请求，但是拒绝执行此请求"),
+    CLIENT_NOT_FOUND(404, "服务器无法根据客户端的请求找到资源"),
+    CLIENT_METHOD_NOT_ALLOWED(405, "客户端请求中的方法被禁止"),
 
     SERVER_ERROR(500, "系统异常，请联系管理员"),
     SERVER_NOT_IMPLEMENTED(501, "服务器不支持请求的功能，无法完成请求"),
