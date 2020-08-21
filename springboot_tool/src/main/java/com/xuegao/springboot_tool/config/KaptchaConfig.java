@@ -1,10 +1,6 @@
 package com.xuegao.springboot_tool.config;
 
-import com.google.code.kaptcha.impl.DefaultKaptcha;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Properties;
 
 /**
  * 生成验证码配置
