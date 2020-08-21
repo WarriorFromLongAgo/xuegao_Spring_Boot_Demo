@@ -66,6 +66,11 @@ public class InstantiationAwareBeanPostProcessorAdapterTest extends Instantiatio
         return super.postProcessAfterInitialization(bean, beanName);
     }
 
+    // 所有的bean最先执行
+    // 最后小结一下，本文提出了两种让 bean 优先加载的方式，一个是在启动类的构造方法中添加依赖，
+    // 一个是借助InstantiationAwareBeanPostProcessorAdapter在 bean 实例化之前被创建的特点，结合BeanFactory来手动触发目标 bean 的创建
+    // 最后通过@Import注解让我们的BeanPostProcessorAdapter生效
+    // https://juejin.im/post/6844904096994967559
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
         System.out.println(" InstantiationAwareBeanPostProcessorAdapterTest postProcessAfterInstantiation ");

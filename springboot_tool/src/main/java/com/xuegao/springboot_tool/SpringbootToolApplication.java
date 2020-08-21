@@ -1,6 +1,8 @@
 package com.xuegao.springboot_tool;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
+import com.xuegao.springboot_tool.spring.beanload.DemoBeanHuiHui;
+import com.xuegao.springboot_tool.spring.beanload.EnableOrderClient;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +21,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // {@link ConfigurationPropertiesScan} 同 {@link EnableConfigurationProperties} 二选一
 @MapperScan(basePackages = "com.xuegao.springboot_tool.dao")
 @SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
+@EnableOrderClient
 public class SpringbootToolApplication {
+
+    public SpringbootToolApplication(DemoBeanHuiHui demoBeanHuiHui) {
+        demoBeanHuiHui.print();
+    }
+
 
     public static void main(String[] args) {
         // System.out.println();
