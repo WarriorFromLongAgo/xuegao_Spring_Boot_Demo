@@ -2,7 +2,7 @@ server:
   port: 11112
   servlet:
     context-path: /
-#  gzip 开启
+  #  gzip 开启
   compression:
     enabled: true
     mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain
@@ -19,7 +19,7 @@ spring:
     active: dev
   mvc:
     throw-exception-if-no-handler-found: true
-#    图标 不适用
+    #    图标 不适用
     favicon:
       enabled: false
   resources:
@@ -34,22 +34,22 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
-#  datasource:
-#    platform: mysql
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://127.0.0.1:3306/learning-master?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-#    username: root
-#    password: 123456
-#    url: jdbc:mysql://120.79.58.4:13306/t_user_info
-#    username: nc
-#    password: XbnHGGo8Ku*!
-#    type:
-#    hikari:
-#      maximum-pool-size: 5
-#      connection-timeout: 30000
-#      idle-timeout: 60000
-#      max-lifetime: 120000
-#      minimum-idle: 5
+  #  datasource:
+  #    platform: mysql
+  #    driver-class-name: com.mysql.cj.jdbc.Driver
+  #    url: jdbc:mysql://127.0.0.1:3306/learning-master?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+  #    username: root
+  #    password: 123456
+  #    url: jdbc:mysql://120.79.58.4:13306/t_user_info
+  #    username: nc
+  #    password: XbnHGGo8Ku*!
+  #    type:
+  #    hikari:
+  #      maximum-pool-size: 5
+  #      connection-timeout: 30000
+  #      idle-timeout: 60000
+  #      max-lifetime: 120000
+  #      minimum-idle: 5
   redis:
     host: 127.0.0.1
     database: 0
@@ -69,32 +69,32 @@ spring:
     prefix: classpath:/templates/   # 访问template下的html文件需要配置模板，映射
     suffix: .html
     cache: false
-  data:
-    mongodb:
-      database: bfa_mongo
-      username: "xxx"
-      password: "xxxxx"
+#  data:
+#    mongodb:
+#      database: bfa_mongo
+#      username: "xxx"
+#      password: "xxxxx"
 #      address: "host:port"
 #      address: 集群
 #        - "host:port"
 #        - "host2:port2"
 #        -
-      authenticationDatabase: [设置你的认证数据库，如果有的话]
-      # 连接池配置
-      clientName: ${spring.application.name} # 客户端的标识，用于定位请求来源等
-      connectionTimeoutMs: 10000     # TCP连接超时，毫秒
-      readTimeoutMs: 15000       # TCP读取超时，毫秒
-      poolMaxWaitTimeMs: 3000        #当连接池无可用连接时客户端阻塞等待的时长，单位毫秒
-      connectionMaxIdleTimeMs: 60000   #TCP连接闲置时间，单位毫秒
-      connectionMaxLifeTimeMs: 120000    #TCP连接最多可以使用多久，单位毫秒
-      heartbeatFrequencyMs: 20000      #心跳检测发送频率，单位毫秒
-      minHeartbeatFrequencyMs: 8000    #最小的心跳检测发送频率，单位毫秒
-      heartbeatConnectionTimeoutMs: 10000  #心跳检测TCP连接超时，单位毫秒
-      heartbeatReadTimeoutMs: 15000    #心跳检测TCP连接读取超时，单位毫秒
-      connectionsPerHost: 20       # 每个host的TCP连接数
-      minConnectionsPerHost: 5     #每个host的最小TCP连接数
-      #计算允许多少个线程阻塞等待可用TCP连接时的乘数，算法：threadsAllowedToBlockForConnectionMultiplier*connectionsPerHost，当前配置允许10*20个线程阻塞
-      threadsAllowedToBlockForConnectionMultiplier: 10
+#      authenticationDatabase: [设置你的认证数据库，如果有的话]
+#      # 连接池配置
+#      clientName: ${spring.application.name} # 客户端的标识，用于定位请求来源等
+#      connectionTimeoutMs: 10000     # TCP连接超时，毫秒
+#      readTimeoutMs: 15000       # TCP读取超时，毫秒
+#      poolMaxWaitTimeMs: 3000        #当连接池无可用连接时客户端阻塞等待的时长，单位毫秒
+#      connectionMaxIdleTimeMs: 60000   #TCP连接闲置时间，单位毫秒
+#      connectionMaxLifeTimeMs: 120000    #TCP连接最多可以使用多久，单位毫秒
+#      heartbeatFrequencyMs: 20000      #心跳检测发送频率，单位毫秒
+#      minHeartbeatFrequencyMs: 8000    #最小的心跳检测发送频率，单位毫秒
+#      heartbeatConnectionTimeoutMs: 10000  #心跳检测TCP连接超时，单位毫秒
+#      heartbeatReadTimeoutMs: 15000    #心跳检测TCP连接读取超时，单位毫秒
+#      connectionsPerHost: 20       # 每个host的TCP连接数
+#      minConnectionsPerHost: 5     #每个host的最小TCP连接数
+#      #计算允许多少个线程阻塞等待可用TCP连接时的乘数，算法：threadsAllowedToBlockForConnectionMultiplier*connectionsPerHost，当前配置允许10*20个线程阻塞
+#      threadsAllowedToBlockForConnectionMultiplier: 10
 
 mybatis-plus:
   configuration:
@@ -107,9 +107,9 @@ mybatis-plus:
       logic-not-delete-value: 1
 
 logging:
-#  由于引入了 log4j2，不再是 logback，，先注释
-#  config: classpath:mylogback-spring.xml
-#  config: classpath:log4j2-spring.xml
+  #  由于引入了 log4j2，不再是 logback，，先注释
+  #  config: classpath:mylogback-spring.xml
+  config: classpath:log4j2-spring.xml
   level:
     root: info
     cn.jay.repository: trace
@@ -133,3 +133,5 @@ demo:
 #使用代码生成模块时 指定要生成的表存在于哪种数据库，可选值有【mysql、oracle、sqlServer】
 project:
   database: mysql
+
+

@@ -48,7 +48,7 @@ public class BaseController<T> {
     /**
      * 返回成功消息
      */
-    public WrappedResponse<String> success(String message) {
+    public WrappedResponse<T> success(String message) {
         return WrappedResponse.success(message);
     }
 
@@ -69,7 +69,7 @@ public class BaseController<T> {
     /**
      * 返回失败消息
      */
-    public WrappedResponse<String> fail(String message) {
+    public WrappedResponse<T> fail(String message) {
         return WrappedResponse.fail(message);
     }
 

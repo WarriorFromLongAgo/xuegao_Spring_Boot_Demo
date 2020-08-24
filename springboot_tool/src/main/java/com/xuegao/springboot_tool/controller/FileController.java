@@ -14,17 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
  * <br/> @date：2020/7/9 0:33
  */
 @RequestMapping(path = "/file")
-@Controller
 @RestController
 public class FileController {
 
-    @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET)
-    public ModelAndView uploadFile() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("upload");
-        return modelAndView;
-    }
-
+    /**
+     * <br/> @Title: 文件的上传
+     * <br/> @MethodName:  uploadFile
+     * <br/> @param fileArr:
+     * <br/> @Return com.xuegao.springboot_tool.constant.common.WrappedResponse<java.lang.String>
+     * <br/> @Description:
+     * <br/> @author: 80004960
+     * <br/> @date:  2020/8/24 10:12
+     */
     @ResponseBody
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
     public WrappedResponse<String> uploadFile(@RequestParam(name = "file", required = false) MultipartFile[] fileArr) {

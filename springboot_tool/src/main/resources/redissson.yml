@@ -1,0 +1,12 @@
+singleServerConfig:
+  idleConnectionTimeout: 10000
+  pingTimeout: 1000
+  connectTimeout: 10000
+  timeout: 3000
+  retryAttempts: 3
+  retryInterval: 1500
+  reconnectionTimeout: 3000
+  failedAttempts: 3
+#  password:
+#  sub
+#  https://blog.csdn.net/a1036645146/article/details/100023162
