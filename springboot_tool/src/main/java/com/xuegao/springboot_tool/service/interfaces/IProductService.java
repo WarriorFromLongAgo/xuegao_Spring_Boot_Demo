@@ -1,5 +1,7 @@
 package com.xuegao.springboot_tool.service.interfaces;
 
+import com.xuegao.springboot_tool.model.doo.Product;
+
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.service.interfaces
  * <br/> @ClassName：IProductService
@@ -10,4 +12,6 @@ package com.xuegao.springboot_tool.service.interfaces;
 public interface IProductService {
 
     Boolean seckillProduct(Long productId, Integer number);
+
+    void initProduct(Product product);
 }

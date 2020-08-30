@@ -31,7 +31,7 @@ public class Product implements Serializable {
     private String price;
 
     @TableField("stocks")
-    @ApiModelProperty(value = "商品数量", position = 10)
+    @ApiModelProperty(value = "商品库存", position = 10)
     private Integer stocks;
 
     @TableField("description")

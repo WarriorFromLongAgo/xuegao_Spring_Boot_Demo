@@ -46,6 +46,7 @@ public class RedissionUtil {
     public long incr(String key, long delta) {
         return this.redissonClient.getAtomicLong(key).addAndGet(delta);
     }
+
     // -----------------------------------------------------------------------
 
     public void lock() {
