@@ -11,11 +11,11 @@ import java.io.Serializable;
 
 @Configuration
 // @Import({RedisKeyPrefixProperties.class})
-public class RedisLimiterHelper {
+public class RedisTemplateConfig {
 
     @Bean
     // public RedisTemplate<String, Serializable> limitRedisTemplate(LettuceConnectionFactory redisConnectionFactory) {
-    public RedisTemplate<String, Serializable> limitRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate<String, Serializable> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
 
         redisTemplate.setKeySerializer(new StringRedisSerializer());

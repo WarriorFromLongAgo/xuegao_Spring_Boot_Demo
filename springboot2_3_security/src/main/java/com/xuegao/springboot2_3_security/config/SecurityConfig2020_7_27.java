@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -49,6 +50,7 @@ public class SecurityConfig2020_7_27 extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                // 设置 Form 表单登陆
                 .formLogin()
                 .loginPage("/login.html")
                 .loginProcessingUrl("/login")
@@ -56,24 +58,22 @@ public class SecurityConfig2020_7_27 extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 // 不可以直接返回页面，只能通过handler处理
                 .successHandler(successHandler)
-                .failureHandler(failureHandler);
+                .failureHandler(failureHandler)
+                // 所有人都可以访问
+                .permitAll();
 
         httpSecurity
+                // 配置请求地址的权限
                 .authorizeRequests()
-                .antMatchers("/login.html", "/login")
-                .permitAll()
+                // 所有用户可访问
+                .antMatchers("/login.html", "/login").permitAll()
                 /** ====================================== */
-
                 // 需要对外暴露的资源路径
-                .antMatchers("/order")
                 // user 和 admin角色可以访问
-                .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .antMatchers("/order").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 /** ====================================== */
-
-                .antMatchers("/system/user", "/system/c3role", "/system/menu")
                 // admin角色可以访问
-                .hasAnyRole("ADMIN")
-
+                .antMatchers("/system/user", "/system/c3role", "/system/menu").hasAnyRole("ADMIN")
                 /** ====================================== */
                 // 所有的请求都必须被认证，必须登录之后访问
                 .anyRequest().authenticated();
@@ -81,13 +81,26 @@ public class SecurityConfig2020_7_27 extends WebSecurityConfigurerAdapter {
         // 关闭防火墙，禁用csrf攻击防御，否则无法登录成功
         httpSecurity.csrf().disable();
 
-        // 登出功能
-        httpSecurity.logout().logoutUrl("logout");
+        // 登出功能，所有人都可以访问
+        httpSecurity.logout().logoutUrl("logout").permitAll();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
+        auth
+                // 使用内存中的
+                .inMemoryAuthentication()
+                // 使用不加密的
+                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                // 配置 admin 用户
+                .withUser("admin").password("admin").roles("ADMIN")
+                // 配置 normal 用户
+                .and().withUser("normal").password("normal").roles("NORMAL");
+        auth
+                // 使用 重写的 方法
+                .userDetailsService(userDetailsService)
+
+                .passwordEncoder(getPasswordEncoder());
     }
 
     /**
@@ -103,10 +116,11 @@ public class SecurityConfig2020_7_27 extends WebSecurityConfigurerAdapter {
      * <br/> @date:  2020/6/18 16:10
      */
     @Bean
-    RoleHierarchy roleHierarchy() {
+    public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
         String hierarchy = "ROLE_dba > ROLE_admin \n ROLE_admin > ROLE_user";
         roleHierarchy.setHierarchy(hierarchy);
         return roleHierarchy;
     }
+
 }
