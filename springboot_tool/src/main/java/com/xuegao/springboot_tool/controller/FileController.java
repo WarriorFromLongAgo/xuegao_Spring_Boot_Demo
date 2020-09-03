@@ -1,5 +1,6 @@
 package com.xuegao.springboot_tool.controller;
 
+import com.xuegao.springboot_tool.constant.aop.annotation.PrintlnLog;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.service.interfaces.IFileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,12 @@ public class FileController {
     public WrappedResponse<Void> uploadFile(@RequestParam(name = "file", required = false) MultipartFile[] fileArr) throws IOException {
         Void unused = fileService.uploadFileService(fileArr);
         return WrappedResponse.success(unused);
+    }
+
+    @PrintlnLog(description = "transform-transform")
+    @RequestMapping(path = "/transform", method = RequestMethod.GET)
+    public WrappedResponse<Void> transformFile() throws IOException, InterruptedException {
+        fileService.transformFile();
+        return WrappedResponse.success("转换成功");
     }
 }

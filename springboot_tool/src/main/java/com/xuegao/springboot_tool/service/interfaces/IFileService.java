@@ -14,4 +14,6 @@ import java.io.IOException;
 public interface IFileService {
 
     Void uploadFileService(MultipartFile... fileArr) throws IOException;
+
+    void transformFile() throws IOException, InterruptedException;
 }
