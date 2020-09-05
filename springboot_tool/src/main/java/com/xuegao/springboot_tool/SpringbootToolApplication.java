@@ -6,6 +6,7 @@ import com.xuegao.springboot_tool.spring.beanload.EnableOrderClient;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * <br/> @PackageName：com.xuegao.dao
@@ -22,6 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages = "com.xuegao.springboot_tool.dao")
 @SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
 @EnableOrderClient
+@EnableScheduling
 public class SpringbootToolApplication {
 
     public SpringbootToolApplication(DemoBeanHuiHui demoBeanHuiHui) {

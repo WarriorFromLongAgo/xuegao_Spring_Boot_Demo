@@ -32,8 +32,12 @@ spring:
   # 文件大小限制
   servlet:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 100MB
+#      enabled: true
+#      max-file-size: 2MB  #设置支持的单个上传文件大小
+#      max-request-size: 6MB  #设置最大的请求文件大小，设置总体大小的请求
+#      file-size-threshold: 512KB #当上传文件达到指定配置量的时候，会将文件内容写入到磁盘
+#      location: /   #设置上传文件的临时目录
+
   #  datasource:
   #    platform: mysql
   #    driver-class-name: com.mysql.cj.jdbc.Driver
@@ -100,11 +104,17 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+    cache-enabled: true
   mapper-locations: classpath:mapper/*.xml
+#  typeAliasesPackage: com.byteblogs.plumemo.*.dao
   global-config:
     db-config:
-      logic-delete-value: 0
-      logic-not-delete-value: 1
+      #数据库大写下划线转换
+      capital-mode: false
+      #删除
+      logic-delete-value: 1
+      #不删除
+      logic-not-delete-value: 0
 
 logging:
   #  由于引入了 log4j2，不再是 logback，，先注释

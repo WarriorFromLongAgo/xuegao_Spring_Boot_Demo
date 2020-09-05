@@ -1,14 +1,12 @@
 package com.xuegao.springboot_tool.controller;
 
+import com.xuegao.springboot_tool.model.po.UserInfo;
 import io.swagger.annotations.Api;
 import org.apache.poi.util.IOUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -138,8 +136,13 @@ public class IndexController {
         return "sysjoblog/list";
     }
 
-    @GetMapping("/sysFiles")
-    public String sysFiles() {
+    @PostMapping("/sysFiles")
+    public String sysFiles(UserInfo userInfo) {
+        return "sysfiles/list";
+    }
+
+    @PostMapping("/postTest")
+    public String postTest(@RequestBody UserInfo userInfo) {
         return "sysfiles/list";
     }
 
