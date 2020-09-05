@@ -270,4 +270,75 @@ public class FileServiceImpl implements IFileService {
         }
 
     }
+
+    /**
+     * <br/> @Title:
+     * <br/> @MethodName:  transformFile
+     * <br/>
+     * <br/> @Return void
+     * <br/> @Description:
+     * <br/> @author: 80004960
+     * <br/> @date:  2020/9/3 19:20
+     */
+    @Override
+    public void transformFile() throws IOException, InterruptedException {
+        String cmd = "libreoffice6.4 --headless --convert-to pdf:writer_pdf_Export /usr/local/libreoffice/tuomin2.pptx --outdir /usr/local/libreoffice/";
+        log.info(cmd);
+        Process process = null;
+        try {
+            process = Runtime.getRuntime().exec(cmd);
+            // 错误信息
+            StreamOutput error = new StreamOutput(process.getErrorStream(), "ERROR");
+            // 输出信息（Runtime的输出，即Process的输入）
+            StreamOutput output = new StreamOutput(process.getInputStream(), "OUTPUT");
+            // 启动执行
+            error.start();
+            output.start();
+            // 子进程退出状态，0表示正常终止
+            int exitVal = process.waitFor();
+            System.out.println("ExitValue: " + exitVal);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class StreamOutput extends Thread {
+    InputStream is;
+    String type;
+
+    StreamOutput(InputStream is, String type) {
+        this.is = is;
+        this.type = type;
+    }
+
+    public void run() {
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+        try {
+            isr = new InputStreamReader(is, "GBK");
+            br = new BufferedReader(isr);
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                System.out.println(type + ">" + line);
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (isr != null) {
+                try {
+                    isr.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

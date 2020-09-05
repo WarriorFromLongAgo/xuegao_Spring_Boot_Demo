@@ -98,28 +98,28 @@ class SpringbootToolApplicationTests {
 
     int inventory = 10;
     public void redissonTest1() {
-        ThreadPoolExecutor threadPoolExecutor =
-                new ThreadPoolExecutor(inventory, inventory,
-                        10L, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
-        long start = System.currentTimeMillis();
-
-        Config config = new Config();
-        SingleServerConfig serverConfig = config.useSingleServer().setAddress("redis://127.0.0.1:6379");
-        final RedissonClient client = Redisson.create(config);
-        final RLock lock = client.getLock("lock1");
-        for (int i = 0; i < 10; i++) {
-            threadPoolExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    lock.lock();
-                    inventory--;
-                    System.out.println(inventory);
-                    lock.unlock();
-                }
-            });
-        }
-        long end = System.currentTimeMillis();
-        System.out.println("执行线程数:" + 10 + "   总耗时:" + (end - start) + "  库存数为:" + inventory);
+        // ThreadPoolExecutor threadPoolExecutor =
+        //         new ThreadPoolExecutor(inventory, inventory,
+        //                 10L, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
+        // long start = System.currentTimeMillis();
+        //
+        // Config config = new Config();
+        // SingleServerConfig serverConfig = config.useSingleServer().setAddress("redis://127.0.0.1:6379");
+        // final RedissonClient client = Redisson.create(config);
+        // final RLock lock = client.getLock("lock1");
+        // for (int i = 0; i < 10; i++) {
+        //     threadPoolExecutor.execute(new Runnable() {
+        //         @Override
+        //         public void run() {
+        //             lock.lock();
+        //             inventory--;
+        //             System.out.println(inventory);
+        //             lock.unlock();
+        //         }
+        //     });
+        // }
+        // long end = System.currentTimeMillis();
+        // System.out.println("执行线程数:" + 10 + "   总耗时:" + (end - start) + "  库存数为:" + inventory);
 
     }
 

@@ -27,7 +27,7 @@ public class BaseExceptionHandler {
     @ResponseBody
     public WrappedResponse error(Exception e) {
         e.printStackTrace();
-        return WrappedResponse.fail();    // 通用异常结果
+        return WrappedResponse.fail(e.getMessage());    // 通用异常结果
     }
 
     /**-------- 指定异常处理方法 --------**/
