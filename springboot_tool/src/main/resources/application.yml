@@ -30,8 +30,8 @@ spring:
   aop:
     auto: true #启动aop配置
   # 文件大小限制
-  servlet:
-    multipart:
+#  servlet:
+#    multipart:
 #      enabled: true
 #      max-file-size: 2MB  #设置支持的单个上传文件大小
 #      max-request-size: 6MB  #设置最大的请求文件大小，设置总体大小的请求
@@ -101,12 +101,13 @@ spring:
 #      threadsAllowedToBlockForConnectionMultiplier: 10
 
 mybatis-plus:
+  config-location: classpath:mybatis-config.xml # 配置 MyBatis 配置文件路径
+  mapper-locations: classpath:mapper/*.xml  # 配置 Mapper XML 地址
+  typeAliasesPackage: com.xuegao.springboot_tool.dao  # 配置数据库实体包路径
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
     cache-enabled: true
-  mapper-locations: classpath:mapper/*.xml
-#  typeAliasesPackage: com.byteblogs.plumemo.*.dao
   global-config:
     db-config:
       #数据库大写下划线转换
@@ -124,7 +125,6 @@ logging:
     root: info
     cn.jay.repository: trace
     com.xuegao.springboot_tool.dao: debug
-
 
 felord:
   phone: 182******32
