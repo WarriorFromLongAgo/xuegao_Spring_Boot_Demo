@@ -312,6 +312,7 @@ class StreamOutput extends Thread {
         this.type = type;
     }
 
+    @Override
     public void run() {
         InputStreamReader isr = null;
         BufferedReader br = null;
