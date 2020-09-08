@@ -101,7 +101,7 @@ spring:
 #      threadsAllowedToBlockForConnectionMultiplier: 10
 
 mybatis-plus:
-  config-location: classpath:mybatis-config.xml # 配置 MyBatis 配置文件路径
+#  config-location: classpath:mybatis-config.xml # 配置 MyBatis 配置文件路径
   mapper-locations: classpath:mapper/*.xml  # 配置 Mapper XML 地址
   typeAliasesPackage: com.xuegao.springboot_tool.dao  # 配置数据库实体包路径
   configuration:

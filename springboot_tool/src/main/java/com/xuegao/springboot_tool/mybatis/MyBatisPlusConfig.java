@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.config;
+package com.xuegao.springboot_tool.mybatis;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.context.annotation.Bean;

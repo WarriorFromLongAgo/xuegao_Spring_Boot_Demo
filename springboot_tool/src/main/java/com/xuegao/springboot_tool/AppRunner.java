@@ -24,33 +24,49 @@ public class AppRunner implements CommandLineRunner, Order {
 
     @Override
     public void run(String... args) {
+        // 栈内存溢出
+        // stackOverflowError();
+        // 堆内存溢出
+        // outOfMemoryError();
+        // CPU 占用高
+        threadWhile();
+    }
 
-        // LOGGER.info("=========================================");
-        // LOGGER.info("=========================================");
-        // LOGGER.info("=========================================");
+    List<String> strList = new ArrayList<>();
 
-        // List<String> str = new ArrayList<>();
-        // System.out.println("内存 和 CPU分界");
-        // new Thread(() -> {
-        //     int result = 0;
-        //     while (true) {
-        //         String s = new byte[1000000000].toString() + "=" + result;
-        //         System.out.println(s);
-        //         str.add(s);
-        //         System.out.println("str = " + str.size());
-        //         Runtime rt = Runtime.getRuntime();
-        //         System.out.println("freeMemory = " + rt.freeMemory() / (1024 * 1024));
-        //         System.out.println("maxMemory = " + rt.maxMemory() / (1024 * 1024));
-        //         System.out.println("totalMemory = " + rt.totalMemory() / (1024 * 1024));
-        //         result++;
-        //         if (result > Integer.MAX_VALUE / 2) {
-        //             result = 0;
-        //         }
-        //     }
-        // }).start();
-        // LOGGER.info("=========================================");
-        // LOGGER.info("=========================================");
-        // LOGGER.info("=========================================");
+    public void outOfMemoryError() {
+        try {
+            while (true) {
+                strList.add(" outOfMemoryError ");
+            }
+        } catch (Exception e) {
+            // java.lang.OutOfMemoryError: Java heap space
+            e.printStackTrace();
+        }
+    }
+
+    int i = 0;
+
+    public void stackOverflowError() {
+        LOGGER.error(" stackOutOf = " + (++i));
+        stackOverflowError();
+    }
+
+    public void threadWhile() {
+        while (true) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CPU();
+                }
+            }).start();
+        }
+    }
+
+    public void CPU() {
+        while (true) {
+
+        }
     }
 
     @Override
