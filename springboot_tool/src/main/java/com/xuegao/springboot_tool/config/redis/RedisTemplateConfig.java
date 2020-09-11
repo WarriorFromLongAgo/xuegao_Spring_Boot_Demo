@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.config;
+package com.xuegao.springboot_tool.config.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
