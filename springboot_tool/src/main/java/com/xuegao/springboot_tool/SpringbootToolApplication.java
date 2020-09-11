@@ -4,9 +4,15 @@ import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import com.xuegao.springboot_tool.spring.beanload.DemoBeanHuiHui;
 import com.xuegao.springboot_tool.spring.beanload.EnableOrderClient;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+
+import java.time.LocalDateTime;
 
 /**
  * <br/> @PackageName：com.xuegao.dao
@@ -22,9 +28,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 // {@link ConfigurationPropertiesScan} 同 {@link EnableConfigurationProperties} 二选一
 @MapperScan(basePackages = "com.xuegao.springboot_tool.dao")
 @SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
+@ComponentScan(basePackages = {"com.xuegao.springboot_tool"})
 @EnableOrderClient
 @EnableScheduling
 public class SpringbootToolApplication {
+    private final static Logger log = LoggerFactory.getLogger(SpringbootToolApplication.class);
 
     public SpringbootToolApplication(DemoBeanHuiHui demoBeanHuiHui) {
         demoBeanHuiHui.print();

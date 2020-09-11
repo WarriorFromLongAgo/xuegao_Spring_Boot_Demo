@@ -1,7 +1,8 @@
-package com.xuegao.springboot_tool.spring;
+package com.xuegao.springboot_tool.spring.schedule;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -15,14 +16,15 @@ import java.time.LocalDateTime;
  * <br/> @date：2020/8/27 13:40
  */
 @Component
-public class ScheduledTask {
+public class ScheduledTask2 {
     // cron 表达式
     // https://cron.qqe2.com/
 
-    private final static Logger log = LoggerFactory.getLogger(ScheduledTask.class);
+    private final static Logger log = LoggerFactory.getLogger(ScheduledTask2.class);
 
-    @Scheduled(cron = "0 0/1 * * * ?")
-    public void doTask1() {
-        log.debug(" {} 扫描过期Token", LocalDateTime.now());
-    }
+    // @Async
+    // @Scheduled(cron = "0/1 0/1 * * * ? ")
+    // public void doTask1() {
+    //     log.info(" {} 扫描过期Token", LocalDateTime.now());
+    // }
 }

@@ -26,6 +26,15 @@ public class MyJvmServiceImpl extends BaseServiceImpl<IMyJvmMapper, MyJvm> imple
         return getById(id);
     }
 
+    /**
+     * <br/> @Title: CPU拉满
+     * <br/> @MethodName:  cpu100
+     * <br/> @param id:
+     * <br/> @Return void
+     * <br/> @Description:
+     * <br/> @author: 80004960
+     * <br/> @date:  2020/9/10 10:25
+     */
     @Override
     public void cpu100(Long id) {
         while (true) {
