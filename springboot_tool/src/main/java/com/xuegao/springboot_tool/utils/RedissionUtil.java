@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * <br/> @PackageName：com.xuegao.springboot_tool.utils
  * <br/> @ClassName：redissuo
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/22 16:49
  */
 public class RedissionUtil {

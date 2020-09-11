@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.*;
  * <br/> @PackageName：com.cherrys.schooldemo.mvc.mvcconfigurer
  * <br/> @ClassName：AddInterceptor
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/16 11:31
  */
 @Configuration

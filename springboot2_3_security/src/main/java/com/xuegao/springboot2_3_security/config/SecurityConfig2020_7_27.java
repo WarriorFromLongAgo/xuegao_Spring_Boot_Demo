@@ -21,7 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.config.security
  * <br/> @ClassName：SecurityConfig2020_7_27
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/27 0:28
  */
 @EnableWebSecurity

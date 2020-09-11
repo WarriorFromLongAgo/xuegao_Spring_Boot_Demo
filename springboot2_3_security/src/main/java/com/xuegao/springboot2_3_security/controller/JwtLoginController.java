@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.controller
  * <br/> @ClassName：JwtLoginController
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/30 0:18
  */
 @RestController

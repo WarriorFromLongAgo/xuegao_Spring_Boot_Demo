@@ -8,7 +8,7 @@ import java.io.IOException;
  * <br/> @PackageName：com.xuegao.springboot_tool.service.interfaces
  * <br/> @ClassName：IFileService
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/27 15:55
  */
 public interface IFileService {

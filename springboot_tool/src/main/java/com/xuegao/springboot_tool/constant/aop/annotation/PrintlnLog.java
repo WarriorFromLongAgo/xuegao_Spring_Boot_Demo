@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * <br/> @PackageName：com.xuegao.springboot_tool.constant.aop.annotation
  * <br/> @ClassName：PrintlnLog
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/21 10:23
  */
 @Retention(RetentionPolicy.RUNTIME)

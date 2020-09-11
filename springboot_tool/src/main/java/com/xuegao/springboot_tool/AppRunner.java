@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * <br/> @PackageName：com.fff.redistemplate_test.utils
  * <br/> @ClassName：AppRunner
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/4/30 9:23
  */
 @Component

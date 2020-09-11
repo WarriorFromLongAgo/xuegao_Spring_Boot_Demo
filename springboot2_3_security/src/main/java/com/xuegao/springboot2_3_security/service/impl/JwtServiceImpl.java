@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.service.impl
  * <br/> @ClassName：JwtServiceImpl
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/30 0:20
  */
 @Service

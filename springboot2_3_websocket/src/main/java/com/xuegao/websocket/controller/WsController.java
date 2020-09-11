@@ -16,7 +16,7 @@ import java.util.List;
  * <br/> @PackageName：com.xuegao.websocket.controller
  * <br/> @ClassName：WsController
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/23 21:21
  */
 @Controller

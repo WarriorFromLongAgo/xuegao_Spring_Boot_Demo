@@ -13,7 +13,7 @@
 //  * <br/> @PackageName：com.xuegao.springboot2_3_security.config
 //  * <br/> @ClassName：SecurityConfig2020_7_26
 //  * <br/> @Description：
-//  * <br/> @author：feijm
+//  * <br/> @author：xuegao
 //  * <br/> @date：2020/7/26 1:21
 //  */
 // @EnableWebSecurity

@@ -15,7 +15,7 @@ import java.io.IOException;
  * <br/> @PackageName：com.xuegao.springboot_tool.controller
  * <br/> @ClassName：FileController
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/9 0:33
  */
 @RequestMapping(path = "/file")
@@ -31,7 +31,7 @@ public class FileController {
      * <br/> @param fileArr:
      * <br/> @Return com.xuegao.springboot_tool.constant.common.WrappedResponse<java.lang.String>
      * <br/> @Description:
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/8/24 10:12
      */
     @RequestMapping(path = "/upload", method = RequestMethod.POST)

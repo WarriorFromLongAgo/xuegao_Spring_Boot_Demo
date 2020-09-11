@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContextAware;
  * <br/> @PackageName：com.xuegao.springboot_tool
  * <br/> @ClassName：ApplicationContextAwareTest
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/19 9:49
  */
 public class ApplicationContextAwareTest implements ApplicationContextAware {

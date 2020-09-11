@@ -13,7 +13,7 @@
 //  * <br/> @PackageName：com.xuegao.springboot2_3_security.config
 //  * <br/> @ClassName：SecurityConfig2020_7_25
 //  * <br/> @Description：
-//  * <br/> @author：feijm
+//  * <br/> @author：xuegao
 //  * <br/> @date：2020/7/25 16:18
 //  */
 // @Configuration

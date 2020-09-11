@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.service.impl
  * <br/> @ClassName：IUserServiceImpl
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/25 16:39
  */
 @Service

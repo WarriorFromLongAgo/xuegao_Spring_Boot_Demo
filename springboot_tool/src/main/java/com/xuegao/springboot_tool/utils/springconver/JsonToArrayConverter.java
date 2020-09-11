@@ -11,7 +11,7 @@ import java.util.Set;
  * <br/> @PackageName：com.xuegao.springboot_tool.utils.springconver
  * <br/> @ClassName：JsonToArrayConverter
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/19 16:14
  */
 public class JsonToArrayConverter implements ConditionalGenericConverter {

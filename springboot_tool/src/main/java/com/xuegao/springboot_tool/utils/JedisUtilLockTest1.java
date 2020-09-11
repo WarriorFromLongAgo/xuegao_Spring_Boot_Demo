@@ -6,7 +6,7 @@ import redis.clients.jedis.Jedis;
  * <br/> @PackageName：com.xuegao.springboot_tool.utils
  * <br/> @ClassName：JedisUtil
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/15 11:44
  */
 public class JedisUtilLockTest1 {

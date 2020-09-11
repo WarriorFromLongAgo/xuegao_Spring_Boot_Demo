@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * <br/> @PackageName：com.fff.springbootapiseedtest.exception
  * <br/> @ClassName：BaseExceptionHandler2
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/4/5 15:19
  */
 @ControllerAdvice

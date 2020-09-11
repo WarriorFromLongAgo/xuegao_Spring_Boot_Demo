@@ -8,7 +8,7 @@ import java.io.Serializable;
  * <br/> @PackageName：com.fff.springbootapiseedtest.model.po
  * <br/> @ClassName：UserInfo
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/三3/28 18:29
  */
 public class UserInfo implements Serializable {

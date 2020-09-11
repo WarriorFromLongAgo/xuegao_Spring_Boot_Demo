@@ -14,7 +14,7 @@ import org.springframework.util.ObjectUtils;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.service.impl
  * <br/> @ClassName：UserDetailServiceImpl
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/27 0:22
  */
 @Service

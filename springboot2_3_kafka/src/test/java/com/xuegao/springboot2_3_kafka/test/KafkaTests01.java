@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * <br/> @PackageName：com.xuegao.springboot2_3_kafka.test
  * <br/> @ClassName：
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/12 14:28
  */
 public class KafkaTests01 {

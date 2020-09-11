@@ -13,7 +13,7 @@ import java.io.IOException;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.config.security
  * <br/> @ClassName：MyAuthenticationFailureHandler
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/26 1:23
  */
 @Component

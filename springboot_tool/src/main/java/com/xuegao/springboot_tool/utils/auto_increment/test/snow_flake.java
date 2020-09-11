@@ -4,7 +4,7 @@ package com.xuegao.springboot_tool.utils.auto_increment.test;
  * <br/> @PackageName：com.fff.auto_increment
  * <br/> @ClassName：snow_flake
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/4/三3 23:56
  */
 public class snow_flake {

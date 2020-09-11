@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
  * <br/> @PackageName：com.xuegao.springboot_tool.constant.aop.aspect
  * <br/> @ClassName：LogAspect
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/21 10:26
  */
 @Aspect
@@ -36,7 +36,7 @@ public class LogAspect {
      * <br/>
      * <br/> @Return void
      * <br/> @Description: 以自定义 @PrintlnLog 注解作为切面入口
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/7/21 10:35
      */
     @Pointcut("@annotation(com.xuegao.springboot_tool.constant.aop.annotation.PrintlnLog)")
@@ -49,7 +49,7 @@ public class LogAspect {
      * <br/> @param joinPoint:
      * <br/> @Return void
      * <br/> @Description: 切面方法入参日志打印
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/7/21 10:36
      */
     @Before("PrintlnLog()")
@@ -90,7 +90,7 @@ public class LogAspect {
      * <br/> @param proceedingJoinPoint:
      * <br/> @Return java.lang.Object
      * <br/> @Description: 切面方法返回结果日志打印
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/7/21 10:38
      */
     @Around("PrintlnLog()")
@@ -120,7 +120,7 @@ public class LogAspect {
      * <br/> @param joinPoint:
      * <br/> @Return void
      * <br/> @Description: 切面方法执行后执行
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/7/21 10:38
      */
     // @After("PrintlnLog()")
@@ -140,7 +140,7 @@ public class LogAspect {
      * <br/> @param joinPoint:
      * <br/> @Return java.lang.String
      * <br/> @Description: @PrintlnLog 注解作用的切面方法详细细信息
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/7/21 10:38
      */
     public String getAspectMethodLogDescJP(JoinPoint joinPoint) throws Exception {
@@ -156,7 +156,7 @@ public class LogAspect {
      * <br/> @param proceedingJoinPoint:
      * <br/> @Return java.lang.String
      * <br/> @Description: 注解作用的切面方法详细细信息
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/7/21 10:39
      */
     public String getAspectMethodLogDescPJ(ProceedingJoinPoint proceedingJoinPoint) throws Exception {
@@ -174,7 +174,7 @@ public class LogAspect {
      * <br/> @param arguments:
      * <br/> @Return java.lang.String
      * <br/> @Description: 自定义注解参数
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/7/21 10:39
      */
     public String getAspectMethodLogDesc(String targetName, String methodName, Object[] arguments) throws Exception {

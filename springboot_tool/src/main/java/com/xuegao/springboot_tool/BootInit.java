@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
  * <br/> @PackageName：com.fff.springbootapiseedtest.bootinit
  * <br/> @ClassName：BootInit
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/4/1 23:40
  */
 @Service

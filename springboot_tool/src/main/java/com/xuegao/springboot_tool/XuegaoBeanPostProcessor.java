@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * <br/> @PackageName：com.xuegao.springboot_tool
  * <br/> @ClassName：XuegaoBeanPostProcessor
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/16 15:49
  */
 @Configuration

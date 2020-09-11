@@ -66,7 +66,7 @@ public class FileServiceImpl implements IFileService {
      * <br/> @param fileName:
      * <br/> @Return java.lang.String
      * <br/> @Description:
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/8/3 17:27
      */
     private String getSuffix(String fileName) {
@@ -277,7 +277,7 @@ public class FileServiceImpl implements IFileService {
      * <br/>
      * <br/> @Return void
      * <br/> @Description:
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/9/3 19:20
      */
     @Override

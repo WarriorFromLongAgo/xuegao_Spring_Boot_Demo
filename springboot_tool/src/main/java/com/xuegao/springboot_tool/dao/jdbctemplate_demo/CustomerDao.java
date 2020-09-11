@@ -13,7 +13,7 @@ import java.util.*;
  * <br/> @PackageName：com.xuegao.springboot_tool.dao.jdbctemplate_demo
  * <br/> @ClassName：UserInfoDao
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/20 9:43
  */
 @Repository

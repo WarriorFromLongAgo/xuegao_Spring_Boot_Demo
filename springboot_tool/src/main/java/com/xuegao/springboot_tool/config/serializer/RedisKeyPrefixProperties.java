@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * <br/> @PackageName：com.xuegao.springboot_tool.config
  * <br/> @ClassName：RedisKeyPrefixProperties
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/23 21:01
  */
 // @Import({RedisKeyPrefixProperties.class})

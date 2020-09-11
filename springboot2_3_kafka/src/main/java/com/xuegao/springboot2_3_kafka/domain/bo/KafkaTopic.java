@@ -10,7 +10,7 @@ import java.io.Serializable;
  * <br/> @PackageName：com.xuegao.springboot2_3_kafka.domain.bo
  * <br/> @ClassName：
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/12 11:35
  */
 @Configuration

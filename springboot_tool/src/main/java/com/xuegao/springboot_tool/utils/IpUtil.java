@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
  * <br/> @PackageName：com.cherrys.schooldemo.util
  * <br/> @ClassName：IpUtil
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/14 16:02
  */
 public class IpUtil {

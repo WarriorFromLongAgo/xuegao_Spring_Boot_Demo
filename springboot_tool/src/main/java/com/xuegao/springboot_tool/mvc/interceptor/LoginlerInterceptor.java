@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * <br/> @PackageName：com.cherrys.schooldemo.interceptor
  * <br/> @ClassName：LoginlerInterceptor
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/16 11:28
  */
 public class LoginlerInterceptor implements HandlerInterceptor {

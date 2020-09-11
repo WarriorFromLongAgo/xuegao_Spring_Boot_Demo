@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * <br/> @PackageName：com.xuegao.springboot_tool
  * <br/> @ClassName：InstantiationAwareBeanPostProcessorAdapterTest
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/19 17:46
  */
 @Component

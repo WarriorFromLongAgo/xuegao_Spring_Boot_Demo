@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
  * <br/> @PackageName：com.xuegao.springboot_tool
  * <br/> @ClassName：XuegaoInitializingBean
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/16 15:48
  */
 public class XuegaoInitializingBean implements InitializingBean {

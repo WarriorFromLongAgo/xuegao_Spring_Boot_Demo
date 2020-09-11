@@ -32,7 +32,7 @@ public class MyJvmServiceImpl extends BaseServiceImpl<IMyJvmMapper, MyJvm> imple
      * <br/> @param id:
      * <br/> @Return void
      * <br/> @Description:
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/9/10 10:25
      */
     @Override
@@ -59,7 +59,7 @@ public class MyJvmServiceImpl extends BaseServiceImpl<IMyJvmMapper, MyJvm> imple
      * <br/> @param null:
      * <br/> @Return
      * <br/> @Description:
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/9/9 11:29
      */
     int i = 0;

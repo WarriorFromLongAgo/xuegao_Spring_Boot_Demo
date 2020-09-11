@@ -10,7 +10,7 @@ import java.beans.PropertyDescriptor;
  * <br/> @PackageName：com.xuegao.springboot_tool
  * <br/> @ClassName：InstantiationAwareBeanPostProcessorTest
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/19 15:13
  */
 public class InstantiationAwareBeanPostProcessorTest implements InstantiationAwareBeanPostProcessor {

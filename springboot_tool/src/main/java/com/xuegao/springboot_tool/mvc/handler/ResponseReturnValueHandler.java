@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * <br/> @PackageName：com.xuegao.springboot_tool.mvc.handler
  * <br/> @ClassName：ResponseReturnValueHandler
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/16 15:42
  */
 public class ResponseReturnValueHandler implements HandlerMethodReturnValueHandler {
@@ -25,7 +25,7 @@ public class ResponseReturnValueHandler implements HandlerMethodReturnValueHandl
      * <br/> @param returnType:
      * <br/> @Return boolean
      * <br/> @Description:
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/8/16 15:45
      */
     @Override
@@ -43,7 +43,7 @@ public class ResponseReturnValueHandler implements HandlerMethodReturnValueHandl
      * <br/> @param webRequest:
      * <br/> @Return void
      * <br/> @Description:
-     * <br/> @author: 80004960
+     * <br/> @author: xuegao
      * <br/> @date:  2020/8/16 15:45
      */
     @Override

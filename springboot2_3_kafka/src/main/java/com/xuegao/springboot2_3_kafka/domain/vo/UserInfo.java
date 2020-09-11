@@ -6,7 +6,7 @@ import lombok.*;
  * <br/> @PackageName：com.xuegao.springboot2_3_kafka.domain.vo
  * <br/> @ClassName：
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/12 10:59
  */
 @Getter

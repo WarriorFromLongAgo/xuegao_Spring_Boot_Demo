@@ -9,7 +9,7 @@ import org.springframework.core.convert.converter.Converter;
  * <br/> @PackageName：com.xuegao.springboot_tool.utils.springconver
  * <br/> @ClassName：StringToClassConverter
  * <br/> @Description：
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/19 16:11
  */
 public class StringToClassConverter implements Converter<String, Class>, ApplicationContextAware {

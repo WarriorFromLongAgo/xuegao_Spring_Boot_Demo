@@ -4,7 +4,7 @@ package com.xuegao.websocket.model.bo;
  * <br/> @PackageName：com.xuegao.websocket.model
  * <br/> @ClassName：WiselyResponse
  * <br/> @Description：后台发送消息实体
- * <br/> @author：80004960
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/23 21:17
  */
 public class WiselyResponse {

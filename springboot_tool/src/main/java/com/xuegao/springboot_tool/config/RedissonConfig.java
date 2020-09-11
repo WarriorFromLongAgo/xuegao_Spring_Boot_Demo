@@ -21,7 +21,7 @@ import java.io.IOException;
  * <br/> @PackageName：com.xuegao.utils
  * <br/> @ClassName：RedissonConfig
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/26 22:55
  */
 @Configuration

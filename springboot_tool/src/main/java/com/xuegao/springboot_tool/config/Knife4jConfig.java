@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * <br/> @PackageName：com.fff.temp_2020_3_28.config
  * <br/> @ClassName：Knife4jConfig
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/三3/28 14:14
  */
 @Configuration

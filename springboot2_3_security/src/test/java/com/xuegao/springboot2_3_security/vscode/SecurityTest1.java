@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.vscode
  * <br/> @ClassName：SecurityTest1
  * <br/> @Description：
- * <br/> @author：feijm
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/25 15:39
  */
 @SpringBootTest
