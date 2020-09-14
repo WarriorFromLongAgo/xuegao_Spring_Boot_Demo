@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.config;
+package com.xuegao.springboot_tool.config.resourcesproperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * <br/> @PackageName：com.xuegao.springboot_tool.config
  * <br/> @ClassName：ConfigurationPropertiesConfig
  * <br/> @Description：
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/10 14:01
  */
 @ConfigurationProperties(prefix = "felord.def")

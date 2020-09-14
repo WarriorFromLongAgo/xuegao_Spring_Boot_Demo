@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * <br/> @PackageName：com.xuegao.springboot_tool.controller
  * <br/> @ClassName：MyJvmController
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/9/9 11:07
  */
 @RestController

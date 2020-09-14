@@ -11,7 +11,7 @@ import java.io.Serializable;
  * <br/> @PackageName：com.xuegao.springboot_tool.model.doo
  * <br/> @ClassName：Order
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/30 14:19
  */
 @TableName("t_order")

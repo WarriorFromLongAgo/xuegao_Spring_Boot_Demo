@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.config;
+package com.xuegao.springboot_tool.config.resourcesproperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

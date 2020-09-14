@@ -11,7 +11,7 @@ import java.io.Serializable;
  * <br/> @PackageName：com.xuegao.springboot_tool.model.doo
  * <br/> @ClassName：Product
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/24 10:15
  */
 @TableName("t_product")

@@ -1,7 +1,9 @@
 package com.xuegao.springboot_tool.dao.jdbctemplate_demo;
 
+import com.alibaba.fastjson.JSON;
 import com.xuegao.springboot_tool.model.po.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
@@ -120,4 +122,38 @@ public class CustomerDao {
     };
 
     private static ResultSetExtractor<UserInfo> SINGLE = rs -> rs.next() ? convert(rs) : null;
+
+    private void batchInsertByParams() {
+        String sql = "INSERT INTO `money` (`name`, `money`, `is_deleted`) VALUES (?, ?, ?);";
+
+        Object[] param1 = new Object[]{"Batch 一灰灰 3", 200, 0};
+        Object[] param2 = new Object[]{"Batch 一灰灰 4", 200, 0};
+        int[] ans = jdbcTemplate.batchUpdate(sql, Arrays.asList(param1, param2));
+        System.out.println("batch insert by params: " + JSON.toJSONString(ans));
+    }
+
+
+    private void batchInsertByStatement() {
+        String sql = "INSERT INTO `money` (`name`, `money`, `is_deleted`) VALUES (?, ?, ?);";
+
+        int[] ans = jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
+                if (i == 0) {
+                    preparedStatement.setString(1, "batch 一灰灰5");
+                } else {
+                    preparedStatement.setString(1, "batch 一灰灰6");
+                }
+                preparedStatement.setInt(2, 300);
+                byte b = 0;
+                preparedStatement.setByte(3, b);
+            }
+
+            @Override
+            public int getBatchSize() {
+                return 2;
+            }
+        });
+        System.out.println("batch insert by statement: " + JSON.toJSONString(ans));
+    }
 }

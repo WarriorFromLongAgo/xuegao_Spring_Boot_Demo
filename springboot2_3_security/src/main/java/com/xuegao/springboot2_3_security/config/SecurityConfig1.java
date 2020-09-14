@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.config
  * <br/> @ClassName：SecurityConfig
  * <br/> @Description：http://www.itboyhub.com/2019/1224/springboot-security-login-json.html
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/18 14:23
  */
 // public class SecurityConfig extends WebSecurityConfigurerAdapter {

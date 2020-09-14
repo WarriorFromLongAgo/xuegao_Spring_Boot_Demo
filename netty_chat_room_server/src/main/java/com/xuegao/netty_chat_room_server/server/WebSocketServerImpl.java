@@ -21,7 +21,7 @@ import java.util.Map;
  * <br/> @PackageName：com.xuegao.netty_chat_room_server.server
  * <br/> @ClassName：WebSocketServerImpl
  * <br/> @Description：
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/17 14:49
  */
 public class WebSocketServerImpl implements MyHttpService, MyWebSocketService {

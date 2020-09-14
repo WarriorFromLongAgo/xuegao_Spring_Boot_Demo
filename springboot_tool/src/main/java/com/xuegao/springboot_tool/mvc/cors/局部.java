@@ -8,7 +8,7 @@
 //  * <br/> @PackageName：com.xuegao.springboot_tool.mvc.cors
 //  * <br/> @ClassName：局部
 //  * <br/> @Description：
-//  * <br/> @author：花名 xuegao
+//  * <br/> @author：xuegao
 //  * <br/> @date：2020/8/30 16:05
 //  */
 // // 使用CrossOrigin注解（局部跨域配置）

@@ -21,7 +21,7 @@ import java.util.List;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.filter
  * <br/> @ClassName：JwtFilter
  * <br/> @Description：
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/18 14:13
  */
 public class JwtFilter extends GenericFilterBean {

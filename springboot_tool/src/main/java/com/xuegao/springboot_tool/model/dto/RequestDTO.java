@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
  * <br/> @PackageName：com.xuegao.springboot_tool.model.dto
  * <br/> @ClassName：RequestDTO
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/9/9 11:12
  */
 public class RequestDTO {

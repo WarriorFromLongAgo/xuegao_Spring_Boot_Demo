@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * <br/> @PackageName：com.xuegao.springboot_tool.spring
  * <br/> @ClassName：InitializingBeanTest
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/21 17:48
  */
 

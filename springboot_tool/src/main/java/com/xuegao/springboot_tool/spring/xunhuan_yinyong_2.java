@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * <br/> @PackageName：com.xuegao.springboot_tool
  * <br/> @ClassName：xunhuan_yinyong_2
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/9/7 11:28
  */
 @Component

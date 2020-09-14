@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * <br/> @PackageName：com.xuegao.springboot_tool.dao
  * <br/> @ClassName：ProductDao
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/24 11:21
  */
 @Repository

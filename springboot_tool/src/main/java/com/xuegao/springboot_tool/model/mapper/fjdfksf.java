@@ -4,7 +4,7 @@ package com.xuegao.springboot_tool.model.mapper;
  * <br/> @PackageName：com.xuegao.springboot_tool.model.mapper
  * <br/> @ClassName：fjdfksf
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/30 12:02
  */
 public class fjdfksf {

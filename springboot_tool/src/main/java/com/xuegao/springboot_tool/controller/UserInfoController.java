@@ -16,7 +16,7 @@ import javax.validation.Valid;
  * <br/> @PackageName：com.xuegao.springboot_tool.controller
  * <br/> @ClassName：UserInfoController
  * <br/> @Description：
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/28 10:21
  */
 @RestController

@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
  * <br/> @PackageName：com.xuegao.springboot_tool.model.doo
  * <br/> @ClassName：Jvm
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/9/9 10:50
  */
 @TableName("t_my_jvm")

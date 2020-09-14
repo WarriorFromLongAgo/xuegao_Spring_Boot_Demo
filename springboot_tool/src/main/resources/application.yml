@@ -59,6 +59,9 @@ spring:
     database: 0
     port: 6379
     timeout: 10000
+#    cluster:
+#      nodes: 192.168.0.203:7000,192.168.0.203:7001,192.168.0.203:7002
+#      max-redirects: 3
     lettuce:
       shutdown-timeout: 10000
       pool:
@@ -144,4 +147,19 @@ demo:
 project:
   database: mysql
 
+app:
+  proper:
+    key: ${random.uuid}
+    id: ${random.int}
+    value: test123
+  demo:
+    val: autoInject
+user:
+  name: 一灰灰Blog
 
+conditional:
+  rand:
+    type: boolean
+    load: false
+  property: properExists
+  express: true

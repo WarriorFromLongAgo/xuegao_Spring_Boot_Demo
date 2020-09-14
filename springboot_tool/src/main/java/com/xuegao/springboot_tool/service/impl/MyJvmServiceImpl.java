@@ -14,7 +14,7 @@ import java.util.List;
  * <br/> @PackageName：com.xuegao.springboot_tool.service.impl
  * <br/> @ClassName：MyJvmServiceImpl
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/9/9 10:54
  */
 @Service

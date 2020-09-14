@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
  * <br/> @PackageName：com.xuegao.springboot_tool.config
  * <br/> @ClassName：ConfigYml
  * <br/> @Description：
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/7/10 13:53
  */
 public class ConfigYml {

@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * <br/> @PackageName：com.xuegao.netty_chat_room_server.serverhandler
  * <br/> @ClassName：WebSocketServerHandler
  * <br/> @Description：
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/17 14:12
  */
 public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> {
@@ -37,7 +37,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
      * <br/> @param webSocketService:
      * <br/> @Return
      * <br/> @Description:
-     * <br/> @author: 花名：xuegao
+     * <br/> @author: xuegao
      * <br/> @date:  2020/6/17 14:46
      */
     public WebSocketServerHandler(MyHttpService httpService, MyWebSocketService webSocketService) {
@@ -53,7 +53,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
      * <br/> @param message:
      * <br/> @Return void
      * <br/> @Description:
-     * <br/> @author: 花名：xuegao
+     * <br/> @author: xuegao
      * <br/> @date:  2020/6/17 14:47
      */
     @Override

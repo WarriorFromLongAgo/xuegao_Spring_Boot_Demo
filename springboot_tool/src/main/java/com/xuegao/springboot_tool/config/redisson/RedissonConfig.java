@@ -4,12 +4,16 @@ package com.xuegao.springboot_tool.config.redisson;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
+import org.redisson.client.RedisClient;
+import org.redisson.client.RedisClientConfig;
+import org.redisson.client.RedisConnection;
 import org.redisson.config.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 /**
  * <br/> @PackageName：com.xuegao.utils
@@ -60,6 +64,18 @@ public class RedissonConfig {
             return null;
         }
     }
+
+    // @Bean
+    // public RedisConnection redisConnection(Environment environment) {
+    //     RedisClientConfig config = new RedisClientConfig();
+    //     config.setAddress(environment.getProperty(REDIS_ADDRESS))
+    //             .setPassword(environment.getProperty(REDIS_PASSWORD))
+    //             .setDatabase(Integer.parseInt(environment.getProperty(REDIS_DBINDEX)))
+    //             .setClientName("redisClient");
+    //     RedisClient redisClient = RedisClient.create(config);
+    //     RedisConnection redisConnection = redisClient.connect();
+    //     return redisConnection;
+    // }
 
     // @Bean(destroyMethod = "shutdown")
     // public RedissonClient redissonClientMasterSlave() {

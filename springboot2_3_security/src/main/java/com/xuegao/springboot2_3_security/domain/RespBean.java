@@ -4,7 +4,7 @@ package com.xuegao.springboot2_3_security.domain;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.domain
  * <br/> @ClassName：RespBean
  * <br/> @Description：http://www.itboyhub.com/2019/1224/springboot-security-login-json.html
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/18 15:11
  */
 public class RespBean {

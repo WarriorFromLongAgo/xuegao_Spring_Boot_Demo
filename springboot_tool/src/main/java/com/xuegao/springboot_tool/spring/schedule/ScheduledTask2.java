@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * <br/> @PackageName：com.xuegao.springboot_tool.spring
  * <br/> @ClassName：ScheduledTask
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/8/27 13:40
  */
 @Component

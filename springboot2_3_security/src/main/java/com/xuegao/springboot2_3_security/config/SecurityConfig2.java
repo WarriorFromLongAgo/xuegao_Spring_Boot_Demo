@@ -22,7 +22,7 @@ import java.io.PrintWriter;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.config
  * <br/> @ClassName：SecurityConfig2
  * <br/> @Description：http://www.itboyhub.com/2019/1224/springboot-security-login-json.html
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/18 14:30
  */
 // @Configuration
@@ -37,7 +37,7 @@ import java.io.PrintWriter;
     //  * <br/> @param webSecurity:
     //  * <br/> @Return void
     //  * <br/> @Description:
-    //  * <br/> @author: 花名：xuegao
+    //  * <br/> @author: xuegao
     //  * <br/> @date:  2020/6/18 15:15
     //  */
     // @Override

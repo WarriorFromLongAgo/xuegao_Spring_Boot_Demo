@@ -27,7 +27,7 @@ import java.util.Properties;
  * <br/> @PackageName：com.xuegao.springboot_tool.mybatis.interceptor
  * <br/> @ClassName：PrintSqlInterceptor
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/9/8 18:47
  */
 // 执行 Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)

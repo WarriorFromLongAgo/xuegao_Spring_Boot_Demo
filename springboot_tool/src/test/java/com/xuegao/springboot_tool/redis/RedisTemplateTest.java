@@ -16,7 +16,7 @@ import java.io.Serializable;
  * <br/> @PackageName：com.xuegao.springboot_tool.redis
  * <br/> @ClassName：RedisTemplateTest
  * <br/> @Description：
- * <br/> @author：花名 xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/9/1 17:16
  */
 @RunWith(SpringRunner.class)

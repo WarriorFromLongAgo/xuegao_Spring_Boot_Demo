@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.config
  * <br/> @ClassName：SecurityConfig7
  * <br/> @Description：
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/18 16:09
  */
 // public class SecurityConfig7 extends WebSecurityConfigurerAdapter {
@@ -63,7 +63,7 @@ import java.util.regex.Pattern;
 //      * <br/> @Description: ROLE_dba 具备 ROLE_admin 的所有权限，而 ROLE_admin 则具备 ROLE_user 的所有权限，继承与继承之间用一个空格隔开。
 //      * <br/> @Description: 提供了这个 Bean 之后，以后所有具备 ROLE_user 角色才能访问的资源，
 //      * <br/> @Description: ROLE_dba 和 ROLE_admin 也都能访问，具备 ROLE_amdin 角色才能访问的资源， ROLE_dba 也能访问。
-//      * <br/> @author: 花名：xuegao
+//      * <br/> @author: xuegao
 //      * <br/> @date:  2020/6/18 16:10
 //      */
 //     @Bean

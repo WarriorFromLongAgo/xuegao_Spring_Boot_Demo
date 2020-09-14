@@ -28,7 +28,7 @@
 //  * <br/> @PackageName：com.xuegao.springboot2_3_security.config.WebSecurityConfigJwt
 //  * <br/> @ClassName：WebSecurityConfigJwt
 //  * <br/> @Description：
-//  * <br/> @author：花名：xuegao
+//  * <br/> @author：xuegao
 //  * <br/> @date：2020/6/18 14:13
 //  */
 // @Configuration

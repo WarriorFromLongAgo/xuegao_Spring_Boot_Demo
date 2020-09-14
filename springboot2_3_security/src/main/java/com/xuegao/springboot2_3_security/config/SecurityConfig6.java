@@ -21,7 +21,7 @@ import java.io.PrintWriter;
  * <br/> @PackageName：com.xuegao.springboot2_3_security.config
  * <br/> @ClassName：SecurityConfig6
  * <br/> @Description：从json中获取
- * <br/> @author：花名：xuegao
+ * <br/> @author：xuegao
  * <br/> @date：2020/6/18 15:59
  */
 // public class SecurityConfig6 extends WebSecurityConfigurerAdapter {
