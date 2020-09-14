@@ -44,12 +44,15 @@ public class UserInfo implements Serializable {
     public UserInfo() {
     }
 
-    public UserInfo(Long id, String name, String username, String password, Long createTime) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.createTime = createTime;
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", createTime=" + createTime +
+                '}';
     }
 
     public Long getId() {

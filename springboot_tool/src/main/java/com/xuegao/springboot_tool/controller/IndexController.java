@@ -1,8 +1,12 @@
 package com.xuegao.springboot_tool.controller;
 
+import com.xuegao.springboot_tool.constant.common.WrappedResponse;
+import com.xuegao.springboot_tool.model.doo.Product;
 import com.xuegao.springboot_tool.model.po.UserInfo;
 import io.swagger.annotations.Api;
 import org.apache.poi.util.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +24,8 @@ import java.io.InputStream;
 @Api(tags = "视图")
 @Controller
 @RequestMapping("/index")
-public class IndexController {
+public class IndexController<T> extends BaseController<T> {
+    private final static Logger log = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView uploadFile() {
@@ -29,51 +34,43 @@ public class IndexController {
         return modelAndView;
     }
 
-    @GetMapping("/login")
-    public String logout() {
-        return "login";
+    @RequestMapping(path = "/get1", method = RequestMethod.GET)
+    public WrappedResponse<T> get1Test() {
+        return success("get1");
     }
 
-    @GetMapping("/home")
-    public String home() {
-        return "home";
+    @RequestMapping(path = "/get2", method = RequestMethod.GET)
+    public WrappedResponse<T> get2Test(@RequestParam String get2) {
+        return success("get2 = " + get2);
     }
 
-    @GetMapping("/users/password")
-    public String updatePassword() {
-        return "users/update_password";
+    @RequestMapping(path = "/post1", method = RequestMethod.POST)
+    public WrappedResponse<T> post1Test(@RequestBody UserInfo userInfo) {
+        return success("post1 = " + userInfo);
     }
 
-    @GetMapping("/users/info")
-    public String userDetail(Model model) {
-        model.addAttribute("flagType", "edit");
-        return "users/user_edit";
+    @RequestMapping(path = "/post2", method = RequestMethod.POST)
+    public WrappedResponse<T> post2Test(UserInfo userInfo) {
+        return success("post2 = " + userInfo);
     }
 
-    @GetMapping("/menus")
-    public String menusList() {
-
-        return "menus/menu_list";
+    @RequestMapping(path = "/post3", method = RequestMethod.POST)
+    public WrappedResponse<T> post3Test(@RequestParam String post3) {
+        return success("post3 = " + post3);
     }
 
-    @GetMapping("/roles")
-    public String roleList() {
-        return "roles/role_list";
+    @RequestMapping(path = "/post4", method = RequestMethod.POST)
+    public WrappedResponse<T> post4Test(@RequestBody UserInfo userInfo, @RequestBody Product product) {
+        log.info("post4 = " + userInfo.toString());
+        log.info("post4 = " + product.toString());
+        return success("post4 = " + product);
     }
 
-    @GetMapping("/users")
-    public String userList() {
-        return "users/user_list";
-    }
-
-    @GetMapping("/logs")
-    public String logList() {
-        return "logs/log_list";
-    }
-
-    @GetMapping("/depts")
-    public String deptList() {
-        return "depts/dept_list";
+    @RequestMapping(path = "/post5", method = RequestMethod.POST)
+    public WrappedResponse<T> post5Test(@RequestBody UserInfo userInfo, @RequestParam String post3) {
+        log.info("post5 = " + userInfo.toString());
+        log.info("post5 = " + post3);
+        return success("post5 = " + post3);
     }
 
     @GetMapping("/403")
@@ -91,61 +88,6 @@ public class IndexController {
         return "error/500";
     }
 
-    @GetMapping("/main")
-    public String indexHome() {
-        return "main";
-    }
-
-    @GetMapping("/about")
-    public String about() {
-        return "about";
-    }
-
-    @GetMapping("/build")
-    public String build() {
-        return "build";
-    }
-
-    @GetMapping("/systemInfo")
-    public String systemInfo(Model model) {
-        return "systemInfo";
-    }
-
-    @GetMapping("/sysContent")
-    public String sysContent() {
-        return "syscontent/list";
-    }
-
-    @GetMapping("/sysDict")
-    public String sysDict() {
-        return "sysdict/list";
-    }
-
-    @GetMapping("/sysGenerator")
-    public String sysGenerator() {
-        return "generator/list";
-    }
-
-    @GetMapping("/sysJob")
-    public String sysJob() {
-        return "sysjob/list";
-    }
-
-    @GetMapping("/sysJobLog")
-    public String sysJobLog() {
-        return "sysjoblog/list";
-    }
-
-    @PostMapping("/sysFiles")
-    public String sysFiles(UserInfo userInfo) {
-        return "sysfiles/list";
-    }
-
-    @PostMapping("/postTest")
-    public String postTest(@RequestBody UserInfo userInfo) {
-        return "sysfiles/list";
-    }
-
     // Using produces for Returning Raw Data
     @GetMapping(
             value = "/get-file",
@@ -159,7 +101,8 @@ public class IndexController {
 
     // 返回字节数组使我们几乎可以返回任何内容，例如图像或文件：
     @GetMapping(value = "/image")
-    public @ResponseBody byte[] getImage() throws IOException {
+    public @ResponseBody
+    byte[] getImage() throws IOException {
         InputStream in = getClass()
                 .getResourceAsStream("/com/baeldung/produceimage/image.jpg");
         return IOUtils.toByteArray(in);
@@ -171,7 +114,8 @@ public class IndexController {
             value = "/get-image-with-media-type",
             produces = MediaType.IMAGE_JPEG_VALUE
     )
-    public @ResponseBody byte[] getImageWithMediaType() throws IOException {
+    public @ResponseBody
+    byte[] getImageWithMediaType() throws IOException {
         InputStream in = getClass()
                 .getResourceAsStream("/com/baeldung/produceimage/image.jpg");
         return IOUtils.toByteArray(in);
