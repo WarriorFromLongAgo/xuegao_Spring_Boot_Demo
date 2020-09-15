@@ -1,13 +1,23 @@
-// package com.xuegao.springboot_tool.mvc.cors;
-//
-// import org.springframework.context.annotation.Configuration;
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.ResponseBody;
-//
-// import javax.servlet.http.HttpServletResponse;
-// // 使用HttpServletResponse设置响应头(局部跨域配置)   https://juejin.im/post/6844903991558537223
+package com.xuegao.springboot_tool.mvc.cors;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
+
+// 使用HttpServletResponse设置响应头(局部跨域配置)   https://juejin.im/post/6844903991558537223
+
+/**
+ * <br/> @PackageName：com.xuegao.springboot_tool.controller
+ * <br/> @ClassName：FileController
+ * <br/> @Description：
+ * <br/> @author：xuegao
+ * <br/> @date：2020/7/9 0:33
+ */
 // @Configuration
 // public class GlobalCorsConfig3 {
+//
 //     @RequestMapping("/cors")
 //     @ResponseBody
 //     public String cors(HttpServletResponse response) {

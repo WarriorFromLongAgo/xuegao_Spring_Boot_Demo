@@ -1,6 +1,7 @@
 package com.xuegao.springboot_tool.model.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xuegao.springboot_tool.constant.json.LongJsonSerializer;
@@ -20,7 +21,7 @@ public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 8778430056221728L;
 
-    @TableField("id")
+    @TableId("id")
     @ApiModelProperty(value = "主键", position = 10)
     private Long id;
 

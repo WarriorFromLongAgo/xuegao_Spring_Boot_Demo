@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ import java.io.InputStream;
 public class IndexController<T> extends BaseController<T> {
     private final static Logger log = LoggerFactory.getLogger(IndexController.class);
 
+    @ResponseBody
     @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView uploadFile() {
         ModelAndView modelAndView = new ModelAndView();
@@ -34,31 +36,38 @@ public class IndexController<T> extends BaseController<T> {
         return modelAndView;
     }
 
+    @ResponseBody
     @RequestMapping(path = "/get1", method = RequestMethod.GET)
     public WrappedResponse<T> get1Test() {
         return success("get1");
     }
 
+    @ResponseBody
     @RequestMapping(path = "/get2", method = RequestMethod.GET)
     public WrappedResponse<T> get2Test(@RequestParam String get2) {
         return success("get2 = " + get2);
     }
 
+    @ResponseBody
     @RequestMapping(path = "/post1", method = RequestMethod.POST)
     public WrappedResponse<T> post1Test(@RequestBody UserInfo userInfo) {
         return success("post1 = " + userInfo);
     }
 
+    @ResponseBody
     @RequestMapping(path = "/post2", method = RequestMethod.POST)
     public WrappedResponse<T> post2Test(UserInfo userInfo) {
+        log.info("userInfo = " + userInfo);
         return success("post2 = " + userInfo);
     }
 
+    @ResponseBody
     @RequestMapping(path = "/post3", method = RequestMethod.POST)
     public WrappedResponse<T> post3Test(@RequestParam String post3) {
         return success("post3 = " + post3);
     }
 
+    @ResponseBody
     @RequestMapping(path = "/post4", method = RequestMethod.POST)
     public WrappedResponse<T> post4Test(@RequestBody UserInfo userInfo, @RequestBody Product product) {
         log.info("post4 = " + userInfo.toString());
@@ -66,11 +75,18 @@ public class IndexController<T> extends BaseController<T> {
         return success("post4 = " + product);
     }
 
+    @ResponseBody
     @RequestMapping(path = "/post5", method = RequestMethod.POST)
     public WrappedResponse<T> post5Test(@RequestBody UserInfo userInfo, @RequestParam String post3) {
         log.info("post5 = " + userInfo.toString());
         log.info("post5 = " + post3);
         return success("post5 = " + post3);
+    }
+
+    @ResponseBody
+    @RequestMapping(path = "/file1", method = RequestMethod.POST)
+    public WrappedResponse<T> file1(@RequestParam(name = "file", required = false) MultipartFile[] fileArr) {
+        return success(Integer.toString(fileArr.length));
     }
 
     @GetMapping("/403")
