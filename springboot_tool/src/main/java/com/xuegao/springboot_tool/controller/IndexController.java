@@ -1,7 +1,9 @@
 package com.xuegao.springboot_tool.controller;
 
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
+import com.xuegao.springboot_tool.model.PageQuery;
 import com.xuegao.springboot_tool.model.doo.Product;
+import com.xuegao.springboot_tool.model.dto.RequestDTO;
 import com.xuegao.springboot_tool.model.po.UserInfo;
 import io.swagger.annotations.Api;
 import org.apache.poi.util.IOUtils;
@@ -67,6 +69,7 @@ public class IndexController<T> extends BaseController<T> {
         return success("post3 = " + post3);
     }
 
+    // 前端无法做到这么传参数
     @ResponseBody
     @RequestMapping(path = "/post4", method = RequestMethod.POST)
     public WrappedResponse<T> post4Test(@RequestBody UserInfo userInfo, @RequestBody Product product) {
@@ -75,17 +78,31 @@ public class IndexController<T> extends BaseController<T> {
         return success("post4 = " + product);
     }
 
+    // 前端无法做到这么传参数
+    @ResponseBody
+    @RequestMapping(path = "/post4_v2", method = RequestMethod.POST)
+    public WrappedResponse<T> post4Test(@RequestBody PageQuery<UserInfo> userInfoPageQuery) {
+        log.info("post4_v2 = " + userInfoPageQuery.getPageNum());
+        log.info("post4_v2 = " + userInfoPageQuery.getPageSize());
+        log.info("post4_v2 = " + userInfoPageQuery.getQueryData());
+        return success("post4_v2 = " + userInfoPageQuery.getQueryData());
+    }
+
     @ResponseBody
     @RequestMapping(path = "/post5", method = RequestMethod.POST)
-    public WrappedResponse<T> post5Test(@RequestBody UserInfo userInfo, @RequestParam String post3) {
+    public WrappedResponse<T> post5Test(@RequestBody UserInfo userInfo, @RequestParam String post5) {
         log.info("post5 = " + userInfo.toString());
-        log.info("post5 = " + post3);
-        return success("post5 = " + post3);
+        log.info("post5 = " + post5);
+        return success("post5 = " + post5);
     }
 
     @ResponseBody
     @RequestMapping(path = "/file1", method = RequestMethod.POST)
     public WrappedResponse<T> file1(@RequestParam(name = "file", required = false) MultipartFile[] fileArr) {
+        for (MultipartFile multipartFile : fileArr) {
+            log.info("file1 = " + multipartFile.getName());
+            log.info("file1 = " + multipartFile.getOriginalFilename());
+        }
         return success(Integer.toString(fileArr.length));
     }
 

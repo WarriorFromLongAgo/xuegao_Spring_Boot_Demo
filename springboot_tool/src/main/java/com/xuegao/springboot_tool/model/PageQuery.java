@@ -4,13 +4,21 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.validation.Valid;
 
-// import javax.validation.Valid;
+/**
+ * <br/> @PackageName：com.xuegao.springboot_tool.model.PageQuery
+ * <br/> @ClassName：PageQuery
+ * <br/> @Description：
+ * <br/> @author：xuegao
+ * <br/> @date：2020/9/9 11:12
+ */
+public class PageQuery<T> extends Page<T> implements Serializable {
+    private static final long serialVersionUID = -3606244777269721646L;
 
-public class PageQuery<T> extends Page<T> {
-
-    // @Valid
+    @Valid
     private T queryData;
 
     // 自动优化 COUNT SQL
@@ -123,5 +131,14 @@ public class PageQuery<T> extends Page<T> {
     @Override
     public boolean isSearchCount() {
         return super.isSearchCount();
+    }
+
+    @Override
+    public String toString() {
+        return "PageQuery{" +
+                "queryData=" + queryData +
+                ", optimizeCountSql=" + optimizeCountSql +
+                ", isSearchCount=" + isSearchCount +
+                '}';
     }
 }
