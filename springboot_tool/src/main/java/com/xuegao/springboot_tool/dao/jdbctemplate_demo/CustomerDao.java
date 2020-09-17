@@ -1,7 +1,7 @@
 package com.xuegao.springboot_tool.dao.jdbctemplate_demo;
 
 import com.alibaba.fastjson.JSON;
-import com.xuegao.springboot_tool.model.po.UserInfo;
+import com.xuegao.springboot_tool.model.doo.SysUserinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,7 +13,7 @@ import java.util.*;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.dao.jdbctemplate_demo
- * <br/> @ClassName：UserInfoDao
+ * <br/> @ClassName：SysUserinfoDao
  * <br/> @Description：
  * <br/> @author：xuegao
  * <br/> @date：2020/7/20 9:43
@@ -27,10 +27,10 @@ public class CustomerDao {
     /**
      * 增
      */
-    public int insertSelective(UserInfo customer) {
+    public int insertSelective(SysUserinfo customer) {
         StringJoiner p = new StringJoiner(",", "(", ")");
         StringJoiner v = new StringJoiner(",", "(", ")");
-        // Optional.ofNullable(customer.getUserInfoName()).ifPresent(x -> {
+        // Optional.ofNullable(customer.getSysUserinfoName()).ifPresent(x -> {
         //     p.add("customer_name");
         //     v.add("?");
         // });
@@ -47,8 +47,8 @@ public class CustomerDao {
         // int updateCount = jdbcTemplate.update(con -> {
         //     PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         //     int index = 1;
-        //     if (null != customer.getUserInfoName()) {
-        //         ps.setString(index++, customer.getUserInfoName());
+        //     if (null != customer.getSysUserinfoName()) {
+        //         ps.setString(index++, customer.getSysUserinfoName());
         //     }
         //     if (null != customer.getCreateTime()) {
         //         ps.setTimestamp(index++, Timestamp.valueOf(customer.getCreateTime()));
@@ -72,26 +72,26 @@ public class CustomerDao {
     /**
      * 查
      */
-    public UserInfo queryByUserInfoName(String customerName) {
+    public SysUserinfo queryBySysUserinfoName(String customerName) {
         return jdbcTemplate.query("SELECT * FROM customer WHERE customer_name = ?",
                 ps -> ps.setString(1, customerName), SINGLE);
     }
 
-    public List<UserInfo> queryAll() {
+    public List<SysUserinfo> queryAll() {
         return jdbcTemplate.query("SELECT * FROM customer", MULTI);
     }
 
-    public int updateByPrimaryKeySelective(UserInfo customer) {
+    public int updateByPrimaryKeySelective(SysUserinfo customer) {
         final long id = Objects.requireNonNull(Objects.requireNonNull(customer).getId());
         StringBuilder sql = new StringBuilder("UPDATE customer SET ");
-        // Optional.ofNullable(customer.getUserInfoName()).ifPresent(x -> sql.append("customer_name = ?,"));
+        // Optional.ofNullable(customer.getSysUserinfoName()).ifPresent(x -> sql.append("customer_name = ?,"));
         // Optional.ofNullable(customer.getCreateTime()).ifPresent(x -> sql.append("create_time = ?,"));
         // Optional.ofNullable(customer.getEditTime()).ifPresent(x -> sql.append("edit_time = ?,"));
         // StringBuilder q = new StringBuilder(sql.substring(0, sql.lastIndexOf(","))).append(" WHERE id = ?");
         // return jdbcTemplate.update(q.toString(), ps -> {
         //     int index = 1;
-        //     if (null != customer.getUserInfoName()) {
-        //         ps.setString(index++, customer.getUserInfoName());
+        //     if (null != customer.getSysUserinfoName()) {
+        //         ps.setString(index++, customer.getSysUserinfoName());
         //     }
         //     if (null != customer.getCreateTime()) {
         //         ps.setTimestamp(index++, Timestamp.valueOf(customer.getCreateTime()));
@@ -104,8 +104,8 @@ public class CustomerDao {
         return 1;
     }
 
-    private static UserInfo convert(ResultSet rs) throws SQLException {
-        UserInfo customer = new UserInfo();
+    private static SysUserinfo convert(ResultSet rs) throws SQLException {
+        SysUserinfo customer = new SysUserinfo();
         customer.setId(rs.getLong("id"));
         customer.setUsername(rs.getString("customer_name"));
         // customer.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
@@ -113,15 +113,15 @@ public class CustomerDao {
         return customer;
     }
 
-    private static ResultSetExtractor<List<UserInfo>> MULTI = rs -> {
-        List<UserInfo> result = new ArrayList<>();
+    private static ResultSetExtractor<List<SysUserinfo>> MULTI = rs -> {
+        List<SysUserinfo> result = new ArrayList<>();
         while (rs.next()) {
             result.add(convert(rs));
         }
         return result;
     };
 
-    private static ResultSetExtractor<UserInfo> SINGLE = rs -> rs.next() ? convert(rs) : null;
+    private static ResultSetExtractor<SysUserinfo> SINGLE = rs -> rs.next() ? convert(rs) : null;
 
     private void batchInsertByParams() {
         String sql = "INSERT INTO `money` (`name`, `money`, `is_deleted`) VALUES (?, ?, ?);";

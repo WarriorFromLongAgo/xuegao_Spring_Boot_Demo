@@ -12,13 +12,13 @@ import java.io.Serializable;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.model.dto
- * <br/> @ClassName：UserInfoDTO
+ * <br/> @ClassName：SysUserinfoDTO
  * <br/> @Description：
  * <br/> @author：xuegao
  * <br/> @date：2020/9/1 0:01
  */
 @Api
-public class UserInfoDTO implements Serializable {
+public class SysUserinfoDTO implements Serializable {
 
     private static final long serialVersionUID = 6814178697496795134L;
 
@@ -41,7 +41,7 @@ public class UserInfoDTO implements Serializable {
     @ApiModelProperty(value = "创建时间", position = 10)
     private Long createTime;
 
-    public UserInfoDTO() {
+    public SysUserinfoDTO() {
     }
 
     public Long getId() {

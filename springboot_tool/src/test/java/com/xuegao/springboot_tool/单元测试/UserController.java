@@ -2,7 +2,7 @@
 //
 // import com.alibaba.fastjson.JSONObject;
 // import com.baomidou.mybatisplus.extension.api.R;
-// import com.xuegao.springboot_tool.model.po.UserInfo;
+// import com.xuegao.springboot_tool.model.doo.SysUserinfo;
 // import org.junit.Assert;
 // import org.junit.Test;
 // import org.junit.jupiter.api.BeforeEach;
@@ -30,14 +30,14 @@
 //     @Autowired
 //     MockMvc mockMvc;
 //
-//     UserInfo userInfo;
+//     SysUserinfo SysUserinfo;
 //
 //     MultiValueMap<String, String> params;
 //
 //     @BeforeEach
 //     public void setUp() throws Exception {
-//         userInfo = new UserInfo();
-//         userInfo.setUsername("123456");
+//         SysUserinfo = new SysUserinfo();
+//         SysUserinfo.setUsername("123456");
 //         params = new LinkedMultiValueMap<>();
 //         params.add("name", "codehome");
 //     }
@@ -60,7 +60,7 @@
 //     void addUser() throws Exception {
 //         mockMvc.perform(MockMvcRequestBuilders.post("/user/add")
 //                 .contentType(MediaType.APPLICATION_JSON)
-//                 .content(JSONObject.toJSONString(userInfo))
+//                 .content(JSONObject.toJSONString(SysUserinfo))
 //                 .accept(MediaType.APPLICATION_JSON)
 //         ).andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
 //                 .andDo(MockMvcResultHandlers.print())
@@ -90,8 +90,8 @@
 //     }
 //
 //     @PostMapping("/add")
-//     public R addUser(@RequestBody UserInfo userInfo) {
-//         return R.ok(userInfo);
+//     public R addUser(@RequestBody SysUserinfo SysUserinfo) {
+//         return R.ok(SysUserinfo);
 //     }
 //
 //     @GetMapping("/cookie")

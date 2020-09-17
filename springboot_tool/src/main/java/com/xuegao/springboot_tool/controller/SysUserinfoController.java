@@ -2,7 +2,7 @@ package com.xuegao.springboot_tool.controller;
 
 import com.xuegao.springboot_tool.constant.aop.annotation.MyTest;
 import com.xuegao.springboot_tool.constant.aop.annotation.PrintlnLog;
-import com.xuegao.springboot_tool.model.po.UserInfo;
+import com.xuegao.springboot_tool.model.doo.SysUserinfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,13 +14,13 @@ import javax.validation.Valid;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.controller
- * <br/> @ClassName：UserInfoController
+ * <br/> @ClassName：SysUserinfoController
  * <br/> @Description：
  * <br/> @author：xuegao
  * <br/> @date：2020/6/28 10:21
  */
 @RestController
-public class UserInfoController {
+public class SysUserinfoController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @PrintlnLog(description = "主页详情-indexController")
@@ -49,7 +49,7 @@ public class UserInfoController {
     }
 
     @RequestMapping(path = "/test1", method = RequestMethod.POST)
-    public String test3Controller(@RequestBody @Valid UserInfo userInfo) {
+    public String test3Controller(@RequestBody @Valid SysUserinfo SysUserinfo) {
         // log.info("indexController = " + "hello");
 
         // 代码里面有异常，会进入AfterThrowing

@@ -1,6 +1,6 @@
 package com.xuegao.springboot2_3_security.service.impl;
 
-import com.xuegao.springboot2_3_security.domain.Userinfo;
+import com.xuegao.springboot2_3_security.domain.SysUserinfo;
 import com.xuegao.springboot2_3_security.service.interfaces.IJwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,7 +34,7 @@ public class JwtServiceImpl implements IJwtService {
             e.printStackTrace();
             System.out.println("用户密码错误");
         }
-        Userinfo principal = (Userinfo) authentication.getPrincipal();
+        SysUserinfo principal = (SysUserinfo) authentication.getPrincipal();
 
         return null;
     }

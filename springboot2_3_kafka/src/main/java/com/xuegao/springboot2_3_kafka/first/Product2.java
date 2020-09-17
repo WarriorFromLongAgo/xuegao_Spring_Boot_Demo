@@ -11,10 +11,10 @@ public class Product2 {
     private KafkaTemplate kafkaTemplate;
 
     public void send(String name) {
-        // UserInfo userInfo = new UserInfo();
-        // userInfo.setUserName(name);
-        // userInfo.setAge(11);
-        // kafkaTemplate.send("user", JSON.toJSONString(userInfo));
+        // SysUserinfo SysUserinfo = new SysUserinfo();
+        // SysUserinfo.setUserName(name);
+        // SysUserinfo.setAge(11);
+        // kafkaTemplate.send("user", JSON.toJSONString(SysUserinfo));
         System.out.println("----------Product2--------------- + name" + name);
     }
 }

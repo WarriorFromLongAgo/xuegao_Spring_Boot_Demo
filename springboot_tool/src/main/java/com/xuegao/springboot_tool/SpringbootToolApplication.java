@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 /**
  * <br/> @PackageName：com.xuegao.dao
- * <br/> @ClassName：UserInfoMapper
+ * <br/> @ClassName：SysUserinfoMapper
  * <br/> @Description：
  * <br/> @author：xuegao
  * <br/> @date：2020/6/28 10:15

@@ -1,7 +1,7 @@
 // package com.xuegao.springboot_tool.单元测试;
 //
-// import com.xuegao.springboot_tool.dao.UserInfoMapper;
-// import com.xuegao.springboot_tool.model.po.UserInfo;
+// import com.xuegao.springboot_tool.dao.SysUserinfoMapper;
+// import com.xuegao.springboot_tool.model.doo.SysUserinfo;
 // import org.junit.Assert;
 // import org.junit.Ignore;
 // import org.junit.Test;
@@ -22,13 +22,13 @@
 // public class UserMapperTest {
 //
 //     @Autowired
-//     private UserInfoMapper userInfoMapper;
+//     private SysUserinfoMapper SysUserinfoMapper;
 //
 //     @Test
 //     @Ignore
 //     public void testFindAll() {
-//         UserInfo userInfo = userInfoMapper.selectById(1);
-//         Assert.assertNotNull(userInfo);
+//         SysUserinfo SysUserinfo = SysUserinfoMapper.selectById(1);
+//         Assert.assertNotNull(SysUserinfo);
 //     }
 //
 //     @Test(expected = RuntimeException.class)

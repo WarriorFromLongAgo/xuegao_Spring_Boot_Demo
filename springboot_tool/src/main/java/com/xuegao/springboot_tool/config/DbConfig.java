@@ -2,9 +2,6 @@ package com.xuegao.springboot_tool.config;
 
 import com.xuegao.springboot_tool.constant.consist.Constant;
 import com.xuegao.springboot_tool.dao.GeneratorMapper;
-import com.xuegao.springboot_tool.dao.SysGeneratorMysqlMapper;
-import com.xuegao.springboot_tool.dao.SysGeneratorOracleMapper;
-import com.xuegao.springboot_tool.dao.SysGeneratorSqlServerMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

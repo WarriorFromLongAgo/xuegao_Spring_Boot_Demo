@@ -2,12 +2,15 @@ package com.xuegao.springboot_tool.config.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Configuration
 // @Import({RedisKeyPrefixProperties.class})
@@ -27,4 +30,62 @@ public class RedisTemplateConfig {
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
+
+    @Bean
+    public ValueOperations<String, Serializable> valueOperations(RedisTemplate<String, Serializable> redisTemplate) {
+        return redisTemplate.opsForValue();
+    }
+
+    @Bean
+    public ListOperations<String, Serializable> listOperations(RedisTemplate<String, Serializable> redisTemplate) {
+        return redisTemplate.opsForList();
+    }
+
+    @Bean
+    public HashOperations<String, String, Serializable> hashOperations(RedisTemplate<String, Serializable> redisTemplate) {
+        return redisTemplate.opsForHash();
+    }
+
+    @Bean
+    public SetOperations<String, Serializable> setOperations(RedisTemplate<String, Serializable> redisTemplate) {
+        return redisTemplate.opsForSet();
+    }
+
+    @Bean
+    public ZSetOperations<String, Serializable> zSetOperations(RedisTemplate<String, Serializable> redisTemplate) {
+        return redisTemplate.opsForZSet();
+    }
+
+    @Bean
+    public HyperLogLogOperations<String, Serializable> hyperLogLogOperations(RedisTemplate<String, Serializable> redisTemplate) {
+        return redisTemplate.opsForHyperLogLog();
+    }
+
+    // @Bean
+    // public Long bitMapOperations(RedisTemplate<String, Serializable> redisTemplate) {
+    //     return redisTemplate.execute(new RedisCallback<Long>() {
+    //         @Override
+    //         public Long doInRedis(RedisConnection connection) throws DataAccessException {
+    //             // return connection.bitCount();
+    //             // return connection.bitOp();
+    //             // return connection.bitPos();
+    //             // return connection.bitField();
+    //             // return connection.getBit();
+    //             // return connection.setBit();
+    //             return 1L;
+    //         }
+    //     });
+    // }
+    //
+    // @Bean
+    // public List<Object> pipelined(RedisTemplate<String, Serializable> redisTemplate) {
+    //     return redisTemplate.executePipelined(new RedisCallback<Long>() {
+    //         @Override
+    //         public Long doInRedis(RedisConnection connection) throws DataAccessException {
+    //             Long aLong = connection.dbSize();
+    //             connection.discard();
+    //             return aLong;
+    //         }
+    //     });
+    // }
 }

@@ -1,6 +1,6 @@
 // package com.xuegao.springboot2_3_security.utils;
 //
-// import com.xuegao.springboot2_3_security.domain.Userinfo;
+// import com.xuegao.springboot2_3_security.domain.SysUserinfo;
 // import io.jsonwebtoken.Jwts;
 // import io.jsonwebtoken.SignatureAlgorithm;
 // import org.springframework.stereotype.Component;
@@ -26,9 +26,9 @@
 //
 //     private String header = "dad";
 //
-//     public static String generateToken(Userinfo userinfo) {
+//     public static String generateToken(SysUserinfo SysUserinfo) {
 //         Map<String, Object> map = new HashMap<>(2);
-//         map.put("sub", userinfo.getUsername());
+//         map.put("sub", SysUserinfo.getUsername());
 //         map.put("create", new Date());
 //         return generateToken(map);
 //         ;
@@ -43,14 +43,14 @@
 //     public String getUsernameFromToken(String token) {
 //         String username;
 //
-//         Userinfo userinfo = getClaimsFromToken(token);
-//         username = userinfo.getUsername();
+//         SysUserinfo SysUserinfo = getClaimsFromToken(token);
+//         username = SysUserinfo.getUsername();
 //         return username;
 //     }
 //
 //     public Boolean isTokenExpire(String token) {
-//         Userinfo userinfo = getClaimsFromToken(token);
-//         username = userinfo.get
+//         SysUserinfo SysUserinfo = getClaimsFromToken(token);
+//         username = SysUserinfo.get
 //         return username;
 //
 //

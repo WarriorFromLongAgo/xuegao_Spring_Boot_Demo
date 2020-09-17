@@ -15,8 +15,8 @@ import java.util.List;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-@TableName("userinfo")
-public class Userinfo implements UserDetails {
+@TableName("SysUserinfo")
+public class SysUserinfo implements UserDetails {
 
     @TableId("id")
     private String id;

@@ -115,7 +115,7 @@
 //
 //
 //     @Override
-//     public void updateUserInfo(SysUser vo, String operationId) {
+//     public void updateSysUserinfo(SysUser vo, String operationId) {
 //
 //
 //         SysUser sysUser = sysUserMapper.selectById(vo.getId());
@@ -153,7 +153,7 @@
 //     }
 //
 //     @Override
-//     public void updateUserInfoMy(SysUser vo, String operationId) {
+//     public void updateSysUserinfoMy(SysUser vo, String operationId) {
 //
 //
 //         SysUser sysUser = sysUserMapper.selectById(vo.getId());

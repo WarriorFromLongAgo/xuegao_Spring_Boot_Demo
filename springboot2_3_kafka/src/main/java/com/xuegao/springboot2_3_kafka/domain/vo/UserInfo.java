@@ -14,7 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class UserInfo {
+public class SysUserinfo {
 
     private Integer id;
 

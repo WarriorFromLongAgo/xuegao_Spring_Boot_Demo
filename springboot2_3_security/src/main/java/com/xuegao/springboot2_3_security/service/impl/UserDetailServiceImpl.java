@@ -1,6 +1,6 @@
 package com.xuegao.springboot2_3_security.service.impl;
 
-import com.xuegao.springboot2_3_security.domain.Userinfo;
+import com.xuegao.springboot2_3_security.domain.SysUserinfo;
 import com.xuegao.springboot2_3_security.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -25,12 +25,12 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Userinfo userinfo = userService.selectUserByUsername(username);
-        if (ObjectUtils.isEmpty(userinfo)) {
+        SysUserinfo SysUserinfo = userService.selectUserByUsername(username);
+        if (ObjectUtils.isEmpty(SysUserinfo)) {
             throw new UsernameNotFoundException("登录用户" + username + "不存在");
         }
-        userinfo.setAuthoritieList(AuthorityUtils.commaSeparatedStringToAuthorityList(userinfo.getRoleArr()));
-        return userinfo;
+        SysUserinfo.setAuthoritieList(AuthorityUtils.commaSeparatedStringToAuthorityList(SysUserinfo.getRoleArr()));
+        return SysUserinfo;
     }
 
     // @Override

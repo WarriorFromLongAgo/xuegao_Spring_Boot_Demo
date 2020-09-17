@@ -6,12 +6,12 @@ import java.io.Serializable;
 
 /**
  * <br/> @PackageName：com.fff.springbootapiseedtest.model.po
- * <br/> @ClassName：UserInfo
+ * <br/> @ClassName：SysUserinfo
  * <br/> @Description：
  * <br/> @author：xuegao
  * <br/> @date：2020/三3/28 18:29
  */
-public class UserInfo implements Serializable {
+public class SysUserinfo implements Serializable {
 
     private static final long serialVersionUID = 8778430056221728L;
 
@@ -30,10 +30,10 @@ public class UserInfo implements Serializable {
     @ApiModelProperty(value = "创建时间", position = 10)
     private Long createTime;
 
-    public UserInfo() {
+    public SysUserinfo() {
     }
 
-    public UserInfo(Long id, String name, String username, String password, Long createTime) {
+    public SysUserinfo(Long id, String name, String username, String password, Long createTime) {
         this.id = id;
         this.name = name;
         this.username = username;
