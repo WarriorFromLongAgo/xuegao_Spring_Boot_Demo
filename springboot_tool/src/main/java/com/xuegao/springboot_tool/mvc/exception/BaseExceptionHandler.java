@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date：2020/2/21 16:25
  */
 @ControllerAdvice
-public class BaseExceptionHandler {
+public class BaseExceptionHandler<T> {
 
     /**
      * @Title: 异常处理
@@ -25,19 +25,20 @@ public class BaseExceptionHandler {
     /**-------- 通用异常处理方法 --------**/
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public WrappedResponse error(Exception e) {
+    public WrappedResponse<T> error(Exception e) {
         e.printStackTrace();
-        return WrappedResponse.fail(e.getMessage());    // 通用异常结果
+        // 通用异常结果
+        return WrappedResponse.fail(e.getMessage());
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    @ResponseBody
+    public WrappedResponse<T> error(NullPointerException e) {
+        e.printStackTrace();
+        return WrappedResponse.fail("NullPointerException");
     }
 
     /**-------- 指定异常处理方法 --------**/
-    // @ExceptionHandler(NullPointerException.class)
-    // @ResponseBody
-    // public WrappedResponse error(NullPointerException e) {
-    //     e.printStackTrace();
-    //     return WrappedResponse.(ResultCodeEnum.NULL_POINT);
-    // }
-
     // @ExceptionHandler(HttpClientErrorException.class)
     // @ResponseBody
     // public R error(IndexOutOfBoundsException e) {

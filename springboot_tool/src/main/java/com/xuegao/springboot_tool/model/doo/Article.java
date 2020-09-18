@@ -1,89 +1,65 @@
 package com.xuegao.springboot_tool.model.doo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * <br/> @PackageName：com.fff.springbootapiseedtest.model.po
+ * <br/> @PackageName：com.xuegao.springboot_tool.model.doo
  * <br/> @ClassName：Article
  * <br/> @Description：
  * <br/> @author：xuegao
- * <br/> @date：2020/3/28 18:29
+ * <br/> @date：2020/09/18 13:47
  */
 @TableName("t_article")
 public class Article implements Serializable {
-    private static final long serialVersionUID = -4590594745516711409L;
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * 文章id
-     */
+    @TableId("文章id")
+    @ApiModelProperty(value = "文章id")
     private Long id;
 
-    /**
-     * 文章标题
-     */
+    @TableField("文章标题")
+    @ApiModelProperty(value = "文章标题")
     private String title;
 
-    /**
-     * 文章的正文
-     */
+    @TableField("文章的正文")
+    @ApiModelProperty(value = "文章的正文")
     private String text;
 
-    /**
-     * 0未删除，1已删除
-     */
+    @TableField("0未删除，1已删除")
+    @ApiModelProperty(value = "0未删除，1已删除")
     private String deleteFlag;
 
-    /**
-     * 创建人id
-     */
+    @TableField("创建人id")
+    @ApiModelProperty(value = "创建人id")
     private Long createId;
 
-    /**
-     * 创建人真实名称
-     */
+    @TableField("创建人真实名称")
+    @ApiModelProperty(value = "创建人真实名称")
     private String createName;
 
-    /**
-     * 创建时间
-     */
+    @TableField("创建时间")
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
-    /**
-     * 修改人id
-     */
+    @TableField("修改人id")
+    @ApiModelProperty(value = "修改人id")
     private Integer updateId;
 
-    /**
-     * 修改人真实名称
-     */
+    @TableField("修改人真实名称")
+    @ApiModelProperty(value = "修改人真实名称")
     private String updateName;
 
-    /**
-     * 修改时间
-     */
+    @TableField("修改时间")
+    @ApiModelProperty(value = "修改时间")
     private Date updateTime;
 
-    public Article() {
-    }
 
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", text='" + text + '\'' +
-                ", deleteFlag='" + deleteFlag + '\'' +
-                ", createId=" + createId +
-                ", createName='" + createName + '\'' +
-                ", createTime=" + createTime +
-                ", updateId=" + updateId +
-                ", updateName='" + updateName + '\'' +
-                ", updateTime=" + updateTime +
-                '}';
-    }
 
     public Long getId() {
         return id;

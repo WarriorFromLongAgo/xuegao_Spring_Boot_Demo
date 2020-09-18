@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * <br/> @PackageName：com.fff.springbootapiseedtest.model.po
@@ -183,4 +184,35 @@ public class SysUserinfo implements Serializable {
     public Date getCreateTime() {
         return createTime;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SysUserinfo that = (SysUserinfo) o;
+
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(username, that.username) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(deleteFlag, that.deleteFlag) &&
+                Objects.equals(createId, that.createId) &&
+                Objects.equals(createName, that.createName) &&
+                Objects.equals(createTime, that.createTime) &&
+                Objects.equals(updateId, that.updateId) &&
+                Objects.equals(updateName, that.updateName) &&
+                Objects.equals(updateTime, that.updateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, username, password, status, deleteFlag, createId, createName, createTime, updateId, updateName, updateTime);
+    }
+
+
 }

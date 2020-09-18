@@ -1,83 +1,77 @@
 package com.xuegao.springboot_tool.model.doo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * <br/> @PackageName：com.fff.springbootapiseedtest.model.po
+ * <br/> @PackageName：com.xuegao.springboot_tool.model.doo
  * <br/> @ClassName：ThumbsUpUserinfo
  * <br/> @Description：
  * <br/> @author：xuegao
- * <br/> @date：2020/3/28 18:29
+ * <br/> @date：2020/09/18 11:25
  */
 @TableName("t_thumbs_up_userinfo")
 public class ThumbsUpUserinfo implements Serializable {
-    private static final long serialVersionUID = 8009456436984184953L;
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * 文章id
-     */
+    @TableId("主键")
+    @ApiModelProperty(value = "主键")
     private Long id;
 
-    /**
-     * 点赞的用户id
-     */
+    @TableField("文章id")
+    @ApiModelProperty(value = "文章id")
+    private Long articleId;
+
+    @TableField("点赞的用户id")
+    @ApiModelProperty(value = "点赞的用户id")
     private Long giveUserId;
 
-    /**
-     * 被点赞的用户id
-     */
+    @TableField("被点赞的用户id")
+    @ApiModelProperty(value = "被点赞的用户id")
     private Long userId;
 
-    /**
-     * 点赞状态，0取消，1点赞
-     */
+    @TableField("点赞状态，0取消，1点赞")
+    @ApiModelProperty(value = "点赞状态，0取消，1点赞")
     private String status;
 
-    /**
-     * 0未删除，1已删除
-     */
+    @TableField("0未删除，1已删除")
+    @ApiModelProperty(value = "0未删除，1已删除")
     private String deleteFlag;
 
-    /**
-     * 创建人id
-     */
+    @TableField("创建人id")
+    @ApiModelProperty(value = "创建人id")
     private Long createId;
 
-    /**
-     * 创建人真实名称
-     */
+    @TableField("创建人真实名称")
+    @ApiModelProperty(value = "创建人真实名称")
     private String createName;
 
-    /**
-     * 创建时间
-     */
+    @TableField("创建时间")
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
-    /**
-     * 修改人id
-     */
+    @TableField("修改人id")
+    @ApiModelProperty(value = "修改人id")
     private Integer updateId;
 
-    /**
-     * 修改人真实名称
-     */
+    @TableField("修改人真实名称")
+    @ApiModelProperty(value = "修改人真实名称")
     private String updateName;
 
-    /**
-     * 修改时间
-     */
+    @TableField("修改时间")
+    @ApiModelProperty(value = "修改时间")
     private Date updateTime;
-
-    public ThumbsUpUserinfo() {
-    }
 
     @Override
     public String toString() {
         return "ThumbsUpUserinfo{" +
                 "id=" + id +
+                ", articleId=" + articleId +
                 ", giveUserId=" + giveUserId +
                 ", userId=" + userId +
                 ", status='" + status + '\'' +
@@ -121,6 +115,14 @@ public class ThumbsUpUserinfo implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Long articleId) {
+        this.articleId = articleId;
     }
 
     public String getDeleteFlag() {

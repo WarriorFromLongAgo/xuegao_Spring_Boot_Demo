@@ -1,6 +1,5 @@
 package com.xuegao.springboot_tool.model.dto;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xuegao.springboot_tool.constant.json.LongJsonSerializer;
 import io.swagger.annotations.Api;

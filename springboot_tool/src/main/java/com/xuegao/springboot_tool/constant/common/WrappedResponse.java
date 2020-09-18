@@ -72,6 +72,10 @@ public class WrappedResponse<T> implements Serializable {
         return fail(HttpCode.SERVER_ERROR.getHttpCode(), HttpCode.SERVER_ERROR.getMessage(), data);
     }
 
+    public static <T> WrappedResponse<T> fail(String message, T data) {
+        return fail(HttpCode.SERVER_ERROR.getHttpCode(), message, data);
+    }
+
     public static <T> WrappedResponse<T> fail(Integer code, String message, T data) {
         return new WrappedResponse<>(code, message, data);
     }
