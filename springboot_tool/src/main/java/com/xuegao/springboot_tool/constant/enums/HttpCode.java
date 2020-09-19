@@ -57,16 +57,18 @@ public enum HttpCode {
         return this.httpCode;
     }
 
-    public void setHttpCode(Integer httpCode) {
-        this.httpCode = httpCode;
-    }
+    // 枚举的字段必须是不可变的
+    // public void setHttpCode(Integer httpCode) {
+    //     this.httpCode = httpCode;
+    // }
 
     public String getMessage() {
         return this.message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    // 枚举的字段必须是不可变的
+    // public void setMessage(String message) {
+    //     this.message = message;
+    // }
 
 }
