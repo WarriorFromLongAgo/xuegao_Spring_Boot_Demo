@@ -3,6 +3,7 @@ package com.xuegao.springboot_tool.model.doo;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.util.Date;
  * <br/> @author：xuegao
  * <br/> @date：2020/09/18 11:25
  */
+@ApiModel(value = "点赞信息记录表", description = "点赞信息记录表，详细说明")
 @TableName("t_thumbs_up_userinfo")
 public class ThumbsUpUserinfo implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -67,22 +69,39 @@ public class ThumbsUpUserinfo implements Serializable {
     @ApiModelProperty(value = "修改时间")
     private Date updateTime;
 
+    // @Override
+    // public String toString() {
+    //     return "ThumbsUpUserinfo{" +
+    //             "id=" + id +
+    //             ", articleId=" + articleId +
+    //             ", giveUserId=" + giveUserId +
+    //             ", userId=" + userId +
+    //             ", status='" + status + '\'' +
+    //             ", deleteFlag='" + deleteFlag + '\'' +
+    //             ", createId=" + createId +
+    //             ", createName='" + createName + '\'' +
+    //             ", createTime=" + createTime +
+    //             ", updateId=" + updateId +
+    //             ", updateName='" + updateName + '\'' +
+    //             ", updateTime=" + updateTime +
+    //             '}';
+    // }
     @Override
     public String toString() {
         return "ThumbsUpUserinfo{" +
-                "id=" + id +
+                ", id=" + id +
                 ", articleId=" + articleId +
                 ", giveUserId=" + giveUserId +
                 ", userId=" + userId +
-                ", status='" + status + '\'' +
-                ", deleteFlag='" + deleteFlag + '\'' +
+                ", status=" + status +
+                ", deleteFlag=" + deleteFlag +
                 ", createId=" + createId +
-                ", createName='" + createName + '\'' +
+                ", createName=" + createName +
                 ", createTime=" + createTime +
                 ", updateId=" + updateId +
-                ", updateName='" + updateName + '\'' +
+                ", updateName=" + updateName +
                 ", updateTime=" + updateTime +
-                '}';
+                "}";
     }
 
     public Long getId() {
@@ -179,5 +198,10 @@ public class ThumbsUpUserinfo implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public static void main(String[] args) {
+        ThumbsUpUserinfo thumbsUpUserinfo = new ThumbsUpUserinfo();
+        System.out.println(thumbsUpUserinfo);
     }
 }
