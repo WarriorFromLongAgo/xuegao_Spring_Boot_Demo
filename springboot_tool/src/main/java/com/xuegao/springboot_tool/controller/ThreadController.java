@@ -6,6 +6,9 @@ import com.xuegao.springboot_tool.model.dto.RequestDTO;
 import com.xuegao.springboot_tool.model.vo.ThumbsUpArticleVO;
 import com.xuegao.springboot_tool.model.vo.ThumbsUpUserinfoVO;
 import com.xuegao.springboot_tool.service.interfaces.IThreadService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,8 @@ import java.util.List;
  * <br/> @author：xuegao
  * <br/> @date：2020/9/11 16:59
  */
+// value = 给自己看的， tags = 给前端看的
+@Api(value = "用户controller", tags = {"用户操作接口"})
 @RestController
 @RequestMapping(path = "/thread")
 public class ThreadController<T> extends BaseController<T> {
@@ -40,8 +45,10 @@ public class ThreadController<T> extends BaseController<T> {
      * <br/> @author: xuegao
      * <br/> @date:  2020/9/17 10:58
      */
+    @ApiOperation(value = "获取用户信息", tags = {"获取用户信息copy"}, notes = "注意问题点")
     @RequestMapping("/give_thumbs_up")
-    public WrappedResponse<Boolean> giveThumbsUpController(@RequestBody RequestDTO requestDTO) {
+    public WrappedResponse<Boolean> giveThumbsUpController(@ApiParam(name = "requestDTO", value = "requestDTO", required = true)
+                                                           @RequestBody RequestDTO requestDTO) {
         Long giveUserId = Long.valueOf(requestDTO.getSource());
         Long articleId = Long.valueOf(requestDTO.getTarget());
         // 0 取消点赞 1 点赞
