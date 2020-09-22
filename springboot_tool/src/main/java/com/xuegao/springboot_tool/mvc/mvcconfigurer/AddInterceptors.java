@@ -1,8 +1,13 @@
 package com.xuegao.springboot_tool.mvc.mvcconfigurer;
 
 import com.xuegao.springboot_tool.mvc.interceptor.LoginlerInterceptor;
+import com.xuegao.springboot_tool.mvc.interceptor.RedisLimitInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <br/> @PackageName：com.cherrys.schooldemo.mvc.mvcconfigurer
@@ -16,17 +21,34 @@ public class AddInterceptors implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        InterceptorRegistration interceptor = registry.addInterceptor(new LoginlerInterceptor());
+        InterceptorRegistration loginlerInterceptor = registry.addInterceptor(new LoginlerInterceptor());
         /**
          * 添加拦截的路径
          * /为根路径
          * /*为一级路径
          * /** 为所有路径包括多级
          */
-        interceptor.addPathPatterns("/**");
+        loginlerInterceptor.addPathPatterns("/**");
         //排除不拦截的，包括自己登录的页面不用拦截
-        interceptor.excludePathPatterns("/login");
-        interceptor.excludePathPatterns("/user/handle");
+        loginlerInterceptor.excludePathPatterns("/login");
+        loginlerInterceptor.excludePathPatterns("/user/handle");
+
+        List<String> excludePath = new ArrayList<>();
+        //排除拦截，除了注册登录(此时还没token)，其他都拦截
+        excludePath.add("/login");     //注册
+        excludePath.add("/static/**");  //静态资源
+        excludePath.add("/assets/**");  //静态资源
+
+        // registry.addInterceptor(new TokenInterceptor())
+        //         .addPathPatterns("/**")
+        //         .excludePathPatterns(excludePath);
+
+        registry.addInterceptor(redisLimitInterceptor()).addPathPatterns("/**");
+    }
+
+    @Bean
+    public RedisLimitInterceptor redisLimitInterceptor() {
+        return new RedisLimitInterceptor();
     }
 
     // 配置静态资源路径

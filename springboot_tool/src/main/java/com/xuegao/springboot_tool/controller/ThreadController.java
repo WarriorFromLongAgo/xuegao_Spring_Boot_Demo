@@ -1,10 +1,9 @@
 package com.xuegao.springboot_tool.controller;
 
-import com.google.common.collect.Lists;
+import com.xuegao.springboot_tool.constant.aop.annotation.Limit;
+import com.xuegao.springboot_tool.constant.aop.annotation.RedisLimit;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.model.dto.RequestDTO;
-import com.xuegao.springboot_tool.model.vo.ThumbsUpArticleVO;
-import com.xuegao.springboot_tool.model.vo.ThumbsUpUserinfoVO;
 import com.xuegao.springboot_tool.service.interfaces.IThreadService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,6 +47,7 @@ public class ThreadController<T> extends BaseController<T> {
      */
     @ApiOperation(value = "对于一个文章点赞、取消点赞", tags = {"对于一个文章点赞、取消点赞"}, notes = "注意问题点")
     @RequestMapping(path = "/give_thumbs_up", method = RequestMethod.POST)
+    @RedisLimit(description = "点赞", key = "#requestDTO.getSource()", limitCount = 1, expireTime = 500)
     public WrappedResponse<Boolean> giveThumbsUpController(@ApiParam(name = "requestDTO", value = "requestDTO", required = true)
                                                            @RequestBody RequestDTO requestDTO) {
         // 点赞的发起人
