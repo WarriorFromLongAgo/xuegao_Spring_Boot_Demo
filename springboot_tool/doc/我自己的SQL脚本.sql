@@ -1,7 +1,11 @@
+create database if not exists local;
+use local;
+
 DROP TABLE IF EXISTS sys_userinfo;
 create table sys_userinfo
 (
     `id`          bigint(20) AUTO_INCREMENT       NOT NULL comment '主键',
+    `userCode`    bigint(20)                      NOT NULL comment '员工工号，应该建立一张员工表的',
     `username`    varchar(20) CHARACTER SET utf8  NOT NULL COLLATE utf8_general_ci default '0' comment '用户名',
     `password`    varchar(20) CHARACTER SET utf8  NOT NULL COLLATE utf8_general_ci default '0' comment '密码',
     `status`      char(2) CHARACTER SET utf8      NOT NULL COLLATE utf8_general_ci default '0' comment '0正常，1停用',
@@ -20,6 +24,10 @@ create table sys_userinfo
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci
   ROW_FORMAT = Dynamic comment '用户信息表';
+insert into sys_userinfo(id, userCode, username, password, status)
+VALUES (null, 80004960, 'xuegao', '123', 0);
+insert into sys_userinfo(id, userCode, username, password, status)
+VALUES (null, 80004961, 'xuegao1', '123', 0);
 
 # roleArr  varchar(255) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci default 'ROLE_USER' comment '一个人的多个权限,逗号分割',
 
@@ -62,8 +70,8 @@ from t_order;
 select sum(number)
 from t_order;
 
-insert into sys_userinfo (id, username, password, status)
-select null, 'username', 'password', id
+insert into sys_userinfo (id, userCode, username, password, status)
+select null, 80004960, 'username', 'password', id
 from t_product;
 
 DROP TABLE IF EXISTS `t_time_hourglass`;
@@ -140,6 +148,15 @@ CREATE TABLE `t_article`
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci
   ROW_FORMAT = Dynamic comment '文章表';
+insert into t_article(id, title, text)
+values
+(null, '1 文章标题', '1 文章正文');
+insert into t_article(id, title, text)
+values
+(null, '2 文章标题', '2 文章正文');
+insert into t_article(id, title, text)
+values
+(null, '3 文章标题', '3 文章正文');
 
 DROP TABLE IF EXISTS `t_thumbs_up_userinfo`;
 CREATE TABLE `t_thumbs_up_userinfo`

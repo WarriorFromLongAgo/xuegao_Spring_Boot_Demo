@@ -37,7 +37,7 @@ public interface IThreadService {
      * <br/> @author: xuegao
      * <br/> @date:  2020/9/18 15:50
      */
-    List<ThumbsUpUserinfoVO> thumbsUpListByArticleIdService(Long requestUserId, Long articleId);
+    List<Long> thumbsUpListByArticleIdService(Long requestUserId, Long articleId);
 
     /**
      * <br/> @Title: 一个人的 点赞列表 文章的信息
@@ -48,7 +48,7 @@ public interface IThreadService {
      * <br/> @author: xuegao
      * <br/> @date:  2020/9/18 16:04
      */
-    List<ThumbsUpArticleVO> thumbsUpListByUserIdService(Long requestUserId);
+    List<Long> thumbsUpListByUserIdService(Long requestUserId);
 
     /**
      * <br/> @Title: 一个文章 的点赞数量
@@ -59,5 +59,5 @@ public interface IThreadService {
      * <br/> @author: xuegao
      * <br/> @date:  2020/9/18 16:06
      */
-    Integer thumbsUpListCountService(Long articleId);
+    Long thumbsUpListCountService(Long articleId);
 }

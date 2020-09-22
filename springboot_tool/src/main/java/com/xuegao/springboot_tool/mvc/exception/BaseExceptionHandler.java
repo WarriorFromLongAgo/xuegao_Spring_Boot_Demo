@@ -1,41 +1,42 @@
 package com.xuegao.springboot_tool.mvc.exception;
 
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
+import com.xuegao.springboot_tool.constant.enums.HttpCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @PackageName：com.fff.springbootweb1.handler
- * @ClassName：
- * @Description：
- * @author：
- * @date：2020/2/21 16:25
+ *
  */
 @ControllerAdvice
 public class BaseExceptionHandler<T> {
+    private Logger log = LoggerFactory.getLogger(BaseExceptionHandler.class);
 
     /**
      * @Title: 异常处理
      * @MethodName: error
      * @Return java.lang.String
-     * @author: fjm
+     * @author: xuegao
      * @date: 2020/2/21 16:26
      */
-    /**-------- 通用异常处理方法 --------**/
+    /**
+     * -------- 通用异常处理方法 --------
+     **/
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public WrappedResponse<T> error(Exception e) {
-        e.printStackTrace();
-        // 通用异常结果
-        return WrappedResponse.fail(e.getMessage());
+    public WrappedResponse<String> error(Exception e) {
+        log.error("Exception = ", e);
+        return WrappedResponse.fail(HttpCode.SERVER_ERROR.getMessage(), e.getMessage());
     }
 
     @ExceptionHandler(NullPointerException.class)
     @ResponseBody
-    public WrappedResponse<T> error(NullPointerException e) {
-        e.printStackTrace();
-        return WrappedResponse.fail("NullPointerException");
+    public WrappedResponse<String> error(NullPointerException e) {
+        log.error("NullPointerException = ", e);
+        return WrappedResponse.fail(HttpCode.SERVER_ERROR.getHttpCode(), HttpCode.SERVER_ERROR.getMessage(), "NullPointerException");
     }
 
     /**-------- 指定异常处理方法 --------**/
