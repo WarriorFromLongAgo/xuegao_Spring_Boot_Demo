@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @ControllerAdvice
-public class BaseExceptionHandler<T> {
+public class BaseExceptionHandler {
     private Logger log = LoggerFactory.getLogger(BaseExceptionHandler.class);
 
     /**
@@ -37,6 +37,13 @@ public class BaseExceptionHandler<T> {
     public WrappedResponse<String> error(NullPointerException e) {
         log.error("NullPointerException = ", e);
         return WrappedResponse.fail(HttpCode.SERVER_ERROR.getHttpCode(), HttpCode.SERVER_ERROR.getMessage(), "NullPointerException");
+    }
+
+    @ExceptionHandler(RedisLimitException.class)
+    @ResponseBody
+    public WrappedResponse<String> error(RedisLimitException e) {
+        log.error("RedisLimitException = ", e);
+        return WrappedResponse.fail(HttpCode.SERVER_ERROR.getHttpCode(), HttpCode.SERVER_ERROR.getMessage(), "RedisLimitException");
     }
 
     /**-------- 指定异常处理方法 --------**/

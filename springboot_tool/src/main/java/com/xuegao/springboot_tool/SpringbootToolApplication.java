@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 // {@link ConfigurationPropertiesScan} 同 {@link EnableConfigurationProperties} 二选一
 @MapperScan(basePackages = "com.xuegao.springboot_tool.dao")
 @SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
-@ComponentScan(basePackages = {"com.xuegao.springboot_tool"})
+@ComponentScan(basePackages = {"com.xuegao"})
 @EnableOrderClient
 @EnableScheduling
 public class SpringbootToolApplication {
@@ -40,7 +40,6 @@ public class SpringbootToolApplication {
 
 
     public static void main(String[] args) {
-        // System.out.println();
         SpringApplication.run(SpringbootToolApplication.class, args);
     }
 

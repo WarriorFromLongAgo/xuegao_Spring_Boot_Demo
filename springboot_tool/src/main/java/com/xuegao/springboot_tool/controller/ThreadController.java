@@ -1,6 +1,7 @@
 package com.xuegao.springboot_tool.controller;
 
 import com.xuegao.springboot_tool.constant.aop.annotation.Limit;
+import com.xuegao.springboot_tool.constant.aop.annotation.PrintlnLog;
 import com.xuegao.springboot_tool.constant.aop.annotation.RedisLimit;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.model.dto.RequestDTO;
@@ -47,7 +48,9 @@ public class ThreadController<T> extends BaseController<T> {
      */
     @ApiOperation(value = "对于一个文章点赞、取消点赞", tags = {"对于一个文章点赞、取消点赞"}, notes = "注意问题点")
     @RequestMapping(path = "/give_thumbs_up", method = RequestMethod.POST)
-    @RedisLimit(description = "点赞", key = "#requestDTO.getSource()", limitCount = 1, expireTime = 500)
+    @PrintlnLog
+    // @RedisLimit(description = "点赞", key = "#requestDTO.source", limitCount = 1, expireTime = 500)
+    @RedisLimit(description = "点赞", key = "#requestDTO.getSource()", limitCount = 1, expireTime = 50000000)
     public WrappedResponse<Boolean> giveThumbsUpController(@ApiParam(name = "requestDTO", value = "requestDTO", required = true)
                                                            @RequestBody RequestDTO requestDTO) {
         // 点赞的发起人
@@ -60,6 +63,15 @@ public class ThreadController<T> extends BaseController<T> {
         boolean aBoolean = threadService.giveThumbsUpService(giveUserId, articleId, thumbsUpFlag);
 
         return WrappedResponse.success(aBoolean);
+    }
+
+    @RequestMapping(path = "/give_thumbs_up2")
+    @PrintlnLog
+    // @RedisLimit(description = "点赞", key = "#requestDTO.source", limitCount = 1, expireTime = 500)
+    @RedisLimit(description = "点赞", key = "#id", limitCount = 1, expireTime = 500)
+    public WrappedResponse<Boolean> giveThumbsUpController2(String id) {
+        System.out.println(" giveThumbsUpController2 id = " + id);
+        return WrappedResponse.success(id);
     }
 
     /**

@@ -1,10 +1,4 @@
-package com.xuegao.springboot_tool.mvc.cors;
-
-import org.jetbrains.annotations.NotNull;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+package com.xuegao.springboot_tool.mvc.mvcconfigurer;
 
 // 重写WebMvcConfigurer的addCorsMappings方法（全局跨域配置）
 //    https://juejin.im/post/6844903991558537223
