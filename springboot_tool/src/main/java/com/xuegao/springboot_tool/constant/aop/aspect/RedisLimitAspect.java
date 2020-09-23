@@ -30,9 +30,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -54,11 +52,11 @@ public class RedisLimitAspect {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    @Autowired
-    private HttpServletRequest request;
-
-    @Autowired
-    private HttpServletResponse response;
+    // @Autowired
+    // private HttpServletRequest request;
+    //
+    // @Autowired
+    // private HttpServletResponse response;
 
     @Autowired
     private ValueOperations<String, Serializable> valueOperations;
@@ -123,13 +121,13 @@ public class RedisLimitAspect {
         StringBuilder key = new StringBuilder();
         switch (limitType) {
             case IP:
-                // ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-                // if (ObjectUtils.isEmpty(attributes)) {
-                //     key.append(applicationName).append(IPUtils.getIpAddr());
-                // } else {
-                // HttpServletRequest request = attributes.getRequest();
-                key.append(applicationName).append(IPUtils.getIpAddr()).append(request.getRequestURI());
-                // }
+                ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+                if (ObjectUtils.isEmpty(attributes)) {
+                    key.append(applicationName).append(IPUtils.getIpAddr());
+                } else {
+                    HttpServletRequest request = attributes.getRequest();
+                    key.append(applicationName).append(IPUtils.getIpAddr()).append(request.getRequestURI());
+                }
                 break;
             case CUSTOMER:
                 key.append(applicationName).append(spELKey);
@@ -144,21 +142,21 @@ public class RedisLimitAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (!ObjectUtils.isEmpty(attributes) && !ObjectUtils.isEmpty(attributes.getResponse())) {
             // HttpServletResponse response = attributes.getResponse();
-            response.setContentType(MediaType.APPLICATION_JSON.toString());
-            response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-            ServletOutputStream outputStream = null;
-            try {
-                String json = JSONObject.toJSON(WrappedResponse.fail(message)).toString();
-                outputStream = response.getOutputStream();
-                outputStream.write(json.getBytes(StandardCharsets.UTF_8));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (!ObjectUtils.isEmpty(outputStream)) {
-                    outputStream.flush();
-                    outputStream.close();
-                }
-            }
+            // response.setContentType(MediaType.APPLICATION_JSON.toString());
+            // response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+            // ServletOutputStream outputStream = null;
+            // try {
+            //     String json = JSONObject.toJSON(WrappedResponse.fail(message)).toString();
+            //     outputStream = response.getOutputStream();
+            //     outputStream.write(json.getBytes(StandardCharsets.UTF_8));
+            // } catch (IOException e) {
+            //     e.printStackTrace();
+            // } finally {
+            //     if (!ObjectUtils.isEmpty(outputStream)) {
+            //         outputStream.flush();
+            //         outputStream.close();
+            //     }
+            // }
         }
     }
 }
