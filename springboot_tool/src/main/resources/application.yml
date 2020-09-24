@@ -134,6 +134,13 @@ logging:
     cn.jay.repository: trace
     com.xuegao.springboot_tool.dao: debug
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
 felord:
   phone: 182******32
   def:

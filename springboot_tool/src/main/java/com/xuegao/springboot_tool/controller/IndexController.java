@@ -59,9 +59,9 @@ public class IndexController<T> extends BaseController<T> {
 
     @ResponseBody
     @RequestMapping(path = "/post2", method = RequestMethod.POST)
-    public WrappedResponse<T> post2Test(SysUserinfo SysUserinfo) {
-        log.info("SysUserinfo = " + SysUserinfo);
-        return success("post2 = " + SysUserinfo);
+    public WrappedResponse<T> post2Test(SysUserinfo sysUserinfo) {
+        log.info("SysUserinfo = " + sysUserinfo);
+        return success("post2 = " + sysUserinfo);
     }
 
     @ResponseBody
@@ -73,8 +73,8 @@ public class IndexController<T> extends BaseController<T> {
     // 前端无法做到这么传参数
     @ResponseBody
     @RequestMapping(path = "/post4", method = RequestMethod.POST)
-    public WrappedResponse<T> post4Test(@RequestBody SysUserinfo SysUserinfo, @RequestBody Product product) {
-        log.info("post4 = " + SysUserinfo.toString());
+    public WrappedResponse<T> post4Test(@RequestBody SysUserinfo sysUserinfo, @RequestBody Product product) {
+        log.info("post4 = " + sysUserinfo.toString());
         log.info("post4 = " + product.toString());
         return success("post4 = " + product);
     }
