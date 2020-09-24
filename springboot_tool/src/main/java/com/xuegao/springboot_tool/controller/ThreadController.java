@@ -134,4 +134,16 @@ public class ThreadController<T> extends BaseController<T> {
 
         return WrappedResponse.success(aLong);
     }
+
+    @RequestMapping(path = "/delayed_queue_redis_offer", method = RequestMethod.POST)
+    public WrappedResponse<Long> delayedQueueByRedissonClientOffer() {
+
+        return WrappedResponse.success();
+    }
+
+    @RequestMapping(path = "/delayed_queue_redis_take", method = RequestMethod.POST)
+    public WrappedResponse<Long> delayedQueueByRedissonClientTake() {
+
+        return WrappedResponse.success();
+    }
 }

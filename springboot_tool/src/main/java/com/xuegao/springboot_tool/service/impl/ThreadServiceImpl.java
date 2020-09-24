@@ -1,15 +1,22 @@
 package com.xuegao.springboot_tool.service.impl;
 
+import com.xuegao.springboot_tool.model.bo.CallCdr;
 import com.xuegao.springboot_tool.service.interfaces.IThreadService;
 import com.xuegao.springboot_tool.utils.RedisConvertUtils;
+import org.redisson.api.RBlockingQueue;
+import org.redisson.api.RDelayedQueue;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.service.impl
@@ -25,12 +32,15 @@ public class ThreadServiceImpl implements IThreadService {
 
     private ValueOperations<String, Serializable> valueOperations;
     private ZSetOperations<String, Serializable> zSetOperations;
+    private RedissonClient redissonClient;
 
     @Autowired
     public ThreadServiceImpl(ValueOperations<String, Serializable> valueOperations,
-                             ZSetOperations<String, Serializable> zSetOperations) {
+                             ZSetOperations<String, Serializable> zSetOperations,
+                             RedissonClient redissonClient) {
         this.valueOperations = valueOperations;
         this.zSetOperations = zSetOperations;
+        this.redissonClient = redissonClient;
     }
 
     /**
@@ -132,5 +142,40 @@ public class ThreadServiceImpl implements IThreadService {
     public Long thumbsUpListCountService(Long articleId) {
         Long aLong = zSetOperations.zCard(Long.toString(articleId));
         return aLong;
+    }
+
+    @Override
+    public void delayedQueueByRedissonClientOffer() {
+        RBlockingQueue<CallCdr> blockingFairQueue = redissonClient.getBlockingQueue("delay_queue");
+        RDelayedQueue<CallCdr> delayedQueue = redissonClient.getDelayedQueue(blockingFairQueue);
+
+        try {
+            Thread.sleep(1 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 一分钟以后将消息发送到指定队列
+        // 相当于1分钟后取消订单
+        // 延迟队列包含callCdr 1分钟，然后将其传输到blockingFairQueue中
+        // 在1分钟后就可以在blockingFairQueue 中获取callCdr了
+        CallCdr callCdr = new CallCdr(30000.00);
+        callCdr.setPutTime();
+        delayedQueue.offer(callCdr, 1, TimeUnit.MINUTES);
+    }
+
+    @Override
+    public void delayedQueueByRedissonClientTake() {
+        RBlockingQueue<CallCdr> blockingFairQueue = redissonClient.getBlockingQueue("delay_queue");
+        RDelayedQueue<CallCdr> delayedQueue = redissonClient.getDelayedQueue(blockingFairQueue);
+        while (true) {
+            CallCdr callCdr = null;
+            try {
+                callCdr = blockingFairQueue.take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("订单取消时间：" + new SimpleDateFormat("hh:mm:ss").format(new Date()) + "==订单生成时间" + callCdr.getPutTime());
+
+        }
     }
 }

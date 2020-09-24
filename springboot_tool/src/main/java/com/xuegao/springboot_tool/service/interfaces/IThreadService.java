@@ -60,4 +60,8 @@ public interface IThreadService {
      * <br/> @date:  2020/9/18 16:06
      */
     Long thumbsUpListCountService(Long articleId);
+
+    void delayedQueueByRedissonClientOffer();
+
+    void delayedQueueByRedissonClientTake();
 }
