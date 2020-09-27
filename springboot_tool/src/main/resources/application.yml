@@ -139,7 +139,9 @@ management:
     web:
       exposure:
         include: '*'
-
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 felord:
   phone: 182******32

@@ -2,9 +2,11 @@ package com.xuegao.springboot_tool.mvc.mvcconfigurer;
 
 import com.xuegao.springboot_tool.mvc.interceptor.RedisLimitInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * <br/> @PackageName：com.cherrys.schooldemo.mvc.mvcconfigurer
@@ -16,8 +18,8 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 public class AddInterceptors implements WebMvcConfigurer {
 
-    @Autowired
-    private RedisLimitInterceptor redisLimitInterceptor;
+    // @Autowired
+    // private RedisLimitInterceptor redisLimitInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -58,6 +60,7 @@ public class AddInterceptors implements WebMvcConfigurer {
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/**");
+        registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/static/");
     }
 
     // 重写父类提供的跨域请求处理的接口，跨域处理
