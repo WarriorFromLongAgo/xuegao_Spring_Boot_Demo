@@ -131,6 +131,7 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>2.0.5</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.google.guava</groupId>
@@ -141,7 +142,6 @@
                     <artifactId>javassist</artifactId>
                 </exclusion>
             </exclusions>
-            <version>2.0.2</version>
         </dependency>
 
         <dependency>
@@ -200,11 +200,11 @@
             <version>${poi.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.github.penggle</groupId>-->
-<!--            <artifactId>kaptcha</artifactId>-->
-<!--            <version>2.3.2</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.penggle</groupId>-->
+        <!--            <artifactId>kaptcha</artifactId>-->
+        <!--            <version>2.3.2</version>-->
+        <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -319,6 +319,11 @@
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xuegao</groupId>
+            <artifactId>xuegao-first-spring-boot-starter</artifactId>
+            <version>0.0.7</version>
         </dependency>
     </dependencies>
 

@@ -60,7 +60,10 @@ public class AddInterceptors implements WebMvcConfigurer {
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/**");
+        // ico
         registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/static/");
+        // knife4j
+        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
     }
 
     // 重写父类提供的跨域请求处理的接口，跨域处理

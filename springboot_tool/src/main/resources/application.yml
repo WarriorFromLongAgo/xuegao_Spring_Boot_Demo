@@ -142,6 +142,11 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+xuegao:
+  first:
+#    enabled: true
+    before: 111
+    after: 222
 
 felord:
   phone: 182******32
