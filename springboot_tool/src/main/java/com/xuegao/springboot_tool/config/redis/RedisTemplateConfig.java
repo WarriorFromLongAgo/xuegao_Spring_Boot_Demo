@@ -1,10 +1,14 @@
 package com.xuegao.springboot_tool.config.redis;
 
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.CacheKeyPrefix;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.io.Serializable;
@@ -13,6 +17,74 @@ import java.util.List;
 @Configuration
 // @Import({RedisKeyPrefixProperties.class})
 public class RedisTemplateConfig {
+    // /**
+    //  * key 生成
+    //  * @return
+    //  */
+    // @Bean
+    // public KeyGenerator simpleKeyGenerator() {
+    //     return (o, method, objects) -> {
+    //         StringBuilder stringBuilder = new StringBuilder();
+    //         stringBuilder.append(o.getClass().getSimpleName());
+    //         stringBuilder.append(".");
+    //         stringBuilder.append(method.getName());
+    //         stringBuilder.append("[");
+    //         for (Object obj : objects) {
+    //             stringBuilder.append(obj.toString());
+    //         }
+    //         stringBuilder.append("]");
+    //         String build = stringBuilder.toString();
+    //         return build;
+    //     };
+    // }
+    // /**
+    //  * 缓存前缀（追加一个冒号 : ）
+    //  * @return
+    //  */
+    // private CacheKeyPrefix myKeyPrefix(){
+    //     return name -> name + ":";
+    // }
+
+    // /**
+    //  * Redis模板 默认序列化方式
+    //  * @param factory
+    //  * @return
+    //  */
+    // @Bean
+    // public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+    //
+    //     RedisTemplate<String, Object> template = new RedisTemplate<>();
+    //     //key序列化
+    //     RedisSerializer<String> redisSerializer = new StringRedisSerializer();
+    //     template.setConnectionFactory(factory);
+    //
+    //     //key序列化方式
+    //     template.setKeySerializer(redisSerializer);
+    //
+    //     template.afterPropertiesSet();
+    //     return template;
+    // }
+    //
+    // /**
+    //  * Redis模板 Jackson2 序列化方式
+    //  * @param factory
+    //  * @return
+    //  */
+    // @Bean(name = "redisTemplateJackson")
+    // public RedisTemplate<String, Object> redisTemplateJackson(RedisConnectionFactory factory) {
+    //     RedisTemplate<String, Object> template = new RedisTemplate<>();
+    //     //key序列化
+    //     RedisSerializer<String> redisSerializer = new StringRedisSerializer();
+    //     template.setConnectionFactory(factory);
+    //
+    //     //key序列化方式
+    //     template.setKeySerializer(redisSerializer);
+    //     //value序列化
+    //     template.setDefaultSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
+    //
+    //     template.afterPropertiesSet();
+    //     return template;
+    // }
 
     @Bean
     // public RedisTemplate<String, Serializable> limitRedisTemplate(LettuceConnectionFactory redisConnectionFactory) {

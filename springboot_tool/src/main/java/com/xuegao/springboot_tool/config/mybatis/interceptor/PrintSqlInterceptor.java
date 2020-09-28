@@ -1,10 +1,7 @@
-package com.xuegao.springboot_tool.mybatis.interceptor;
+package com.xuegao.springboot_tool.config.mybatis.interceptor;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.parameter.ParameterHandler;
-import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
@@ -24,7 +21,7 @@ import java.util.Locale;
 import java.util.Properties;
 
 /**
- * <br/> @PackageName：com.xuegao.springboot_tool.mybatis.interceptor
+ * <br/> @PackageName：com.xuegao.springboot_tool.config.mybatis.interceptor
  * <br/> @ClassName：PrintSqlInterceptor
  * <br/> @Description：
  * <br/> @author：xuegao
