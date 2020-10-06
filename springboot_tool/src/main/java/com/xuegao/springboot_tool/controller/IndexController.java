@@ -1,6 +1,5 @@
 package com.xuegao.springboot_tool.controller;
 
-import com.xuegao.XuegaoFirst;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.model.PageQuery;
 import com.xuegao.springboot_tool.model.doo.Product;
@@ -9,7 +8,6 @@ import io.swagger.annotations.Api;
 import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +31,8 @@ public class IndexController<T> extends BaseController<T> {
     private final static Logger log = LoggerFactory.getLogger(IndexController.class);
     private Logger log2 = LoggerFactory.getLogger(IndexController.class);
 
-    @Autowired
-    private XuegaoFirst xuegaoFirst;
+    // @Autowired
+    // private XuegaoFirst xuegaoFirst;
 
     @ResponseBody
     @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET)
@@ -124,11 +122,11 @@ public class IndexController<T> extends BaseController<T> {
         return success(Integer.toString(fileArr.length));
     }
 
-    @ResponseBody
-    @RequestMapping(path = "/autoConfig", method = RequestMethod.GET)
-    public WrappedResponse<T> autoConfig() {
-        return success(xuegaoFirst.sayHelloWorld("autoConfig"));
-    }
+    // @ResponseBody
+    // @RequestMapping(path = "/autoConfig", method = RequestMethod.GET)
+    // public WrappedResponse<T> autoConfig() {
+    //     return success(xuegaoFirst.sayHelloWorld("autoConfig"));
+    // }
 
     @GetMapping("/403")
     public String error403() {
