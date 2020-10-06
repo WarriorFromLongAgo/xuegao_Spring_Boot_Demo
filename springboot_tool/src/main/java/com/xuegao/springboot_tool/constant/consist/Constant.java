@@ -1,11 +1,11 @@
 package com.xuegao.springboot_tool.constant.consist;
 
 /**
- * @PackageName：com.fff.springbooto.constant
- * @ClassName：
- * @Description：
- * @author：
- * @date：2020/1/10 15:50
+ * <br/> @PackageName：com.xuegao.springboot_tool.constant.consist
+ * <br/> @ClassName：Constant
+ * <br/> @Description：
+ * <br/> @author：xuegao
+ * <br/> @date：2020/7/14 10:58
  */
 public class Constant {
 
