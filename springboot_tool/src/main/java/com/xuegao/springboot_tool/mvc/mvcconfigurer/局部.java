@@ -1,11 +1,11 @@
-// package com.xuegao.springboot_tool.mvc.cors;
+// package com.xuegao.springboot_tool.mvc.mvcconfigurer.cors;
 //
 // import org.springframework.web.bind.annotation.CrossOrigin;
 // import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.ResponseBody;
 //
 // /**
-//  * <br/> @PackageName：com.xuegao.springboot_tool.mvc.cors
+//  * <br/> @PackageName：com.xuegao.springboot_tool.mvc.mvcconfigurer.cors
 //  * <br/> @ClassName：局部
 //  * <br/> @Description：
 //  * <br/> @author：xuegao

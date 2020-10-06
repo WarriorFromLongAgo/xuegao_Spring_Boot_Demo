@@ -7,7 +7,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -29,6 +28,7 @@ public class LogAspect {
     private final Logger log = LoggerFactory.getLogger(getClass());
     // 另起一行
     private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final ThreadLocal<Long> LONG_THREAD_LOCAL = new ThreadLocal<>();
 
     /**
      * <br/> @Title:
@@ -54,7 +54,6 @@ public class LogAspect {
      */
     @Before("PrintlnLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
-
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
@@ -82,6 +81,7 @@ public class LogAspect {
          * 打印调用方法全路径以及执行方法
          */
         log.info("Request Class and Method: {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        log.info(Thread.currentThread().getName() + " = indexController = 执行前");
     }
 
     /**
@@ -96,10 +96,10 @@ public class LogAspect {
     @Around("PrintlnLog()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         String aspectMethodLogDescPJ = getAspectMethodLogDescPJ(proceedingJoinPoint);
-        System.out.println("indexController = 执行前");
         Object result = proceedingJoinPoint.proceed();
-        System.out.println("indexController = 执行后");
+        log.info(Thread.currentThread().getName() + " = indexController = 执行后");
         long startTime = System.currentTimeMillis();
+        LONG_THREAD_LOCAL.set(startTime);
         /**
          * 输出结果
          */
@@ -127,10 +127,12 @@ public class LogAspect {
     // public void doAfter(JoinPoint joinPoint) throws Throwable {
     //     log.info("------------------------------- End --------------------------" + LINE_SEPARATOR);
     // }
-
     @AfterThrowing("PrintlnLog()")
     public void doAfterThrowing(JoinPoint joinPoint) throws Throwable {
-        log.info(" doAfterThrowing ");
+        /**
+         * 方法执行耗时
+         */
+        log.info(Thread.currentThread().getName() + " =  doAfterThrowing ");
         log.info("------------------------------- End --------------------------" + LINE_SEPARATOR);
     }
 

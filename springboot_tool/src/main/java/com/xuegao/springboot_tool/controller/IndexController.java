@@ -1,5 +1,6 @@
 package com.xuegao.springboot_tool.controller;
 
+import com.xuegao.XuegaoFirst;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.model.PageQuery;
 import com.xuegao.springboot_tool.model.doo.Product;
@@ -8,6 +9,7 @@ import io.swagger.annotations.Api;
 import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +26,15 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author wenbin
  * @version V1.0
  */
-@Api(tags = "视图")
+@Api(tags = "视图 IndexController")
 @Controller
 @RequestMapping("/index")
 public class IndexController<T> extends BaseController<T> {
     private final static Logger log = LoggerFactory.getLogger(IndexController.class);
     private Logger log2 = LoggerFactory.getLogger(IndexController.class);
+
+    @Autowired
+    private XuegaoFirst xuegaoFirst;
 
     @ResponseBody
     @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET)
@@ -59,9 +64,9 @@ public class IndexController<T> extends BaseController<T> {
 
     @ResponseBody
     @RequestMapping(path = "/post2", method = RequestMethod.POST)
-    public WrappedResponse<T> post2Test(SysUserinfo SysUserinfo) {
-        log.info("SysUserinfo = " + SysUserinfo);
-        return success("post2 = " + SysUserinfo);
+    public WrappedResponse<T> post2Test(SysUserinfo sysUserinfo) {
+        log.info("SysUserinfo = " + sysUserinfo);
+        return success("post2 = " + sysUserinfo);
     }
 
     @ResponseBody
@@ -73,8 +78,8 @@ public class IndexController<T> extends BaseController<T> {
     // 前端无法做到这么传参数
     @ResponseBody
     @RequestMapping(path = "/post4", method = RequestMethod.POST)
-    public WrappedResponse<T> post4Test(@RequestBody SysUserinfo SysUserinfo, @RequestBody Product product) {
-        log.info("post4 = " + SysUserinfo.toString());
+    public WrappedResponse<T> post4Test(@RequestBody SysUserinfo sysUserinfo, @RequestBody Product product) {
+        log.info("post4 = " + sysUserinfo.toString());
         log.info("post4 = " + product.toString());
         return success("post4 = " + product);
     }
@@ -96,6 +101,7 @@ public class IndexController<T> extends BaseController<T> {
         log.info("post5 = " + post5);
         return success("post5 = " + post5);
     }
+
     private static final AtomicLong ATOMIC_LONG = new AtomicLong();
     private final ConcurrentHashMap<Long, Logger> MAP = new ConcurrentHashMap<>();
 
@@ -116,6 +122,12 @@ public class IndexController<T> extends BaseController<T> {
             log.info("file1 = " + multipartFile.getOriginalFilename());
         }
         return success(Integer.toString(fileArr.length));
+    }
+
+    @ResponseBody
+    @RequestMapping(path = "/autoConfig", method = RequestMethod.GET)
+    public WrappedResponse<T> autoConfig() {
+        return success(xuegaoFirst.sayHelloWorld("autoConfig"));
     }
 
     @GetMapping("/403")

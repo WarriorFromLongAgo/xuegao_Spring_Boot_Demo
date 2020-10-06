@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.mybatis.metaobjecthandler;
+package com.xuegao.springboot_tool.config.mybatis.metaobjecthandler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.xuegao.springboot_tool.constant.consist.Constant;

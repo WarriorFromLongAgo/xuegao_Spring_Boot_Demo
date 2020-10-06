@@ -134,6 +134,20 @@ logging:
     cn.jay.repository: trace
     com.xuegao.springboot_tool.dao: debug
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  metrics:
+    tags:
+      application: ${spring.application.name}
+xuegao:
+  first:
+#    enabled: true
+    before: 111
+    after: 222
+
 felord:
   phone: 182******32
   def:

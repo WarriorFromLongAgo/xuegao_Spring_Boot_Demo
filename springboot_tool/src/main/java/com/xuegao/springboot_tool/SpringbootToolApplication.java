@@ -3,11 +3,15 @@ package com.xuegao.springboot_tool;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import com.xuegao.springboot_tool.spring.beanload.DemoBeanHuiHui;
 import com.xuegao.springboot_tool.spring.beanload.EnableOrderClient;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -28,7 +32,7 @@ import java.time.LocalDateTime;
 // {@link ConfigurationPropertiesScan} 同 {@link EnableConfigurationProperties} 二选一
 @MapperScan(basePackages = "com.xuegao.springboot_tool.dao")
 @SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
-@ComponentScan(basePackages = {"com.xuegao.springboot_tool"})
+@ComponentScan(basePackages = {"com.xuegao"})
 @EnableOrderClient
 @EnableScheduling
 public class SpringbootToolApplication {
@@ -40,9 +44,17 @@ public class SpringbootToolApplication {
 
 
     public static void main(String[] args) {
-        // System.out.println();
         SpringApplication.run(SpringbootToolApplication.class, args);
     }
+
+    @Bean
+    MeterRegistryCustomizer<MeterRegistry> configurer(@Value("${spring.application.name}") String applicationName) {
+        return (registry) -> registry.config().commonTags("application", applicationName);
+    }
+    // 作者：dalaoyang
+    // 链接：https://juejin.im/post/6844903791825780744
+    // 来源：掘金
+    // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 }
 
