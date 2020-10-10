@@ -1,12 +1,14 @@
 package com.xuegao.springboot_tool.model.bo;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class CallCdr {
     private String name;
     private int age;
-    private String wife;
+    private Boolean zhiFu;
     private Double salary;
     private String putTime;
 
@@ -33,12 +35,12 @@ public class CallCdr {
         this.age = age;
     }
 
-    public String getWife() {
-        return wife;
+    public Boolean getZhiFu() {
+        return zhiFu;
     }
 
-    public void setWife(String wife) {
-        this.wife = wife;
+    public void setZhiFu(Boolean zhiFu) {
+        this.zhiFu = zhiFu;
     }
 
     public Double getSalary() {
@@ -54,6 +56,6 @@ public class CallCdr {
     }
 
     public void setPutTime() {
-        this.putTime = new SimpleDateFormat("hh:mm:ss").format(new Date());
+        this.putTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
     }
 }

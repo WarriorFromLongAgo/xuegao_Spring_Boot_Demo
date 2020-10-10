@@ -3,9 +3,14 @@ package com.xuegao.springboot_tool.service.impl;
 import com.xuegao.springboot_tool.model.bo.CallCdr;
 import com.xuegao.springboot_tool.service.interfaces.IThreadService;
 import com.xuegao.springboot_tool.utils.RedisConvertUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.redisson.api.RBlockingDeque;
 import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RDelayedQueue;
 import org.redisson.api.RedissonClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -13,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +34,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class ThreadServiceImpl implements IThreadService {
+    private Logger log = LoggerFactory.getLogger(ThreadServiceImpl.class);
 
     private static final Integer THUMBS_UP = 1;
 
@@ -144,38 +152,82 @@ public class ThreadServiceImpl implements IThreadService {
         return aLong;
     }
 
+    /**
+     * <br/> @Title: redisson 延迟队列
+     * <br/> @MethodName:  delayedQueueByRedissonClientTake
+     * <br/> take：获取并移除队列的超时元素，如果没有则wait当前线程，直到有元素满足超时条件，返回结果。
+     * <br/> @return void
+     * <br/> @Description:
+     * <br/> @author: xuegao
+     * <br/> @date:  2020/10/09 19:58
+     */
     @Override
-    public void delayedQueueByRedissonClientOffer() {
-        RBlockingQueue<CallCdr> blockingFairQueue = redissonClient.getBlockingQueue("delay_queue");
+    public void delayedQueueByRedissonClientTake() {
+        RBlockingQueue<CallCdr> blockingFairQueue = redissonClient.getBlockingQueue("redisson_delay_queue");
         RDelayedQueue<CallCdr> delayedQueue = redissonClient.getDelayedQueue(blockingFairQueue);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CallCdr callCdr = null;
+                try {
+                    callCdr = blockingFairQueue.take();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (ObjectUtils.isNotEmpty(callCdr)) {
+                    System.out.println("订单取消时间：" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")) + "==订单生成时间：" + callCdr.getPutTime());
+                }
+            }
+        }).start();
+    }
 
-        try {
-            Thread.sleep(1 * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // 一分钟以后将消息发送到指定队列
-        // 相当于1分钟后取消订单
-        // 延迟队列包含callCdr 1分钟，然后将其传输到blockingFairQueue中
-        // 在1分钟后就可以在blockingFairQueue 中获取callCdr了
-        CallCdr callCdr = new CallCdr(30000.00);
-        callCdr.setPutTime();
-        delayedQueue.offer(callCdr, 1, TimeUnit.MINUTES);
+    public void delayedQueueByRedissonClientPoll() {
+        RBlockingQueue<CallCdr> blockingFairQueue = redissonClient.getBlockingQueue("redisson_delay_queue");
+        RDelayedQueue<CallCdr> delayedQueue = redissonClient.getDelayedQueue(blockingFairQueue);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CallCdr callCdr = blockingFairQueue.poll();
+                if (ObjectUtils.isNotEmpty(callCdr)) {
+                    System.out.println("订单取消时间：" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")) + "==订单生成时间：" + callCdr.getPutTime());
+                }
+            }
+        }).start();
     }
 
     @Override
-    public void delayedQueueByRedissonClientTake() {
-        RBlockingQueue<CallCdr> blockingFairQueue = redissonClient.getBlockingQueue("delay_queue");
-        RDelayedQueue<CallCdr> delayedQueue = redissonClient.getDelayedQueue(blockingFairQueue);
-        while (true) {
-            CallCdr callCdr = null;
-            try {
-                callCdr = blockingFairQueue.take();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("订单取消时间：" + new SimpleDateFormat("hh:mm:ss").format(new Date()) + "==订单生成时间" + callCdr.getPutTime());
+    public void delayedQueueByRedissonClientOffer() {
+        // 这里使用了两个queue，对delayedQueue的offer操作是直接进入delayedQueue，但是delay是作用在目标队列上，这里就是RBlockingQueue
+        try {
+            RBlockingDeque<CallCdr> stringRedissonDelayQueue = redissonClient.getBlockingDeque("redisson_delay_queue");
+            RDelayedQueue<CallCdr> delayedQueue = redissonClient.getDelayedQueue(stringRedissonDelayQueue);
+            CallCdr callCdr = new CallCdr();
+            callCdr.setPutTime();
+            callCdr.setSalary(100.0);
+            callCdr.setZhiFu(false);
+            delayedQueue.offer(callCdr, 30, TimeUnit.MINUTES);
+            System.out.println("stringRedissonDelayQueue.contains(callCdr) = " + stringRedissonDelayQueue.contains(callCdr));
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("stringRedissonDelayQueue.contains(callCdr) = " + stringRedissonDelayQueue.contains(callCdr));
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("stringRedissonDelayQueue.contains(callCdr) = " + stringRedissonDelayQueue.contains(callCdr));
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("stringRedissonDelayQueue.contains(callCdr) = " + stringRedissonDelayQueue.contains(callCdr));
 
+            // stringRedissonDelayQueue.contains(demo) = false
+            // stringRedissonDelayQueue.contains(demo) = false
+            // stringRedissonDelayQueue.contains(demo) = true
+            // stringRedissonDelayQueue.contains(demo) = true
+
+            // redisson的DelayedQueue使用上是将元素及延时信息入队，之后定时任务将到期的元素转移到目标队列
+            // 这里使用了三个结构来存储，一个是目标队列list；一个是原生队列list，添加的是带有延时信息的结构体；一个是timeoutSetName的zset，元素是结构体，其score为timeout值
+            // 作者：go4it
+            // 链接：https://juejin.im/post/6844903683247833102
+            // 来源：掘金
+            // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

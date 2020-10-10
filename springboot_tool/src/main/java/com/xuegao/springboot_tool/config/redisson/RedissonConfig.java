@@ -1,6 +1,7 @@
 package com.xuegao.springboot_tool.config.redisson;
 
 
+import com.xuegao.springboot_tool.utils.redisson.RedissonLockUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -64,6 +65,49 @@ public class RedissonConfig {
             return null;
         }
     }
+
+    // 哨兵模式自动装配
+    // @Bean
+    // @ConditionalOnProperty(name="redisson.master-name")
+    // RedissonClient redissonSentinel() {
+    //     Config config = new Config();
+    //     SentinelServersConfig serverConfig = config.useSentinelServers().addSentinelAddress(redissonProperties.getSentinelAddresses())
+    //             .setMasterName(redissonProperties.getMasterName())
+    //             .setTimeout(redissonProperties.getTimeout())
+    //             .setMasterConnectionPoolSize(redissonProperties.getMasterConnectionPoolSize())
+    //             .setSlaveConnectionPoolSize(redissonProperties.getSlaveConnectionPoolSize());
+    //
+    //     if(StringUtils.isNotBlank(redissonProperties.getPassword())) {
+    //         serverConfig.setPassword(redissonProperties.getPassword());
+    //     }
+    //     return Redisson.create(config);
+    // }
+    // 作者：Joyu_chen
+    // 链接：https://juejin.im/post/6844903962085179400
+    // 来源：掘金
+    // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+    // 单机模式自动装配
+    // @Bean
+    // @ConditionalOnProperty(name="redisson.address")
+    // RedissonClient redissonSingle() {
+    //     Config config = new Config();
+    //     SingleServerConfig serverConfig = config.useSingleServer()
+    //             .setAddress(redissonProperties.getAddress())
+    //             .setTimeout(redissonProperties.getTimeout())
+    //             .setConnectionPoolSize(redissonProperties.getConnectionPoolSize())
+    //             .setConnectionMinimumIdleSize(redissonProperties.getConnectionMinimumIdleSize());
+    //
+    //     if(StringUtils.isNotBlank(redissonProperties.getPassword())) {
+    //         serverConfig.setPassword(redissonProperties.getPassword());
+    //     }
+    //
+    //     return Redisson.create(config);
+    // }
+    // 作者：Joyu_chen
+    // 链接：https://juejin.im/post/6844903962085179400
+    // 来源：掘金
+    // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
     // @Bean
     // public RedisConnection redisConnection(Environment environment) {
@@ -145,5 +189,20 @@ public class RedissonConfig {
     //     return Redisson.create(config);
     // }
 
+    /**
+     * 装配locker类，并将实例注入到RedissLockUtil中
+     * @return
+     */
+    @Bean
+    DistributedLocker distributedLocker(RedissonClient redissonClient) {
+        DistributedLocker locker = new RedissonDistributedLocker();
+        ((RedissonDistributedLocker) locker).setRedissonClient(redissonClient);
+        RedissonLockUtil.setLocker(locker);
+        return locker;
+    }
 
+    // 作者：Joyu_chen
+    // 链接：https://juejin.im/post/6844903962085179400
+    // 来源：掘金
+    // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 }

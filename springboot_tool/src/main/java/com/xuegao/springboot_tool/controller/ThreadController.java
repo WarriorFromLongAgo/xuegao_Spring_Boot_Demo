@@ -135,15 +135,34 @@ public class ThreadController<T> extends BaseController<T> {
         return WrappedResponse.success(aLong);
     }
 
+    /**
+     * <br/> @Title: redisson 延迟队列
+     * <br/> @MethodName:  delayedQueueByRedissonClientOffer
+     * <br/>
+     * <br/> @return com.xuegao.springboot_tool.constant.common.WrappedResponse<java.lang.Long>
+     * <br/> @Description:
+     * <br/> @author: xuegao
+     * <br/> @date:  2020/10/09 19:57
+     */
     @RequestMapping(path = "/delayed_queue_redis_offer", method = RequestMethod.POST)
     public WrappedResponse<Long> delayedQueueByRedissonClientOffer() {
-
+        threadService.delayedQueueByRedissonClientOffer();
         return WrappedResponse.success();
     }
 
+    /**
+     * <br/> @Title: redisson 延迟队列
+     * <br/> @MethodName:  delayedQueueByRedissonClientTake
+     * <br/>
+     * <br/> @return com.xuegao.springboot_tool.constant.common.WrappedResponse<java.lang.Long>
+     * <br/> @Description:
+     * <br/> @author: xuegao
+     * <br/> @date:  2020/10/09 19:58
+     */
     @RequestMapping(path = "/delayed_queue_redis_take", method = RequestMethod.POST)
     public WrappedResponse<Long> delayedQueueByRedissonClientTake() {
-
+        threadService.delayedQueueByRedissonClientTake();
         return WrappedResponse.success();
     }
+
 }

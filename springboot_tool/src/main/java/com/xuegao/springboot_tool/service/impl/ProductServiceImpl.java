@@ -68,6 +68,32 @@ public class ProductServiceImpl extends ServiceImpl<IProductDao, Product> implem
         return true;
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean seckillProduct2(Long productId, Integer number) {
+        String key = "seckill_stock_lock_" + productId;
+        RLock lock = redissonClient.getLock(key);
+        try {
+            //获取分布式锁
+            lock.lock();
+            Product product = productDao.selectById(productId);
+            if (ObjectUtils.isEmpty(product)) {
+                return false;
+            }
+            Integer stocks = product.getStocks();
+            if (stocks < number) {
+                return false;
+            }
+            product.setStocks(product.getStocks() - number);
+            productDao.updateById(product);
+            kafkaUtil.sendMessage(productId, number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+        return true;
+    }
+
     @Override
     public void initProduct(Product product) {
         System.out.println("=====================================================================");
