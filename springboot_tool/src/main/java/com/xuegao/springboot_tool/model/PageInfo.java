@@ -21,6 +21,9 @@ public class PageInfo<T> {
     @ApiModelProperty(value = "分页对象", position = 40)
     private List<T> data;
 
+    @ApiModelProperty(value = "总页数", position = 50)
+    private int totalPage;
+
     public PageInfo() {
 
     }

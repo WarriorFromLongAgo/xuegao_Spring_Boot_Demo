@@ -2,5 +2,11 @@
 
 <mapper namespace="com.xuegao.springboot_tool.dao.SysUserinfoMapper">
 
+    <select id="page2" resultType="com.xuegao.springboot_tool.model.doo.SysUserinfo">
+        select * from sys_userinfo where username like concat('%', #{pageQuery.queryData.name}, '%')
+    </select>
 
+    <select id="page3" resultType="com.xuegao.springboot_tool.model.doo.SysUserinfo">
+        select * from sys_userinfo where username like concat('%', #{pageQuery.queryData.name}, '%')
+    </select>
 </mapper>

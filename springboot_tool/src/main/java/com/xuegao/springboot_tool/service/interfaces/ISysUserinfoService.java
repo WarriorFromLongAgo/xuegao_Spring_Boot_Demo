@@ -1,6 +1,9 @@
 package com.xuegao.springboot_tool.service.interfaces;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xuegao.springboot_tool.model.PageInfo;
+import com.xuegao.springboot_tool.model.PageQuery;
 import com.xuegao.springboot_tool.model.doo.SysUserinfo;
 
 /**
@@ -11,4 +14,9 @@ import com.xuegao.springboot_tool.model.doo.SysUserinfo;
  * <br/> @date：2020/7/14 20:05
  */
 public interface ISysUserinfoService extends IService<SysUserinfo> {
+
+    PageInfo<SysUserinfo> page2(PageQuery<SysUserinfo> pageQuery);
+
+    PageInfo<SysUserinfo> page3(PageQuery<SysUserinfo> pageQuery);
+
 }

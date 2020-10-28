@@ -1,10 +1,16 @@
 package com.xuegao.springboot_tool.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xuegao.springboot_tool.constant.aop.annotation.MyTest;
 import com.xuegao.springboot_tool.constant.aop.annotation.PrintlnLog;
+import com.xuegao.springboot_tool.constant.common.WrappedResponse;
+import com.xuegao.springboot_tool.model.PageInfo;
+import com.xuegao.springboot_tool.model.PageQuery;
 import com.xuegao.springboot_tool.model.doo.SysUserinfo;
+import com.xuegao.springboot_tool.service.interfaces.ISysUserinfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +28,13 @@ import javax.validation.Valid;
 @RestController
 public class SysUserinfoController {
     private final Logger log = LoggerFactory.getLogger(getClass());
+
+    private ISysUserinfoService sysUserinfoService;
+
+    @Autowired
+    public SysUserinfoController(ISysUserinfoService sysUserinfoService) {
+        this.sysUserinfoService = sysUserinfoService;
+    }
 
     @PrintlnLog(description = "主页详情-indexController")
     @RequestMapping(path = {"/", "/index.html", "/index"}, method = RequestMethod.GET)
@@ -58,4 +71,11 @@ public class SysUserinfoController {
         System.out.println("test1Controller = " + "test1");
         return "test1";
     }
+
+    @RequestMapping(path = "/page", method = RequestMethod.POST)
+    public WrappedResponse<Object> page(@RequestBody PageQuery<SysUserinfo> pageQuery) {
+        PageInfo<SysUserinfo> pageInfo = sysUserinfoService.page3(pageQuery);
+        return WrappedResponse.success(pageInfo);
+    }
+
 }
