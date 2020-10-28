@@ -11,7 +11,7 @@ import javax.validation.Valid;
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.model.PageQuery
  * <br/> @ClassName：PageQuery
- * <br/> @Description：
+ * <br/> @Description：传递到mapper层的时候，必须放在第一个
  * <br/> @author：xuegao
  * <br/> @date：2020/9/9 11:12
  */
