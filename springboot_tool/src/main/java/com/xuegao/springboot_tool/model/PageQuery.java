@@ -141,14 +141,4 @@ public class PageQuery<T> extends Page<T> implements Serializable {
                 ", isSearchCount=" + isSearchCount +
                 '}';
     }
-
-    public PageInfo<T> toPageInfo() {
-        PageInfo<T> pageInfo = new PageInfo<>();
-        pageInfo.setData(getRecords());
-        pageInfo.setPageNum((int) getCurrent());
-        pageInfo.setPageSize((int) getSize());
-        pageInfo.setTotal((int) getTotal());
-        return pageInfo;
-    }
-
 }
