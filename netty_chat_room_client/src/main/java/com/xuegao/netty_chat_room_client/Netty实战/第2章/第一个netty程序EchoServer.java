@@ -56,11 +56,14 @@ public class 第一个netty程序EchoServer {
                             ch.pipeline().addLast(echoServerHandler);
                         }
                     });
+            // 异步的绑定服务器，调用sync() 方法阻塞等待直到绑定完成
             ChannelFuture channelFuture = serverBootstrap.bind().sync();
+            // 获取channel的closefuture，并阻塞当前线程知道他完成为止
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            // 关闭 eventLoopGroup 释放所有的资源
             eventLoopGroup.shutdownGracefully().sync();
         }
     }
