@@ -22,6 +22,19 @@ spring:
           driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
           url: jdbc:sqlserver://localhost:1433;databaseName=company_project
   redis:
+    #url: # Connection URL. Overrides host, port, and password. User is ignored. Example: redis://user:password@example.com:6379
+    #host: localhost # Redis server host.
+    password: c7vcaziwiqgouret # Login password of the redis server.
+    #port: 6379 # Redis server port.
+    database: 0 # Database index used by the connection factory.
+    ssl: false # Whether to enable SSL support.
+    timeout: 3000 # Connection timeout milliseconds.
+    #cluster:
+    #  max-redirects: # Maximum number of redirects to follow when executing commands across the cluster.
+    #  nodes: # Comma-separated list of "host:port" pairs to bootstrap from.
+    sentinel:
+      master: ESG_CR_CORE_REDIS_C01 # Name of the Redis server.
+      nodes: esg-cr-core1.cache.sfdc.com.cn:8001,esg-cr-core2.cache.sfdc.com.cn:8001,esg-cr-core3.cache.sfdc.com.cn:8001 # Comma-separated list of "host:port" pairs.
     #    host: localhost # Redis服务器地址
     #    database: 0 # Redis数据库索引（默认为0）
     #    port: 6379 # Redis服务器连接端口

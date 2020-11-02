@@ -1,12 +1,23 @@
 package com.xuegao.springboot_tool.mvc.mvcconfigurer;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.xuegao.springboot_tool.mvc.filter.XssFilter;
 import com.xuegao.springboot_tool.mvc.interceptor.RedisLimitInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <br/> @PackageName：com.cherrys.schooldemo.mvc.mvcconfigurer
@@ -86,5 +97,43 @@ public class AddInterceptors implements WebMvcConfigurer {
         // configSource.registerCorsConfiguration("/**", config);
     }
 
+    /**
+     * XssFilter. xss攻击过滤
+     */
+    @Bean
+    public FilterRegistrationBean<XssFilter> filterXssRegistration() {
+        FilterRegistrationBean<XssFilter> registration = new FilterRegistrationBean<>();
+        registration.setFilter(new XssFilter());
+        // 设定匹配的路径
+        registration.addUrlPatterns("/*");
+        // 设定加载的顺序
+        registration.setOrder(0);
+        return registration;
+    }
+
+    public static final String DATETIME = "yyyy-MM-dd HH:mm:ss";
+
+    /**
+     * 配置消息转换器-- 优先fastjson.
+     * @param converters the converters
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        // 定义一个FastJsonHttpMessageConverter转换消息的对象;
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        // 添加fastJson的配置信息，比如：是否要格式化返回的json数据;
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat, SerializerFeature.WriteDateUseDateFormat);
+        fastJsonConfig.setDateFormat(DATETIME);
+        // 支持媒体类型
+        List<MediaType> fastMediaTypes = new ArrayList<>();
+        fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        fastMediaTypes.add(MediaType.TEXT_HTML);
+        // 在convert中添加配置信息.
+        fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaTypes);
+        fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
+        // 将convert添加到converters当中 放到第一个 便于优先使用 以免使用到没配置的converter json化及requestBody反json化使用.
+        converters.add(0, fastJsonHttpMessageConverter);
+    }
 
 }
