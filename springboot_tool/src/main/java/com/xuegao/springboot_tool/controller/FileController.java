@@ -127,10 +127,6 @@ public class FileController {
             try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
                  BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(response.getOutputStream())
             ) {
-                // byte[] buffer = new byte[bufferedInputStream.available()];
-                // bufferedInputStream.read(buffer);
-                // response.reset();
-
                 byte[] buff = new byte[1024];
                 int i = bufferedInputStream.read(buff);
                 while (i != -1) {
@@ -138,12 +134,7 @@ public class FileController {
                     bufferedOutputStream.flush();
                     i = bufferedInputStream.read(buff);
                 }
-
-                // bufferedOutputStream.write(buffer);
-                // bufferedOutputStream.flush();
-                System.out.println("dddddddddddddddddddddddddddddddddddddddddd");
             }
         }
-        System.out.println("jkhjdkfhsjkfhsdfhuegrahvjkhvjkxcjbvjfjh");
     }
 }

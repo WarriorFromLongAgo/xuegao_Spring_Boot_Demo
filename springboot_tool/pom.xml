@@ -344,7 +344,38 @@
     </dependencies>
 
     <build>
+        <resources>
+            <!--            解决execl导出问题-->
+            <!--            http://www.manongjc.com/article/30461.html-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/webapp</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+            <!--            解决execl导出问题-->
+        </resources>
         <plugins>
+            <!-- maven打包时，排除excel文件类型 不进行编译 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>2.6</version>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtensions>xls</nonFilteredFileExtensions>
+                        <nonFilteredFileExtensions>xlsx</nonFilteredFileExtensions>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
