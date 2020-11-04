@@ -1,4 +1,4 @@
-package com.xuegao.netty_chat_room_client.Netty实战.第2章;
+package com.xuegao.netty_chat_room_server.Netty实战.第2章;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -60,8 +60,6 @@ public class 第一个netty程序EchoServer {
             ChannelFuture channelFuture = serverBootstrap.bind().sync();
             // 获取channel的closefuture，并阻塞当前线程知道他完成为止
             channelFuture.channel().closeFuture().sync();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } finally {
             // 关闭 eventLoopGroup 释放所有的资源
             eventLoopGroup.shutdownGracefully().sync();

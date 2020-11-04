@@ -1,4 +1,4 @@
-package com.xuegao.netty_chat_room_client.Netty实战.第1章;
+package com.xuegao.netty_chat_room_server.Netty实战.第1章;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
