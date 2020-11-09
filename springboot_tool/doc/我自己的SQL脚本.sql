@@ -216,5 +216,51 @@ insert into t_dic(id, pid, type_id, value, name, `description`, status, double_e
                   create_id, create_name, create_time, update_id, update_name, update_time)
 values (null, 0, 1, '测试3', '测试数据', '无意义的数据', 1, 0.01, 0, 80004960, 'fff', now(), 80004960, 'fff', now());
 
+# 字典表
+DROP TABLE IF EXISTS `t_list_dic`;
+CREATE TABLE `t_list_dic`
+(
+    `id`          bigint(20)                      NOT NULL AUTO_INCREMENT comment '主键',
+    `dic_name`    varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci comment '字典名称',
+    `dic_type`    varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci comment '字典类型',
+    `status`      tinyint(1)                      NOT NULL COLLATE utf8_general_ci comment '0正常，1不正常',
+    `delete_flag` tinyint(1)                      NOT NULL COLLATE utf8_general_ci default 0 comment '0未删除，1已删除',
+    `describe`    varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci default '创建人真实名称' comment '创建人真实名称',
+    `create_id`   bigint(20)                      NOT NULL COLLATE utf8_general_ci default 0 comment '创建人id',
+    `create_name` varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci default '创建人真实名称' comment '创建人真实名称',
+    `create_time` datetime(0)                     NOT NULL COLLATE utf8_general_ci default now() comment '创建时间',
+    `update_id`   bigint(20)                      NOT NULL COLLATE utf8_general_ci default 0 comment '修改人id',
+    `update_name` varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci default '创建人真实名称' comment '修改人真实名称',
+    `update_time` datetime(0)                     NOT NULL COLLATE utf8_general_ci default now() comment '修改时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci
+  ROW_FORMAT = Dynamic comment '字典表，存储一共有多少种字典';
+
+DROP TABLE IF EXISTS `t_dic`;
+CREATE TABLE `t_dic`
+(
+    `id`          bigint(20)                      NOT NULL AUTO_INCREMENT comment '主键',
+    `dic_id`      bigint(20)                      NOT NULL COLLATE utf8_general_ci comment '字典表id',
+    `dic_name`    varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci comment '字典名称',
+    `dic_type`    varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci comment '字典类型',
+    `dic_value`   varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci comment '字典的值',
+    `describe`    varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci default '创建人真实名称' comment '创建人真实名称',
+    `delete_flag` tinyint(1)                      NOT NULL COLLATE utf8_general_ci default 0 comment '0未删除，1已删除',
+    `create_id`   bigint(20)                      NOT NULL COLLATE utf8_general_ci default 0 comment '创建人id',
+    `create_name` varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci default '创建人真实名称' comment '创建人真实名称',
+    `create_time` datetime(0)                     NOT NULL COLLATE utf8_general_ci default now() comment '创建时间',
+    `update_id`   bigint(20)                      NOT NULL COLLATE utf8_general_ci default 0 comment '修改人id',
+    `update_name` varchar(100) CHARACTER SET utf8 NOT NULL COLLATE utf8_general_ci default '创建人真实名称' comment '修改人真实名称',
+    `update_time` datetime(0)                     NOT NULL COLLATE utf8_general_ci default now() comment '修改时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci
+  ROW_FORMAT = Dynamic comment '真正的字典表';
+
 
 
