@@ -1,12 +1,12 @@
 package com.xuegao.netty_chat_room_client.Netty实战.第2章;
 
-import com.xuegao.netty_chat_room_client.NIO框架入门一.EchoClient;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.sctp.nio.NioSctpChannel;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
 
@@ -32,7 +32,7 @@ public class 第一个netty程序EchoClient {
         try {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(nioEventLoopGroup)
-                    .channel(NioSctpChannel.class)
+                    .channel(NioSocketChannel.class)
                     .remoteAddress(new InetSocketAddress(host, port))
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
@@ -48,13 +48,13 @@ public class 第一个netty程序EchoClient {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        if (args.length != 2) {
-            System.err.println("Usage: " + 第一个netty程序EchoClient.class.getSimpleName() + " <host> <port>");
-            return;
-        }
-        String host = args[0];
-        int port = Integer.parseInt(args[1]);
-        new 第一个netty程序EchoClient(host, port).start();
+        // if (args.length != 2) {
+        //     System.err.println("Usage: " + 第一个netty程序EchoClient.class.getSimpleName() + " <host> <port>");
+        //     return;
+        // }
+        // String host = args[0];
+        // int port = Integer.parseInt(args[1]);
+        new 第一个netty程序EchoClient("127.0.0.1", 11000).start();
     }
 
 }

@@ -25,12 +25,12 @@ public class 第一个netty程序EchoServer {
     }
 
     public static void main(String[] args) throws Exception {
-        if (!ObjectUtils.isEmpty(args)) {
-            int port = Integer.parseInt(args[0]);
+        // if (!ObjectUtils.isEmpty(args)) {
+        //     int port = Integer.parseInt(args[0]);
             // 设置端口
             // 调用服务的start方法
-            new 第一个netty程序EchoServer(port).start();
-        }
+            new 第一个netty程序EchoServer(11000).start();
+        // }
     }
 
     public void start() throws InterruptedException {

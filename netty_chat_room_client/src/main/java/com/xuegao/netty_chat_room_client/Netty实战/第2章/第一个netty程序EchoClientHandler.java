@@ -1,11 +1,13 @@
 package com.xuegao.netty_chat_room_client.Netty实战.第2章;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <br/> @PackageName：com.xuegao.netty_chat_room_client.Netty实战.第2章
@@ -20,8 +22,11 @@ public class 第一个netty程序EchoClientHandler extends SimpleChannelInboundH
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        // 当被通知channel是活跃的时候，发送一条消息
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", StandardCharsets.UTF_8));
+        // while (true) {
+            // 当被通知channel是活跃的时候，发送一条消息
+            ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", StandardCharsets.UTF_8));
+            TimeUnit.SECONDS.sleep(5);
+        // }
     }
 
     @Override
@@ -34,6 +39,10 @@ public class 第一个netty程序EchoClientHandler extends SimpleChannelInboundH
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         // 记录已接收消息的转储
+        String s = msg.toString();
+        System.out.println(s);
+        ByteBuf byteBuf = (ByteBuf) msg;
+        System.out.println(byteBuf.toString(StandardCharsets.UTF_8));
         System.out.println("Client received: " + msg.toString());
     }
 }
