@@ -4,15 +4,10 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ObjectUtils;
 
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -35,14 +30,26 @@ public class TimeClientHandler extends SimpleChannelInboundHandler {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        // 发送消息给server
+        // 发送给服务端，但是客户端接收不到
+        // while (true) {
+            // 发送消息给server
+            // ByteBuf byteBuf;
+            // byteBuf = Unpooled.buffer(request.length);
+            // byteBuf.writeBytes(request);
+            // ctx.writeAndFlush(byteBuf);
+
+            // ctx.writeAndFlush(Unpooled.copiedBuffer("TIME ORDER" + System.lineSeparator(), StandardCharsets.UTF_8));
+            // TimeUnit.SECONDS.sleep(1);
+        // }
+
+        // 发送给服务端，客户端可以接收到
+        for (int i = 0; i < 10; i++) {
+            // 发送消息给server
             ByteBuf byteBuf;
             byteBuf = Unpooled.buffer(request.length);
             byteBuf.writeBytes(request);
             ctx.writeAndFlush(byteBuf);
-
-        // ctx.writeAndFlush(Unpooled.copiedBuffer("TIME ORDER" + System.lineSeparator(), StandardCharsets.UTF_8));
-        // TimeUnit.SECONDS.sleep(5);
+        }
     }
 
     // @Override
