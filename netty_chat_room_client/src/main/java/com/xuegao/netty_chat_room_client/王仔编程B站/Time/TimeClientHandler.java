@@ -1,4 +1,4 @@
-package com.xuegao.netty_chat_room_client.王仔编程B站;
+package com.xuegao.netty_chat_room_client.王仔编程B站.Time;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -7,8 +7,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * <br/> @PackageName：com.xuegao.netty_chat_room_client.王仔编程B站
@@ -32,19 +30,20 @@ public class TimeClientHandler extends SimpleChannelInboundHandler {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // 发送给服务端，但是客户端接收不到
         // while (true) {
-            // 发送消息给server
-            // ByteBuf byteBuf;
-            // byteBuf = Unpooled.buffer(request.length);
-            // byteBuf.writeBytes(request);
-            // ctx.writeAndFlush(byteBuf);
-
-            // ctx.writeAndFlush(Unpooled.copiedBuffer("TIME ORDER" + System.lineSeparator(), StandardCharsets.UTF_8));
-            // TimeUnit.SECONDS.sleep(1);
+        //     // 发送消息给server
+        //     ByteBuf byteBuf;
+        //     byteBuf = Unpooled.buffer(request.length);
+        //     byteBuf.writeBytes(request);
+        //     ctx.writeAndFlush(byteBuf);
+        //
+        //     ctx.writeAndFlush(Unpooled.copiedBuffer("TIME ORDER" + System.lineSeparator(), StandardCharsets.UTF_8));
+        //     // 3000秒后进入下一次循环
+        //     Thread.sleep(3000);
         // }
 
         // 发送给服务端，客户端可以接收到
         for (int i = 0; i < 10; i++) {
-            // 发送消息给server
+            //     发送消息给server
             ByteBuf byteBuf;
             byteBuf = Unpooled.buffer(request.length);
             byteBuf.writeBytes(request);

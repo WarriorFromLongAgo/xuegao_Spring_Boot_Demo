@@ -1,4 +1,4 @@
-package com.xuegao.netty_chat_room_client.王仔编程B站;
+package com.xuegao.netty_chat_room_client.王仔编程B站.Time;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
