@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 视图
+ *
  * @author wenbin
  * @version V1.0
  */
@@ -55,9 +56,16 @@ public class IndexController<T> extends BaseController<T> {
     }
 
     @ResponseBody
+    @RequestMapping(path = "/get3", method = RequestMethod.GET)
+    public WrappedResponse<T> get3Test(SysUserinfo sysUserinfo) {
+        System.out.println("get3Test = " + sysUserinfo);
+        return success("get3Test = " + sysUserinfo);
+    }
+
+    @ResponseBody
     @RequestMapping(path = "/post1", method = RequestMethod.POST)
-    public WrappedResponse<T> post1Test(@RequestBody SysUserinfo SysUserinfo) {
-        return success("post1 = " + SysUserinfo);
+    public WrappedResponse<T> post1Test(@RequestBody SysUserinfo sysUserinfo) {
+        return success("post1 = " + sysUserinfo);
     }
 
     @ResponseBody
@@ -85,17 +93,17 @@ public class IndexController<T> extends BaseController<T> {
     // 前端无法做到这么传参数
     @ResponseBody
     @RequestMapping(path = "/post4_v2", method = RequestMethod.POST)
-    public WrappedResponse<T> post4Test(@RequestBody PageQuery<SysUserinfo> SysUserinfoPageQuery) {
-        log.info("post4_v2 = " + SysUserinfoPageQuery.getPageNum());
-        log.info("post4_v2 = " + SysUserinfoPageQuery.getPageSize());
-        log.info("post4_v2 = " + SysUserinfoPageQuery.getQueryData());
-        return success("post4_v2 = " + SysUserinfoPageQuery.getQueryData());
+    public WrappedResponse<T> post4Test(@RequestBody PageQuery<SysUserinfo> sysUserinfoPageQuery) {
+        log.info("post4_v2 = " + sysUserinfoPageQuery.getPageNum());
+        log.info("post4_v2 = " + sysUserinfoPageQuery.getPageSize());
+        log.info("post4_v2 = " + sysUserinfoPageQuery.getQueryData());
+        return success("post4_v2 = " + sysUserinfoPageQuery.getQueryData());
     }
 
     @ResponseBody
     @RequestMapping(path = "/post5", method = RequestMethod.POST)
-    public WrappedResponse<T> post5Test(@RequestBody SysUserinfo SysUserinfo, @RequestParam String post5) {
-        log.info("post5 = " + SysUserinfo.toString());
+    public WrappedResponse<T> post5Test(@RequestBody SysUserinfo sysUserinfo, @RequestParam String post5) {
+        log.info("post5 = " + sysUserinfo.toString());
         log.info("post5 = " + post5);
         return success("post5 = " + post5);
     }
