@@ -25,7 +25,7 @@ public class EasyExcelUtils {
 
     /**
      * <br/> @Title: 单个工作簿 导出Excel
-     * <br/> @Description:
+     * <br/> @Description: List<?> dateList 可以写个接口，必须继承这个接口，才可以传入，导出
      * <br/> @MethodName: exportExcel
      * <br/> @param response:
      * <br/> @param fileName: 文件名称
