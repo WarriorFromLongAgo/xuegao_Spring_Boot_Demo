@@ -3,12 +3,16 @@ package com.xuegao.springboot_tool.controller;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.utils.ServletUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class BaseController<T> {
+
+    Logger log = LoggerFactory.getLogger(BaseController.class);
 
     /**
      * 获取request

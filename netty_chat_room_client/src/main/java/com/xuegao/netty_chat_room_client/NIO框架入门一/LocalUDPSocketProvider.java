@@ -39,8 +39,7 @@ public class LocalUDPSocketProvider {
             // * 注意：connect方法一定要在DatagramSocket.receive()方法之前调用，
             // * 不然整send数据将会被错误地阻塞。这或许是官方API的bug，也或许是调
             // * 用规范就应该这样，但没有找到官方明确的说明
-            this.localUDPSocket.connect(
-                    InetAddress.getByName(ConfigEntity.serverIP), ConfigEntity.serverUDPPort);
+            this.localUDPSocket.connect(InetAddress.getByName(ConfigEntity.serverIP), ConfigEntity.serverUDPPort);
             this.localUDPSocket.setReuseAddress(true);
             Log.d(TAG, "new DatagramSocket()已成功完成.");
 

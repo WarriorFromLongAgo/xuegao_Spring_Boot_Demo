@@ -8,6 +8,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,7 +37,7 @@ import java.time.LocalDateTime;
 @EnableOrderClient
 @EnableScheduling
 public class SpringbootToolApplication {
-    private final static Logger log = LoggerFactory.getLogger(SpringbootToolApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(SpringbootToolApplication.class);
 
     public SpringbootToolApplication(DemoBeanHuiHui demoBeanHuiHui) {
         demoBeanHuiHui.print();
@@ -44,6 +45,8 @@ public class SpringbootToolApplication {
 
 
     public static void main(String[] args) {
+        DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
+        new BeanFactoryPostProcessorTest().postProcessBeanFactory(defaultListableBeanFactory);
         SpringApplication.run(SpringbootToolApplication.class, args);
     }
 
