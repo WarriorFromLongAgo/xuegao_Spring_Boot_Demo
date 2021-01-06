@@ -1,7 +1,8 @@
 package com.xuegao.springboot_tool.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xuegao.springboot_tool.model.doo.MyJvm;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.dao
@@ -10,6 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  * <br/> @author：xuegao
  * <br/> @date：2020/9/9 10:56
  */
-@Mapper
-public interface IMyJvmMapper extends BaseDao<MyJvm> {
+@Repository
+public interface IMyJvmMapper extends BaseMapper<MyJvm> {
 }

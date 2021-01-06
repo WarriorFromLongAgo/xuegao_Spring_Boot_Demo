@@ -30,7 +30,7 @@ public class DicServiceImpl extends ServiceImpl<IDicMapper, Dic> implements IDic
 
     @Override
     public List<Dic> dicList(List<Long> idList) {
-        List<Dic> dics = listByIds(idList);
+        List<Dic> dics = (List<Dic>) listByIds(idList);
         log.info("DicServiceImpl dicList {}", dics);
         return dics;
     }

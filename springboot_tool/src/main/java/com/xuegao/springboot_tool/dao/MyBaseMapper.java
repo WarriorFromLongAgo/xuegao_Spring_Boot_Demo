@@ -1,6 +1,7 @@
 package com.xuegao.springboot_tool.dao;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * @author 小道仙
  * @date 2020年2月26日
  */
+@Repository
 public interface MyBaseMapper<T> extends com.baomidou.mybatisplus.core.mapper.BaseMapper<T>  {
 
     /**
