@@ -1,6 +1,5 @@
 package com.xuegao.springboot_tool.controller;
 
-import com.xuegao.springboot_tool.constant.aop.annotation.Limit;
 import com.xuegao.springboot_tool.constant.aop.annotation.PrintlnLog;
 import com.xuegao.springboot_tool.constant.aop.annotation.RedisLimit;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
@@ -9,13 +8,18 @@ import com.xuegao.springboot_tool.service.interfaces.IThreadService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.controller
@@ -165,4 +169,89 @@ public class ThreadController<T> extends BaseController<T> {
         return WrappedResponse.success();
     }
 
+    @PrintlnLog
+    @GetMapping("async2")
+    public WrappedResponse<String> async2() {
+        System.out.println("外面 = " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        CompletableFuture.runAsync(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("TimeUnit.SECONDS.sleep(10);");
+                System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+            }
+        });
+        System.out.println("外面 = " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        return WrappedResponse.success("dadasdsa");
+    }
+
+    @PrintlnLog
+    @GetMapping("async3")
+    public WrappedResponse<String> async3() {
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        // 创建CompletableFuture对象，他会包含计算结果
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(new Supplier<String>() {
+            @Override
+            public String get() {
+                System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("TimeUnit.SECONDS.sleep(10);");
+                System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+                return "1243124242422323";
+            }
+        });
+
+        // System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        // TimeUnit.SECONDS.sleep(10);
+        // System.out.println("TimeUnit.SECONDS.sleep(10);");
+        // System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+
+        // 无需等待还没结束的计算，直接返回结果
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        return WrappedResponse.success("successsuccesssuccesssuccesssuccess");
+        // return WrappedResponse.success("successsuccesssuccesssuccesssuccess");
+    }
+
+
+    @PrintlnLog
+    @GetMapping("async4")
+    public WrappedResponse<String> async4() {
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+
+        CompletableFuture.runAsync(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println("11111111111111111111111111111");
+                    TimeUnit.SECONDS.sleep(3);
+                    System.out.println("11111111111111111111111111111");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).thenRunAsync(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println("22222222222222");
+                    TimeUnit.SECONDS.sleep(3);
+                    System.out.println("22222222222222222");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        return WrappedResponse.success("successsuccesssuccesssuccesssuccess");
+    }
 }
