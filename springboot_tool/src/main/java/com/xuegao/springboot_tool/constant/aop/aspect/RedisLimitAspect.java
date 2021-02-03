@@ -110,9 +110,8 @@ public class RedisLimitAspect {
         } else {
             throw new RedisLimitException("请求过于频繁");
         }
-        Object proceed = proceedingJoinPoint.proceed();
 
-        return proceed;
+        return proceedingJoinPoint.proceed();
     }
 
     @NotNull

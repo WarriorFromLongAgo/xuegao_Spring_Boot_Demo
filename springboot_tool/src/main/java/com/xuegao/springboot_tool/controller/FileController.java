@@ -1,8 +1,14 @@
 package com.xuegao.springboot_tool.controller;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.xuegao.springboot_tool.constant.aop.annotation.PrintlnLog;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.service.interfaces.IFileService;
+import com.xuegao.springboot_tool.utils.QrCodeUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +20,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.controller
@@ -135,6 +146,62 @@ public class FileController {
                     i = bufferedInputStream.read(buff);
                 }
             }
+        }
+    }
+
+
+    @RequestMapping(value = "/qrcode", method = RequestMethod.GET)
+    @ResponseBody
+    public void qrCode(HttpServletResponse response) throws IOException {
+        String myCodeText = "https://www.baidu.com/";
+        int size = 512;
+
+        try {
+            Map<EncodeHintType, Object> crunchifyHintType = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
+            crunchifyHintType.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+
+            // Now with version 3.4.1 you could change margin (white border size)
+            crunchifyHintType.put(EncodeHintType.MARGIN, 1); /* default = 4 */
+            crunchifyHintType.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+
+            QRCodeWriter mYQRCodeWriter = new QRCodeWriter(); // throws com.google.zxing.WriterException
+            BitMatrix crunchifyBitMatrix = mYQRCodeWriter.encode(myCodeText, BarcodeFormat.QR_CODE, size,
+                    size, crunchifyHintType);
+            int CrunchifyWidth = crunchifyBitMatrix.getWidth();
+
+            // The BufferedImage subclass describes an Image with an accessible buffer of crunchifyImage data.
+            BufferedImage crunchifyImage = new BufferedImage(CrunchifyWidth, CrunchifyWidth,
+                    BufferedImage.TYPE_INT_RGB);
+
+            // Creates a Graphics2D, which can be used to draw into this BufferedImage.
+            crunchifyImage.createGraphics();
+
+            // This Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
+            // This is the fundamental class for rendering 2-dimensional shapes, text and images on the Java(tm) platform.
+            Graphics2D crunchifyGraphics = (Graphics2D) crunchifyImage.getGraphics();
+
+            // setColor() sets this graphics context's current color to the specified color.
+            // All subsequent graphics operations using this graphics context use this specified color.
+            crunchifyGraphics.setColor(Color.white);
+
+            // fillRect() fills the specified rectangle. The left and right edges of the rectangle are at x and x + width - 1.
+            crunchifyGraphics.fillRect(0, 0, CrunchifyWidth, CrunchifyWidth);
+
+            // TODO: Please change this color as per your need
+            crunchifyGraphics.setColor(Color.BLACK);
+
+            for (int i = 0; i < CrunchifyWidth; i++) {
+                for (int j = 0; j < CrunchifyWidth; j++) {
+                    if (crunchifyBitMatrix.get(i, j)) {
+                        crunchifyGraphics.fillRect(i, j, 1, 1);
+                    }
+                }
+            }
+            // A class containing static convenience methods for locating
+            // ImageReaders and ImageWriters, and performing simple encoding and decoding.
+            ImageIO.write(crunchifyImage, "jpg", response.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
