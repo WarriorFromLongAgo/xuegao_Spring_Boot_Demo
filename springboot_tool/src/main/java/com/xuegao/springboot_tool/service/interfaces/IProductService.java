@@ -14,4 +14,10 @@ public interface IProductService {
     Boolean seckillProduct(Long productId, Integer number);
 
     void initProduct(Product product);
+
+    void decr(Long productId);
+
+    void init(Long productId);
+
+    void sout();
 }

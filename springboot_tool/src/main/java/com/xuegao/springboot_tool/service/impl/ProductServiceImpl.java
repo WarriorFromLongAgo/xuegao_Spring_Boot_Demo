@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ProductServiceImpl extends ServiceImpl<IProductDao, Product> implements IProductService {
 
+    private int num = 1000;
+
     private IProductDao productDao;
 
     @Autowired
@@ -38,6 +40,7 @@ public class ProductServiceImpl extends ServiceImpl<IProductDao, Product> implem
 
     /**
      * 秒杀商品
+     *
      * @param productId 商品ID
      * @param number    数量
      */
@@ -104,5 +107,26 @@ public class ProductServiceImpl extends ServiceImpl<IProductDao, Product> implem
         System.out.println(i);
         System.out.println("=====================================================================");
         System.out.println("=====================================================================");
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void decr(Long productId) {
+        num--;
+        // productDao.decr(productId);
+    }
+
+    @Override
+    public void init(Long productId) {
+        num = 1000;
+        sout();
+        // Product product = productDao.selectById(productId);
+        // product.setStocks(1000);
+        // productDao.updateById(product);
+    }
+
+    @Override
+    public void sout() {
+        System.out.println(num);
     }
 }

@@ -1,19 +1,22 @@
 package com.xuegao.netty_chat_room_client.http服务器.博客园逃离沙漠;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
+    private static final Logger log = LoggerFactory.getLogger(HttpRequestHandler.class);
 
     /*
      * 建立连接时，返回消息
@@ -21,7 +24,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("连接的客户端地址:" + ctx.channel().remoteAddress());
-        ctx.writeAndFlush("客户端"+ InetAddress.getLocalHost().getHostName() + "成功与服务端建立连接！ ");
+        ctx.writeAndFlush("客户端" + InetAddress.getLocalHost().getHostName() + "成功与服务端建立连接！ ");
         super.channelActive(ctx);
     }
 
@@ -48,6 +51,31 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         System.out.println(req.protocolVersion().protocolName());
         System.out.println(req.protocolVersion().text());
         System.out.println(resMap);
+
+        HttpMethod method = req.method();
+        if (method.equals(HttpMethod.GET)) {
+            QueryStringDecoder queryDecoder = new QueryStringDecoder(uri, StandardCharsets.UTF_8);
+            String path = queryDecoder.path();
+            log.info(path);
+            String rawPath = queryDecoder.rawPath();
+            log.info(rawPath);
+            String rawQuery = queryDecoder.rawQuery();
+            log.info(rawQuery);
+            String uri2 = queryDecoder.uri();
+            log.info(uri2);
+            Map<String, List<String>> uriAttributes = queryDecoder.parameters();
+            //此处仅打印请求参数（你可以根据业务需求自定义处理）
+            for (Map.Entry<String, List<String>> attr : uriAttributes.entrySet()) {
+                for (String attrVal : attr.getValue()) {
+                    log.info(attr.getKey() + "=" + attrVal);
+                }
+            }
+        } else if (method.equals(HttpMethod.POST)) {
+            //POST请求,由于你需要从消息体中获取数据,因此有必要把msg转换成FullHttpRequest
+            //根据不同的Content_Type处理body数据
+            dealWithContentType(req);
+        }
+
         String msg = "<html><head><title>test</title></head><body>你请求uri为：" + uri + "</body></html>";
         // 创建http响应
         FullHttpResponse response = new DefaultFullHttpResponse(
@@ -57,6 +85,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         // 设置头信息
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html; charset=UTF-8");
         response.headers().set(HttpHeaderNames.CONTENT_LENGTH, msg.length());
+
 
         // 路由 请求
         // URI uri = new URI("http://127.0.0.1:8000");
@@ -75,6 +104,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         // // 发送http请求
         // f.channel().write(request);
         // f.channel().flush();
+
 
         // JSONSerializer jsonSerializer = new JSONSerializer();
         // //将Java对象序列化成为二级制数据包
@@ -101,39 +131,43 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         ctx.close();
     }
 
+    /**
+     * 简单处理常用几种 Content-Type 的 POST 内容（可自行扩展）
+     * @throws Exception
+     * @param req
+     */
+    private void dealWithContentType(FullHttpRequest req) throws Exception{
+        String contentType = getContentType(req);
+        //可以使用HttpJsonDecoder
+        if("application/json".equals(contentType)){
+            String jsonStr = req.content().toString(StandardCharsets.UTF_8);
+            // JSONObject obj = JSON.parseObject(jsonStr);
+            // for(Map.Entry<String, Object> item : obj.entrySet()){
+            //     logger.info(item.getKey()+"="+item.getValue().toString());
+            // }
 
-    // private void dealWithContentType() throws Exception{
-    //     String contentType = getContentType();
-    //     //可以使用HttpJsonDecoder
-    //     if(contentType.equals("application/json")){
-    //         String jsonStr = fullRequest.content().toString(Charsets.toCharset(CharEncoding.UTF_8));
-    //         JSONObject obj = JSON.parseObject(jsonStr);
-    //         for(Map.Entry<String, Object> item : obj.entrySet()){
-    //             logger.info(item.getKey()+"="+item.getValue().toString());
-    //         }
-    //
-    //     }else if(contentType.equals("application/x-www-form-urlencoded")){
-    //         //方式一：使用 QueryStringDecoder
-    //         String jsonStr = fullRequest.content().toString(Charsets.toCharset(CharEncoding.UTF_8));
-    //         QueryStringDecoder queryDecoder = new QueryStringDecoder(jsonStr, false);
-    //         Map<String, List<String>> uriAttributes = queryDecoder.parameters();
-    //         for (Map.Entry<String, List<String>> attr : uriAttributes.entrySet()) {
-    //             for (String attrVal : attr.getValue()) {
-    //                 logger.info(attr.getKey() + "=" + attrVal);
-    //             }
-    //         }
-    //
-    //     }else if(contentType.equals("multipart/form-data")){
-    //         //TODO 用于文件上传
-    //     }else{
-    //         //do nothing...
-    //     }
-    // }
-    // private String getContentType(){
-    //     String typeStr = headers.get("Content-Type").toString();
-    //     String[] list = typeStr.split(";");
-    //     return list[0];
-    // }
+        }else if(contentType.equals("application/x-www-form-urlencoded")){
+            //方式一：使用 QueryStringDecoder
+            // String jsonStr = fullRequest.content().toString(Charsets.toCharset(CharEncoding.UTF_8));
+            // QueryStringDecoder queryDecoder = new QueryStringDecoder(jsonStr, false);
+            // Map<String, List<String>> uriAttributes = queryDecoder.parameters();
+            // for (Map.Entry<String, List<String>> attr : uriAttributes.entrySet()) {
+            //     for (String attrVal : attr.getValue()) {
+            //         logger.info(attr.getKey() + "=" + attrVal);
+            //     }
+            // }
+
+        }else if(contentType.equals("multipart/form-data")){
+            //TODO 用于文件上传
+        }else{
+            //do nothing...
+        }
+    }
+    private String getContentType(FullHttpRequest req){
+        String typeStr = req.headers().get("Content-Type");
+        String[] list = typeStr.split(";");
+        return list[0];
+    }
     //
     // 作者：穆书伟
     // 链接：https://juejin.cn/post/6844903689543647240

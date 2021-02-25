@@ -39,7 +39,7 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
         log.info(" 回馈消息 = {}", currentTime);
         ByteBuf byteBuf = Unpooled.copiedBuffer((currentTime + "===" + System.lineSeparator()).getBytes());
         // 将收到的消息写给发送者，而不冲刷出站消息
-        ctx.write(byteBuf);
+        ctx.writeAndFlush(byteBuf);
     }
 
     @Override

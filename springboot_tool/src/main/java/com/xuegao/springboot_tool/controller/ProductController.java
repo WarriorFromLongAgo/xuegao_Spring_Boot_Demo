@@ -22,4 +22,22 @@ public class ProductController<T> extends BaseController<T> {
         Boolean flag = productService.seckillProduct(1L, 1);
         return flag ? success("创建订单成功") : fail("库存不足");
     }
+
+    @GetMapping("/init")
+    public String init() {
+        productService.init(1L);
+        return "1";
+    }
+
+    @GetMapping("/decr")
+    public String decr() {
+        productService.decr(1L);
+        return "1";
+    }
+
+    @GetMapping("/sout")
+    public String sout() {
+        productService.sout();
+        return "1";
+    }
 }
