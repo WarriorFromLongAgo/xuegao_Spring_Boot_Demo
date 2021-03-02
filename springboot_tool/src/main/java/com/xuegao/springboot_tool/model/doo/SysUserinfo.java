@@ -4,10 +4,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * <br/> @PackageName：com.fff.springbootapiseedtest.model.po
@@ -24,9 +25,9 @@ public class SysUserinfo implements Serializable {
     @ApiModelProperty(value = "主键", position = 10)
     private Long id;
 
-    @TableField("name")
-    @ApiModelProperty(value = "姓名", position = 10)
-    private String name;
+    @TableField("userCode")
+    @ApiModelProperty(value = "userCode", position = 10)
+    private String userCode;
 
     @TableField("username")
     @ApiModelProperty(value = "登陆用户名", position = 10)
@@ -75,7 +76,7 @@ public class SysUserinfo implements Serializable {
     public String toString() {
         return "SysUserinfo{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", userCode='" + userCode + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", status='" + status + '\'' +
@@ -157,12 +158,12 @@ public class SysUserinfo implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
     public String getUsername() {
@@ -187,32 +188,43 @@ public class SysUserinfo implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
         SysUserinfo that = (SysUserinfo) o;
 
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(username, that.username) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(status, that.status) &&
-                Objects.equals(deleteFlag, that.deleteFlag) &&
-                Objects.equals(createId, that.createId) &&
-                Objects.equals(createName, that.createName) &&
-                Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateId, that.updateId) &&
-                Objects.equals(updateName, that.updateName) &&
-                Objects.equals(updateTime, that.updateTime);
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(userCode, that.userCode)
+                .append(username, that.username)
+                .append(password, that.password)
+                .append(status, that.status)
+                .append(deleteFlag, that.deleteFlag)
+                .append(createId, that.createId)
+                .append(createName, that.createName)
+                .append(createTime, that.createTime)
+                .append(updateId, that.updateId)
+                .append(updateName, that.updateName)
+                .append(updateTime, that.updateTime)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, username, password, status, deleteFlag, createId, createName, createTime, updateId, updateName, updateTime);
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(userCode)
+                .append(username)
+                .append(password)
+                .append(status)
+                .append(deleteFlag)
+                .append(createId)
+                .append(createName)
+                .append(createTime)
+                .append(updateId)
+                .append(updateName)
+                .append(updateTime)
+                .toHashCode();
     }
-
-
 }

@@ -9,4 +9,10 @@
     <select id="page3" resultType="com.xuegao.springboot_tool.model.doo.SysUserinfo">
         select * from sys_userinfo where username like concat('%', #{pageQuery.queryData.name}, '%')
     </select>
+    <select id="list" resultType="com.xuegao.springboot_tool.model.doo.SysUserinfo">
+select * from sys_userinfo where userCode = #{userCode};
+    </select>
+    <select id="countBoolean" resultType="java.lang.Boolean">
+select count(id) from sys_userinfo where userCode = #{userCode};
+    </select>
 </mapper>
