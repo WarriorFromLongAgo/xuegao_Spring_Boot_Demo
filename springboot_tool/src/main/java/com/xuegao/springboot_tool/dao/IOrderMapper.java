@@ -2,7 +2,6 @@ package com.xuegao.springboot_tool.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xuegao.springboot_tool.model.doo.Order;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**

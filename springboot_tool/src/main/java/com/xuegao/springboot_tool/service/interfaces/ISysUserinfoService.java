@@ -23,4 +23,6 @@ public interface ISysUserinfoService extends IService<SysUserinfo> {
 
     PageInfo<SysUserinfo> page3(PageQuery<SysUserinfo> pageQuery);
 
+    void countBoolean(Integer userCode);
+
 }

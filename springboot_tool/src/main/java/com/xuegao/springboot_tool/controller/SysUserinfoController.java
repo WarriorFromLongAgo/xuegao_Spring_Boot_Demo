@@ -1,6 +1,5 @@
 package com.xuegao.springboot_tool.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xuegao.springboot_tool.constant.aop.annotation.MyTest;
 import com.xuegao.springboot_tool.constant.aop.annotation.PrintlnLog;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
@@ -11,10 +10,7 @@ import com.xuegao.springboot_tool.service.interfaces.ISysUserinfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -77,5 +73,12 @@ public class SysUserinfoController {
         PageInfo<SysUserinfo> pageInfo = sysUserinfoService.page3(pageQuery);
         return WrappedResponse.success(pageInfo);
     }
+
+    @RequestMapping(path = "/count-bool", method = RequestMethod.GET)
+    public WrappedResponse<Object> page(@RequestParam Integer userCode) {
+        sysUserinfoService.countBoolean(userCode);
+        return WrappedResponse.success();
+    }
+
 
 }
