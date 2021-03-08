@@ -1,5 +1,7 @@
 package com.xuegao.springboot_tool.service.interfaces;
 
+import com.xuegao.springboot_tool.model.doo.Order;
+
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.service.interfaces
  * <br/> @ClassName：IMysqlService
@@ -16,5 +18,7 @@ public interface IMysqlService {
     Long insert2();
 
     Long insert3();
+
+    Order getById();
 
 }

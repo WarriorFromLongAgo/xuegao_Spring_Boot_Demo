@@ -3,6 +3,8 @@ package com.xuegao.springboot_tool.service.impl;
 import com.xuegao.springboot_tool.manager.OrderManager;
 import com.xuegao.springboot_tool.model.doo.Order;
 import com.xuegao.springboot_tool.service.interfaces.IMysqlService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class MysqlServiceImpl implements IMysqlService {
+    private static final Logger log = LoggerFactory.getLogger(MysqlServiceImpl.class);
 
     private final OrderManager orderManager;
 
@@ -74,4 +77,12 @@ public class MysqlServiceImpl implements IMysqlService {
         order.setProductId(System.currentTimeMillis());
         return orderManager.insert(order);
     }
+
+    @Override
+    public Order getById() {
+        Order order = orderManager.getById(4L);
+        System.out.println(order);
+        return order;
+    }
+
 }

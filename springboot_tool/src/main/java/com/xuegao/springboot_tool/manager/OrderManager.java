@@ -35,5 +35,8 @@ public class OrderManager {
         throw new BusinessException("");
     }
 
+    public Order getById(Long id) {
+        return orderMapper.selectById(id);
+    }
 
 }
