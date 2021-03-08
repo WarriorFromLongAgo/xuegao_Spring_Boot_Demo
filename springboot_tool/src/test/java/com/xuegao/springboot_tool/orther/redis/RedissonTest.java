@@ -1,9 +1,8 @@
-package com.xuegao.springboot_tool.redis;
+package com.xuegao.springboot_tool.orther.redis;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.redisson.api.RedissonClient;
-import org.redisson.client.codec.IntegerCodec;
 import org.redisson.client.codec.LongCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <br/> @PackageName：com.xuegao.springboot_tool.redis
+ * <br/> @PackageName：com.xuegao.springboot_tool.orther.redis
  * <br/> @ClassName：RedissonTest
  * <br/> @Description：
  * <br/> @author：xuegao

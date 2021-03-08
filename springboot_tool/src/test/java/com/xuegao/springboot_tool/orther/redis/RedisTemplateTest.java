@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.redis;
+package com.xuegao.springboot_tool.orther.redis;
 
 import com.xuegao.springboot_tool.model.doo.Product;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.Serializable;
 
 /**
- * <br/> @PackageName：com.xuegao.springboot_tool.redis
+ * <br/> @PackageName：com.xuegao.springboot_tool.orther.redis
  * <br/> @ClassName：RedisTemplateTest
  * <br/> @Description：
  * <br/> @author：xuegao

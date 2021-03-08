@@ -1,4 +1,4 @@
-package com.xuegao.springboot_tool.单元测试;
+package com.xuegao.springboot_tool.orther.e.单元测试;
 
 import com.xuegao.springboot_tool.model.doo.Dic;
 import com.xuegao.springboot_tool.service.interfaces.IDicService;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * <br/> @PackageName：com.xuegao.springboot_tool.单元测试
+ * <br/> @PackageName：com.xuegao.springboot_tool.orther.e.单元测试
  * <br/> @ClassName：DicServiceTest
  * <br/> @Description：
  * <br/> @author：xuegao
