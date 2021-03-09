@@ -1,7 +1,7 @@
 package com.xuegao.netty_chat_room_server.mininetty;
 
-import com.deepj.pool.NioSelectorRunablePool;
-import com.deepj.pool.Worker;
+import com.xuegao.netty_chat_room_server.mininetty.pool.NioSelectorRunablePool;
+import com.xuegao.netty_chat_room_server.mininetty.pool.Worker;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -12,73 +12,70 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
-public class NioServerWorker extends AbstractNioSelector implements Worker{
+public class NioServerWorker extends AbstractNioSelector implements Worker {
 
-	public NioServerWorker(Executor executor, String threadName, NioSelectorRunablePool selectorRunablePool) {
-		super(executor, threadName, selectorRunablePool);
-	}
+    public NioServerWorker(Executor executor, String threadName, NioSelectorRunablePool selectorRunablePool) {
+        super(executor, threadName, selectorRunablePool);
+    }
 
-	@Override
-	protected void process(Selector selector) throws IOException {
-		Set<SelectionKey> selectKeys = selector.selectedKeys();
-		if (selectKeys.isEmpty()) {
-			return;
-		}
-		for (Iterator<SelectionKey> ite = selectKeys.iterator(); ite.hasNext();) {
-			SelectionKey key = ite.next();
-			ite.remove();
-			
-			SocketChannel channel = (SocketChannel) key.channel();
-			
-			// Êý¾Ý×Ü³¤¶È
-			int ret = 0;
-			boolean failure = true;
-			ByteBuffer buffer = ByteBuffer.allocate(1024);
-			
-			try {
-				channel.read(buffer);
-				failure = false;
-			} catch (Exception e) {
-				// ignore
-			}
-			// ÅÐ¶ÏÁ¬½ÓÊÇ·ñÒÑ¶Ï¿ª
-			if (ret < 0 || failure) {
-				key.cancel();
-				System.out.println(this.threadName +"¿Í»§¶ËÒÑ¶Ï¿ªÁ´½Ó");
-			} else {
-				System.out.println("ÊÕµ½Êý¾Ý:" + new String(buffer.array()));
-				
-				// »ØÐ´Êý¾Ý
-				ByteBuffer outBuffer = ByteBuffer.wrap("\n received..".getBytes());
-				channel.write(outBuffer);
-			}
-		}
-	}
+    @Override
+    protected void process(Selector selector) throws IOException {
+        Set<SelectionKey> selectKeys = selector.selectedKeys();
+        if (selectKeys.isEmpty()) {
+            return;
+        }
+        for (Iterator<SelectionKey> ite = selectKeys.iterator(); ite.hasNext(); ) {
+            SelectionKey key = ite.next();
+            ite.remove();
 
-	@Override
-	protected int select(Selector selector) throws IOException {
-		return selector.select(500);
-	}
-	
-	@Override
-	public void registerNewChannelTask(final SocketChannel channel) {
-		final Selector selector = this.selector;
-		registerTask(new Runnable() {
-			
-			@Override
-			public void run() {
-				try {
-					channel.register(selector, SelectionKey.OP_READ);
-				}catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
+            SocketChannel channel = (SocketChannel) key.channel();
 
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ü³ï¿½ï¿½ï¿½
+            int ret = 0;
+            boolean failure = true;
+            ByteBuffer buffer = ByteBuffer.allocate(1024);
 
+            try {
+                channel.read(buffer);
+                failure = false;
+            } catch (Exception e) {
+                // ignore
+            }
+            // ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¶Ï¿ï¿½
+            if (ret < 0 || failure) {
+                key.cancel();
+                System.out.println(this.threadName + "ï¿½Í»ï¿½ï¿½ï¿½ï¿½Ñ¶Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½");
+            } else {
+                System.out.println("ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½:" + new String(buffer.array()));
 
-	
+                // ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½
+                ByteBuffer outBuffer = ByteBuffer.wrap("\n received..".getBytes());
+                channel.write(outBuffer);
+            }
+        }
+    }
+
+    @Override
+    protected int select(Selector selector) throws IOException {
+        return selector.select(500);
+    }
+
+    @Override
+    public void registerNewChannelTask(final SocketChannel channel) {
+        final Selector selector = this.selector;
+        registerTask(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    channel.register(selector, SelectionKey.OP_READ);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
 
 }

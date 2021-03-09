@@ -1,6 +1,6 @@
 package com.xuegao.netty_chat_room_server.mininetty;
 
-import com.deepj.pool.NioSelectorRunablePool;
+import com.xuegao.netty_chat_room_server.mininetty.pool.NioSelectorRunablePool;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
@@ -10,15 +10,15 @@ public class Starter {
 
 	public static void main(String[] args) {
 
-		// ³õÊ¼»¯Ïß³Ì³Ø
+		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ß³Ì³ï¿½
 		ExecutorService boss = Executors.newCachedThreadPool();
 		ExecutorService worker = Executors.newCachedThreadPool();
 		NioSelectorRunablePool pool = new NioSelectorRunablePool(boss, worker);
 		
-		// »ñÈ¡·þÎñÀà
-		com.deepj.ServerBootstrap bootstrap = new com.deepj.ServerBootstrap(pool);
+		// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		ServerBootstrap bootstrap = new ServerBootstrap(pool);
 		
-		// °ó¶¨¶Ë¿Ú
+		// ï¿½ó¶¨¶Ë¿ï¿½
 		bootstrap.bind(new InetSocketAddress(10101));
 		
 		System.out.println("Mini netty started !!!");

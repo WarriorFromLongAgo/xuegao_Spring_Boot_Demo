@@ -1,8 +1,8 @@
 package com.xuegao.netty_chat_room_server.mininetty;
 
-import com.deepj.pool.Boss;
-import com.deepj.pool.NioSelectorRunablePool;
-import com.deepj.pool.Worker;
+import com.xuegao.netty_chat_room_server.mininetty.pool.Boss;
+import com.xuegao.netty_chat_room_server.mininetty.pool.NioSelectorRunablePool;
+import com.xuegao.netty_chat_room_server.mininetty.pool.Worker;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
-public class NioServerBoss extends AbstractNioSelector implements Boss{
+public class NioServerBoss extends AbstractNioSelector implements Boss {
 
 	public NioServerBoss(Executor executor, String threadName,
 			NioSelectorRunablePool selectorRunablePool) {
@@ -32,19 +32,20 @@ public class NioServerBoss extends AbstractNioSelector implements Boss{
 			i.remove();
 			
 			ServerSocketChannel server = (ServerSocketChannel) key.channel();
-			// ÐÂ¿Í»§¶Ë
+			// ï¿½Â¿Í»ï¿½ï¿½ï¿½
 			SocketChannel channel = server.accept();
 			channel.configureBlocking(false);
 			
-			// »ñÈ¡¹¤×÷worker
+			// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½worker
 			Worker nextWorker = getSelectorRunnablePool().nextWorker();
-			// ×¢²áÐÂ¿Í»§¶Ë½ÓÈëÈÎÎñ
+			// ×¢ï¿½ï¿½ï¿½Â¿Í»ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			nextWorker.registerNewChannelTask(channel);
-			System.out.println("ÄúÓÐÐÂµÄ¿Í»§ÉÏÏß£¡£¡£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ¿Í»ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½");
 			
 		}
 	}
 	
+	@Override
 	public void registerAcceptChannelTask(final ServerSocketChannel serverChannel) {
 		final Selector selector = this.selector;
 		registerTask(new Runnable() {

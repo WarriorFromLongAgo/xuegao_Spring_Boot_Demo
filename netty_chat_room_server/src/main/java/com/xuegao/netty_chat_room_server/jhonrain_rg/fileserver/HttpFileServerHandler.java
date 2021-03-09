@@ -1,4 +1,4 @@
-package com.xuegao.netty_chat_room_server.jhonrain_rg;
+package com.xuegao.netty_chat_room_server.jhonrain_rg.fileserver;
 
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 
-import static com.xuegao.netty_chat_room_server.jhonrain_rg.FileProcessHelper.organizedURL;
+import static com.xuegao.netty_chat_room_server.jhonrain_rg.fileserver.FileProcessHelper.organizedURL;
 import static io.netty.handler.codec.http.HttpHeaderNames.CONNECTION;
 import static io.netty.handler.codec.http.HttpUtil.isKeepAlive;
 import static io.netty.handler.codec.http.HttpUtil.setContentLength;

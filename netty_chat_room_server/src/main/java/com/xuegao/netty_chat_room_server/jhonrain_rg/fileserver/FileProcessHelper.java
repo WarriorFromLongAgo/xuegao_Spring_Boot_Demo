@@ -1,4 +1,4 @@
-package com.xuegao.netty_chat_room_server.jhonrain_rg;
+package com.xuegao.netty_chat_room_server.jhonrain_rg.fileserver;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

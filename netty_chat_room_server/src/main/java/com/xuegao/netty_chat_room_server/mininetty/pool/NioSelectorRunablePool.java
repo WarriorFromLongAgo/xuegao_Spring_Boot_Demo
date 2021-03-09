@@ -1,23 +1,23 @@
 package com.xuegao.netty_chat_room_server.mininetty.pool;
 
-import com.deepj.NioServerBoss;
-import com.deepj.NioServerWorker;
+import com.xuegao.netty_chat_room_server.mininetty.NioServerBoss;
+import com.xuegao.netty_chat_room_server.mininetty.NioServerWorker;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ¹ÜÀíÏß³Ì³Ø
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½
  */
 public class NioSelectorRunablePool {
 
     /**
-     * bossÏß³ÌÊý×é
+     * bossï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     private final AtomicInteger bossIndex = new AtomicInteger();
     private Boss[] bosses;
     /**
-     * workerÏß³ÌÊý×é
+     * workerï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     private final AtomicInteger workerIndex = new AtomicInteger();
     private Worker[] workeres;
@@ -29,17 +29,17 @@ public class NioSelectorRunablePool {
     }
 
     /**
-     * ³õÊ¼»¯bossÏß³Ì
+     * ï¿½ï¿½Ê¼ï¿½ï¿½bossï¿½ß³ï¿½
      */
     private void initBoss(Executor boss, int count) {
-        this.bosses = new com.deepj.NioServerBoss[count];
+        this.bosses = new NioServerBoss[count];
         for (int i = 0; i < bosses.length; i++) {
-            bosses[i] = new com.deepj.NioServerBoss(boss, "boss thread " + (i + 1), this);
+            bosses[i] = new NioServerBoss(boss, "boss thread " + (i + 1), this);
         }
     }
 
     /**
-     * ³õÊ¼»¯workerÏß³Ì
+     * ï¿½ï¿½Ê¼ï¿½ï¿½workerï¿½ß³ï¿½
      */
     private void initWorker(Executor worker, int count) {
         this.workeres = new NioServerWorker[count];
@@ -49,14 +49,14 @@ public class NioSelectorRunablePool {
     }
 
     /**
-     * »ñÈ¡Ò»¸öworker
+     * ï¿½ï¿½È¡Ò»ï¿½ï¿½worker
      */
     public Worker nextWorker() {
         return workeres[Math.abs(workerIndex.getAndIncrement() % workeres.length)];
     }
 
     /**
-     * »ñÈ¡Ò»¸öboss
+     * ï¿½ï¿½È¡Ò»ï¿½ï¿½boss
      */
     public Boss nextBoss() {
         return bosses[Math.abs(bossIndex.getAndIncrement() % bosses.length)];

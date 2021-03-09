@@ -1,6 +1,6 @@
 package com.xuegao.netty_chat_room_server.mininetty;
 
-import com.deepj.pool.NioSelectorRunablePool;
+import com.xuegao.netty_chat_room_server.mininetty.pool.NioSelectorRunablePool;
 
 import java.io.IOException;
 import java.nio.channels.Selector;
@@ -10,33 +10,33 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * ³éÏóselectorÏß³ÌÀà
+ * ï¿½ï¿½ï¿½ï¿½selectorï¿½ß³ï¿½ï¿½ï¿½
  */
 public abstract class AbstractNioSelector implements Runnable{
 
 
 	/**
-	 * Ïß³Ì³Ø
+	 * ï¿½ß³Ì³ï¿½
 	 */
 	private final Executor executor;
 	
 	/**
-	 * Ñ¡ÔñÆ÷
+	 * Ñ¡ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected Selector selector;
 	
 	/**
-	 * Ñ¡ÔñÆ÷wakenUp×´Ì¬±ê¼Ç
+	 * Ñ¡ï¿½ï¿½ï¿½ï¿½wakenUp×´Ì¬ï¿½ï¿½ï¿½
 	 */
 	protected final AtomicBoolean wakenUp = new AtomicBoolean();
 	
 	/**
-	 * ÈÎÎñ¶ÓÁÐ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private final Queue<Runnable> taskQueue = new ConcurrentLinkedQueue<Runnable>();
 	
 	/**
-	 * Ïß³ÌÃû³Æ
+	 * ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected String threadName;
 	
@@ -51,7 +51,7 @@ public abstract class AbstractNioSelector implements Runnable{
 	}
 
 	/**
-	 * »ñÈ¡selector²¢Æô¶¯Ïß³Ì
+	 * ï¿½ï¿½È¡selectorï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
 	 */
 	private void openSelector() {
 		try {
@@ -95,14 +95,14 @@ public abstract class AbstractNioSelector implements Runnable{
 	}
 	
 	/**
-	 * »ñÈ¡Ïß³Ì¹ÜÀí¶ÔÏó
+	 * ï¿½ï¿½È¡ï¿½ß³Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public NioSelectorRunablePool getSelectorRunnablePool() {
 		return selectorPool;
 	}
 
 	/**
-	 * ×¢²áÒ»¸öÈÎÎñ²¢¼¤»îselector
+	 * ×¢ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ñ²¢¼ï¿½ï¿½ï¿½selector
 	 */
 	protected final void registerTask(Runnable task) {
 

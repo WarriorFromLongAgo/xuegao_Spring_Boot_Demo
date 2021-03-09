@@ -1,7 +1,7 @@
 package com.xuegao.netty_chat_room_server.mininetty;
 
-import com.deepj.pool.Boss;
-import com.deepj.pool.NioSelectorRunablePool;
+import com.xuegao.netty_chat_room_server.mininetty.pool.Boss;
+import com.xuegao.netty_chat_room_server.mininetty.pool.NioSelectorRunablePool;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -21,7 +21,7 @@ public class ServerBootstrap {
 			serverChannel.configureBlocking(false);
 			serverChannel.socket().bind(inetSocketAddress);
 			
-			// 获取一个boss线程
+			// 锟斤拷取一锟斤拷boss锟竭筹拷
 			Boss boss = selectorRunablePool.nextBoss();
 			boss.registerAcceptChannelTask(serverChannel);
 			
