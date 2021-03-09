@@ -1,6 +1,7 @@
 package com.xuegao.springboot_tool.controller;
 
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
+import com.xuegao.springboot_tool.model.doo.Order;
 import com.xuegao.springboot_tool.service.interfaces.IMysqlService;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,13 @@ public class MysqlController {
     public WrappedResponse<T> transactional() {
         mysqlService.transactional();
         return WrappedResponse.success();
+    }
+
+    @GetMapping("/get")
+    public WrappedResponse<Order> getById() {
+        Order byId = mysqlService.getById();
+        System.out.println(byId);
+        return WrappedResponse.success(byId);
     }
 
 }

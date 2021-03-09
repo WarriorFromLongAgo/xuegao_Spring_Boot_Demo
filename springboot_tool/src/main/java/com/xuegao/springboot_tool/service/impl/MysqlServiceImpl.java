@@ -28,7 +28,7 @@ public class MysqlServiceImpl implements IMysqlService {
         this.orderManager = orderManager;
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.MANDATORY, rollbackFor = Exception.class)
     @Override
     public void transactional() {
         Order order = new Order();
@@ -55,7 +55,6 @@ public class MysqlServiceImpl implements IMysqlService {
         return orderManager.insert(order);
     }
 
-    @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     @Override
     public Long insert2() {
         Order order = new Order();
