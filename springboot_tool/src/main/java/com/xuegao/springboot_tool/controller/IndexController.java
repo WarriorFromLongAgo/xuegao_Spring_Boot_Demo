@@ -1,5 +1,7 @@
 package com.xuegao.springboot_tool.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.model.PageQuery;
 import com.xuegao.springboot_tool.model.doo.Product;
@@ -14,10 +16,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Enumeration;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.BiConsumer;
 
 /**
  * 视图
@@ -182,5 +189,43 @@ public class IndexController<T> extends BaseController<T> {
         InputStream in = getClass()
                 .getResourceAsStream("/com/baeldung/produceimage/image.jpg");
         return IOUtils.toByteArray(in);
+    }
+
+    @ResponseBody
+    @PostMapping(path = "/doPost")
+    public WrappedResponse<T> doPost(HttpServletRequest request, String json) {
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String s = headerNames.nextElement();
+            String header = request.getHeader(s);
+            System.out.println(s + " === " + header);
+        }
+
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        parameterMap.forEach(new BiConsumer<String, String[]>() {
+            @Override
+            public void accept(String s, String[] strings) {
+                System.out.println(s + " === "+ Lists.newArrayList(strings));
+            }
+        });
+        String postData = getPostData(request);
+        System.out.println(postData);
+
+        log.info("post5 = " + json);
+        return success("casTgt");
+    }
+
+    private  String getPostData(HttpServletRequest request) {
+        StringBuilder data = new StringBuilder();
+        String line = null;
+        BufferedReader reader = null;
+        try {
+            reader = request.getReader();
+            while (null != (line = reader.readLine()))
+                data.append(line);
+        } catch (IOException e) {
+        } finally {
+        }
+        return data.toString();
     }
 }
