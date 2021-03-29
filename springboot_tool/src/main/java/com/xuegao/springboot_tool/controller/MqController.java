@@ -1,9 +1,7 @@
 package com.xuegao.springboot_tool.controller;
 
-import com.xuegao.springboot_tool.constant.common.WrappedResponse;
 import com.xuegao.springboot_tool.service.interfaces.IMqService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -23,9 +21,9 @@ public class MqController {
         this.iMqService = iMqService;
     }
 
-    @GetMapping("/transaction1")
-    public WrappedResponse<String> transaction1() {
-        iMqService.transaction1();
-        return WrappedResponse.success();
-    }
+    // @GetMapping("/transaction1")
+    // public WrappedResponse<String> transaction1() {
+    //     iMqService.transaction1();
+    //     return WrappedResponse.success();
+    // }
 }

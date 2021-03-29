@@ -1,5 +1,11 @@
 package com.xuegao.springboot_tool.service.interfaces;
 
+import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
+import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
+import org.apache.rocketmq.common.message.MessageExt;
+
+import java.util.List;
+
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.service.interfaces
  * <br/> @ClassName：IMqService
@@ -9,5 +15,6 @@ package com.xuegao.springboot_tool.service.interfaces;
  */
 public interface IMqService {
 
-    void transaction1();
+    ConsumeConcurrentlyStatus transaction1(List<MessageExt> messageExtList,
+                                           ConsumeConcurrentlyContext context);
 }
