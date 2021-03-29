@@ -1,10 +1,10 @@
 package com.xuegao.springboot_tool.service.impl;
 
 import com.xuegao.springboot_tool.model.bo.CallCdr;
+import com.xuegao.springboot_tool.mvc.exception.BusinessException;
 import com.xuegao.springboot_tool.service.interfaces.IThreadService;
 import com.xuegao.springboot_tool.utils.RedisConvertUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RBlockingDeque;
 import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RDelayedQueue;
@@ -17,13 +17,14 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * <br/> @PackageName：com.xuegao.springboot_tool.service.impl
@@ -35,6 +36,10 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class ThreadServiceImpl implements IThreadService {
     private Logger log = LoggerFactory.getLogger(ThreadServiceImpl.class);
+
+    static Lock lock = new ReentrantLock();
+    static Lock lock2 = new ReentrantLock();
+    static ReentrantLock reentrantLock = new ReentrantLock();
 
     private static final Integer THUMBS_UP = 1;
 
@@ -229,5 +234,92 @@ public class ThreadServiceImpl implements IThreadService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void reentrantLockTest(String userId) {
+        System.out.println("reentrantLockTest userId 已进入一 = " + userId);
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        if (lock2.tryLock()) {
+            try {
+                System.out.println("reentrantLockTest userId 已进入二 = " + userId);
+                method11(userId);
+                TimeUnit.SECONDS.sleep(1000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock2.unlock();
+                System.out.println("reentrantLockTest userId 已离开三 = " + userId);
+            }
+        }
+    }
+
+    public void method11(String userId) {
+        lock.lock();
+        try {
+            System.out.println("reentrantLockTest1 userId 第二层 = " + userId);
+            method22(userId);
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void method22(String userId) {
+
+        lock.lock();
+        try {
+            System.out.println("reentrantLockTest1 userId 第三层 = " + userId);
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    // 可重入是指同一个线程如果首次获得了这把锁，那么因为它是这把锁的拥有者，因此有权利再次获取这把锁
+    // 如果是不可重入锁，那么第二次获得锁时，自己也会被锁挡住
+    // ReentrantLock和synchronized都是可重入锁。
+
+    // 可打断是指在等待锁的过程中，其它线程可以用interrupt方法终止我的等待。synchronized锁是不可打断的。
+    // 我们要想在等锁的过程中被打断，就要使用lockInterruptibly()方法对lock对象加锁，而不是lock()方法
+
+    @Override
+    public void reentrantLockTest2(String userId) {
+        try {
+            System.out.println("reentrantLockTest2 userId 已进入一 = " + userId);
+            System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+            lock.lock();
+            System.out.println("reentrantLockTest2 userId 已进入二 = " + userId);
+            method1(userId);
+            TimeUnit.SECONDS.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+            System.out.println("reentrantLockTest2 userId 已离开三 = " + userId);
+        }
+    }
+
+    public void method1(String userId) {
+        lock.lock();
+        try {
+            System.out.println("reentrantLockTest2 userId 第二层 = " + userId);
+            method2(userId);
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void method2(String userId) {
+        lock.lock();
+        try {
+            System.out.println("reentrantLockTest2 userId 第三层 = " + userId);
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    @Override
+    public void reentrantReadWriteLockTest(String userId) {
+        // Lock lock = new ReentrantReadWriteLock.WriteLock();
+
     }
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MqController {
 
-    private IMqService iMqService;
+    private final IMqService iMqService;
 
     @Autowired
     public MqController(IMqService iMqService) {

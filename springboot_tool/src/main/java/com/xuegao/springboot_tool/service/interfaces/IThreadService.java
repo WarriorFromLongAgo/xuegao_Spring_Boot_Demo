@@ -65,4 +65,10 @@ public interface IThreadService {
 
     void delayedQueueByRedissonClientTake();
 
+    void reentrantLockTest(String userId);
+
+    void reentrantLockTest2(String userId);
+
+    void reentrantReadWriteLockTest(String userId);
+
 }

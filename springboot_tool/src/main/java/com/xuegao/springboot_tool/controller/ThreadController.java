@@ -254,4 +254,21 @@ public class ThreadController<T> extends BaseController<T> {
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
         return WrappedResponse.success("successsuccesssuccesssuccesssuccess");
     }
+
+    @GetMapping("reentrantLock")
+    public void reentrantLockTest(@RequestParam String userId) {
+        threadService.reentrantLockTest(userId);
+    }
+
+    @GetMapping("reentrantLock2")
+    public void reentrantLockTest2(@RequestParam String userId) {
+        threadService.reentrantLockTest2(userId);
+    }
+
+    @GetMapping("reentrantReadWriteLock")
+    public void reentrantReadWriteLockTest(@RequestParam String userId) {
+        threadService.reentrantReadWriteLockTest(userId);
+    }
+
+
 }
