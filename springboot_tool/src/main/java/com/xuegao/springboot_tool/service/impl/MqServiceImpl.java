@@ -52,31 +52,31 @@ public class MqServiceImpl implements IMqService, InitializingBean {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(consumerGroupName);
         consumer.setNamesrvAddr(consumerNameSrv);
         consumer.subscribe("pay", "*");
-        consumer.registerMessageListener(this::transaction1);
+        consumer.registerMessageListener(new MessageListenerConcurrently() {
+            @Override
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> messageExtList, ConsumeConcurrentlyContext context) {
+                MessageExt messageExt = messageExtList.get(0);
+                JSONObject jsonObject = JSONObject.parseObject(new String(messageExt.getBody()));
+                // jsonObject.put("payFlag", "2");
+                // jsonObject.put("userId", userId);
+                // jsonObject.put("goodId", goodId);
+                String payFlag = jsonObject.get("payFlag").toString();
+                // String userId = jsonObject.get("userId").toString();
+                // String goodId = jsonObject.get("goodId").toString();
+                String orderId = jsonObject.get("orderId").toString();
+
+                if ("1".equals(payFlag)) {
+                    yzyOrderManager.updateById(Integer.valueOf(orderId));
+                    System.out.println("ConsumeConcurrentlyStatus.CONSUME_SUCCESS payFlag = " + payFlag);
+                    return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+                } else {
+                    System.out.println("ConsumeConcurrentlyStatus.RECONSUME_LATER payFlag = " + payFlag);
+                    return ConsumeConcurrentlyStatus.RECONSUME_LATER;
+                }
+            }
+        });
         consumer.start();
         System.out.println("consumer 启动");
     }
 
-    @Override
-    public ConsumeConcurrentlyStatus transaction1(List<MessageExt> messageExtList,
-                                                  ConsumeConcurrentlyContext context) {
-        MessageExt messageExt = messageExtList.get(0);
-        JSONObject jsonObject = JSONObject.parseObject(new String(messageExt.getBody()));
-        // jsonObject.put("payFlag", "2");
-        // jsonObject.put("userId", userId);
-        // jsonObject.put("goodId", goodId);
-        String payFlag = jsonObject.get("payFlag").toString();
-        // String userId = jsonObject.get("userId").toString();
-        // String goodId = jsonObject.get("goodId").toString();
-        String orderId = jsonObject.get("orderId").toString();
-
-        if ("1".equals(payFlag)) {
-            yzyOrderManager.updateById(Integer.valueOf(orderId));
-            System.out.println("ConsumeConcurrentlyStatus.CONSUME_SUCCESS payFlag = " + payFlag);
-            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-        } else {
-            System.out.println("ConsumeConcurrentlyStatus.RECONSUME_LATER payFlag = " + payFlag);
-            return ConsumeConcurrentlyStatus.RECONSUME_LATER;
-        }
-    }
 }

@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface IMqService {
 
-    ConsumeConcurrentlyStatus transaction1(List<MessageExt> messageExtList,
-                                           ConsumeConcurrentlyContext context);
+    // ConsumeConcurrentlyStatus transaction1(List<MessageExt> messageExtList,
+    //                                        ConsumeConcurrentlyContext context);
 }

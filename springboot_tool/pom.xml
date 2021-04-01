@@ -149,14 +149,17 @@
             <artifactId>hutool-all</artifactId>
             <version>4.6.1</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
+            <version>30.1.1-jre</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.checkerframework</groupId>
