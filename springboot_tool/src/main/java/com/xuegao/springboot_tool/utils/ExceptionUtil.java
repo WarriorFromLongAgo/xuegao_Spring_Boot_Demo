@@ -12,7 +12,6 @@ import java.io.StringWriter;
  * <br/> @MethodName:  异常信息文件工具类
  * <br/> @Return
  * <br/> @Description: 
- * <br/> @author: fjm
  * <br/> @date:  2020/4/5 15:29
  */
 public class ExceptionUtil {

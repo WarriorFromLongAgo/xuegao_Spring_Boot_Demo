@@ -90,7 +90,6 @@ package com.xuegao.springboot_tool.utils;// package com.fff.my_blog.utils;
 //      * <br/> @MethodName:  getAuto
 //      * <br/> @Return java.lang.Long
 //      * <br/> @Description: 获取自增的id
-//      * <br/> @author: fjm
 //      * <br/> @date:  2020/4/6 23:27
 //      */
 //     public Long getAuto(String key) {

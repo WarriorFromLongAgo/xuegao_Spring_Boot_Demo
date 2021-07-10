@@ -5,7 +5,6 @@ package com.xuegao.springboot_tool.mvc.exception;
  * <br/> @MethodName:  自定义异常
  * <br/> @Return
  * <br/> @Description: 
- * <br/> @author: fjm
  * <br/> @date:  2020/4/5 15:22
  */
 public class CMSException extends RuntimeException {

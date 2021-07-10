@@ -17,7 +17,7 @@ public class MainConfig {
     @Bean
     public Person person() {
         Person person = new Person();
-        person.setName("fjmconfig");
+        person.setName("config");
         person.setAge(24);
         return person;
     }
@@ -25,7 +25,7 @@ public class MainConfig {
     @Bean
     public Person person01() {
         Person person = new Person();
-        person.setName("fjmconfig");
+        person.setName("config");
         person.setAge(24);
         return person;
     }
@@ -33,7 +33,7 @@ public class MainConfig {
     @Bean(name = "person022")
     public Person person02() {
         Person person = new Person();
-        person.setName("fjmconfig");
+        person.setName("config");
         person.setAge(24);
         return person;
     }
