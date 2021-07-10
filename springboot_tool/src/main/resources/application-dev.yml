@@ -23,22 +23,22 @@ spring:
           url: jdbc:sqlserver://localhost:1433;databaseName=company_project
   redis:
     #url: # Connection URL. Overrides host, port, and password. User is ignored. Example: redis://user:password@example.com:6379
-    #host: localhost # Redis server host.
-    password: c7vcaziwiqgouret # Login password of the redis server.
-    #port: 6379 # Redis server port.
+    host: localhost # Redis server host.
+#    password: c7vcaziwiqgouret # Login password of the redis server.
+    port: 6379 # Redis server port.
     database: 0 # Database index used by the connection factory.
     ssl: false # Whether to enable SSL support.
     timeout: 3000 # Connection timeout milliseconds.
     #cluster:
     #  max-redirects: # Maximum number of redirects to follow when executing commands across the cluster.
     #  nodes: # Comma-separated list of "host:port" pairs to bootstrap from.
-    sentinel:
-      master: ESG_CR_CORE_REDIS_C01 # Name of the Redis server.
-      nodes: esg-cr-core1.cache.sfdc.com.cn:8001,esg-cr-core2.cache.sfdc.com.cn:8001,esg-cr-core3.cache.sfdc.com.cn:8001 # Comma-separated list of "host:port" pairs.
-    #    host: localhost # Redis服务器地址
-    #    database: 0 # Redis数据库索引（默认为0）
-    #    port: 6379 # Redis服务器连接端口
-    #    password: # Redis服务器连接密码（默认为空）
+#    sentinel:
+#      master: ESG_CR_CORE_REDIS_C01 # Name of the Redis server.
+#      nodes: esg-cr-core1.cache.sfdc.com.cn:8001,esg-cr-core2.cache.sfdc.com.cn:8001,esg-cr-core3.cache.sfdc.com.cn:8001 # Comma-separated list of "host:port" pairs.
+#        host: localhost # Redis服务器地址
+#        database: 0 # Redis数据库索引（默认为0）
+#        port: 6379 # Redis服务器连接端口
+#        password: # Redis服务器连接密码（默认为空）
     #    jedis:
     #      pool:
     #        max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
@@ -49,9 +49,9 @@ spring:
     lettuce:
       pool:
         # 连接池最大连接数(使用负值表示没有限制) 默认为8
-        max-active: 8
+        max-active: 100
         # 连接池中的最大空闲连接 默认为8
-        max-idle: 8
+        max-idle: 10
         # 连接池最大阻塞等待时间(使用负值表示没有限制) 默认为-1
         max-wait: -1ms
         # 连接池中的最小空闲连接 默认为 0
@@ -74,7 +74,7 @@ file:
   #文件预览、下载的url, 末尾请勿加 /
   url: http://localhost:8080/files
 
-rocketmq:
-  name-server: 127.0.0.1:9876
-  consumer:
-    group: transaction-group
+#rocketmq:
+#  name-server: 127.0.0.1:9876
+#  consumer:
+#    group: transaction-group

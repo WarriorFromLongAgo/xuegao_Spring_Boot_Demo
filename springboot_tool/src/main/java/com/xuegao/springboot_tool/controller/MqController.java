@@ -1,7 +1,5 @@
 package com.xuegao.springboot_tool.controller;
 
-import com.xuegao.springboot_tool.service.interfaces.IMqService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MqController {
 
-    private final IMqService iMqService;
-
-    @Autowired
-    public MqController(IMqService iMqService) {
-        this.iMqService = iMqService;
-    }
+    // private final IMqService iMqService;
+    //
+    // @Autowired
+    // public MqController(IMqService iMqService) {
+    //     this.iMqService = iMqService;
+    // }
 
     // @GetMapping("/transaction1")
     // public WrappedResponse<String> transaction1() {

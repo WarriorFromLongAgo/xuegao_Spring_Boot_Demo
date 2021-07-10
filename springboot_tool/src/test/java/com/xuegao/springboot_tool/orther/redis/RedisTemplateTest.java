@@ -49,4 +49,19 @@ public class RedisTemplateTest {
         // Product {id=100, name='name', price='100', stocks=1000, description='setDescription'}
     }
 
+    @Test
+    public void redisTemplateTest3() {
+        for (int i = 0; i < 10000; i++) {
+            redisTemplate.opsForValue().set("key" + i, "value");
+            Serializable value = redisTemplate.opsForValue().get("key" + i);
+            System.out.println("key" + i + " = " + value);
+        }
+    }
+
+    @Test
+    public void redisTemplateTest4() {
+        for (int i = 0; i < 10000; i++) {
+            redisTemplate.delete("key" + i);
+        }
+    }
 }
